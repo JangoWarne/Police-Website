@@ -12,26 +12,90 @@
 	<script src="../../js/officerdb_io.js"></script>
 	<link href="../../css/styles.css" type="text/css" rel="stylesheet">
 	<link href="css/reported-bikes.css" type="text/css" rel="stylesheet">
+    <link href="../reported-bikes/reported-bikes.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
 	
 	<!-- Headers -->
-	<header id="logged-out-header">
+	<header>
+        
+      
+
 		
 		<!--#include virtual="/CT4009%202017-18%20001%201609415%2014%20Jan%202018/police/header.html" -->
 		
 	</header>
 	
+    <br><br> 
 	<!-- Main Body -->
 	<main>
-		
+        <div class="box">
+            <div class="align_center">
+				<br><h2>Location of reported bike theft</h2> 
+                <div id="googleMap"></div> <br> <br>
+            </div>
+        </div>
+        
+        <div class="search">
+       
+            <h2>Complete as many search attributes as possible</h2>  
+       
+            <input type="text" placeholder="Enter frame number..">
+            <br>
+            <input type="text" placeholder="Enter make..">
+            <br>
+            <input type="text" placeholder="Enter model..">
+            <br> 
+             <input type="text" placeholder="Enter colour..">
+            <br>
+        
+            <label class="container">Case assigned to Officer
+                <input type="checkbox" name="boolAssignedToOfficer" value="rememberme">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">Case NOT assigned to Officer
+                <input type="checkbox" name="boolNotAssignedToOfficer" value="rememberme">
+                <span class="checkmark"></span>
+            </label>
+            <br> 
+            <input class="submit_button" type="submit">
+        
+        </div> 
+    
+        <table>
+ 	       <tr class="item">
+                <td>
+                    <table class = "registered_bike">
+                        <tr class="missing_bike_row_img"> 
+                            <td rowspan="7">
+                                <div class="bike_Image">
+                                    <div class="outer_constraint">
+                                        <div class="inner_constraint">
+                                            <img src="http://ct4009-17bn.studentsites.glos.ac.uk/CT4009%202017-18%20001%201609415%2014%20Jan%202018/images/bike2.jpg" alt="bike2">
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="missing_bike_heading">Last Seen:</td>
+                            <td class="missing_bike_values">24 Humber Rd.<div>12/11/2016</div></td>
+                            <td rowspan="7" class="registered_bike_buttons">
+                                <button class="edit_bike"> <a href="../found-bike/index.shtml">Report Found</a></button>
+                            </td>
+                                
+                        </tr>
+                    </table>
+               </td>
+            </tr>
+     </table>
 		
 	</main>
 	
 	<script src="../../js/bikedb_io.js"></script>
 	<script src="../../js/userdb_io.js"></script>
 	<script src="../police.js"></script>
+	<script src="./reported-bikes.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 	<script src="./reported-bikes.js"></script>
 </body>
 

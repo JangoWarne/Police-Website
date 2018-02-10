@@ -1,0 +1,176 @@
+/* Add a black background color to the top navigation bar */
+.search {
+    overflow: hidden;
+    background-color: #e9e9e9;
+    width: 1000px;
+	height: 300px;
+	margin: 0px auto 0px auto;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    text-align:center;
+}
+
+/* Style the search box inside the navigation bar */
+.search input[type=text] {
+    
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-left: 30px;
+    font-size: 17px;
+}
+.search input[type=text] {
+    border: 1px solid #ccc;
+    }
+
+.search input[type=button] {
+    padding: 6px;
+    margin-top: 8px;
+    margin-left: 30px;
+    font-size: 17px;
+    height: 50px;
+    width: 100px;
+        
+}
+
+
+
+/*style submit button*/
+.submit_button {
+	margin-top: 20px;
+	margin-bottom: 10px;
+	height: 40px;
+	width: 100%;
+	border-radius: 0px;
+	padding: 6px;
+	color: lightgray;
+	font-weight: 600;
+	font-size: 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	transition-duration: 0.3s;
+	cursor: pointer;
+	background-color: #2f24b1;
+   border: 2px solid #2f24b1;
+}
+.submit_button:hover {
+	background-color: #D7D7D4;
+	border: 2px solid #D7D7D4;
+	color: #373737;
+}
+.submit_button:active {
+	transition-duration: 0s;
+}
+
+/*define size of google map*/
+#googleMap{
+	width: 160%;
+	margin-left: -30%;
+	height: 400px;
+	background-color: #8C8C8C;
+    text-align:center;
+}
+
+/*align inputs in middle of form*/
+.align_center {
+	margin: 0 auto 0 auto;
+	width: 45%;
+}
+
+/*create box around inputs*/
+.box {
+	/*background-color: #F3F3F3; */
+	margin: 10px auto 10px auto;
+	width: 80%;
+	height: 90%;
+	padding: 30px;
+	padding-top: 0;
+	/*border-color: #BDBDBD; */
+	border-width: 1px;
+	/*border-style: solid; */
+    text-align:center;
+}
+
+
+/*style non stolen bikes*/
+.registered_bike {
+	height: 225px;
+}
+.registered_bike_row {
+	font-size: 22px;
+	height: 37.5px;
+	background-color: #E6E6E3;
+}
+.registered_bike_row_img {
+	font-size: 22px;
+	height: 37.5px;
+}
+.registered_bike_heading {
+	width: 120px;
+	text-align: right;
+	padding-right: 10px;
+	background-color: #E6E6E3;
+}
+.registered_bike_values {
+	width: 365px;
+	background-color: #E6E6E3;
+}
+
+/*rezise and zoom images of bikes*/
+.bike_Image {
+	width: 300px;
+	overflow: hidden;
+	height: 225px;
+}
+.outer_constraint {
+	width: 100%;
+	margin: 0 auto; 
+	overflow: visible;
+}
+.inner_constraint {
+	position: relative;
+	float: right;
+	right: 50%;
+}
+.inner_constraint > img {
+	height: 260px;
+	display: inline;
+	position: relative;
+	right:-50%;
+	z-index: -1;
+}
+
+/*style width for table children of centered */
+.centered > table{
+	width: 100%;
+}
+
+/*set size of table cells*/
+.cell{
+	height: 95px;
+}
+.item{
+	height: 265px;
+}
+
+/*remove border gap between cells*/
+table, td {
+	border-collapse: collapse;
+}
+
+/*position content in middle of window and set size*/
+section{
+	width: 1000px;
+	min-height: 100px;
+	margin: 0px auto 0px auto;
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+.centered{
+	font-size: 30px;
+}
+.help_grid{
+	padding-top: 20px;
+	height: 560px;
+}
