@@ -159,6 +159,7 @@ table, td {
 /*style non stolen bikes*/
 .registered_bike {
 	height: 225px;
+    margin-top: 40px;
 }
 .registered_bike_row {
 	font-size: 22px;
