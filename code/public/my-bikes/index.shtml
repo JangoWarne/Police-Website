@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> Gloucestershire Constabulary - My Bikes </title>
+	<script
+		src="https://code.jquery.com/jquery-3.2.1.js"
+		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		crossorigin="anonymous">
+	</script>
+	<script src="../../js/cookie_io.js"></script>
+	<script src="../../js/userdb_io.js"></script>
+	<link href="../../css/styles.css" type="text/css" rel="stylesheet">
+	<link href="css/my-bikes.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+	
+	<!-- Headers -->
+	<header id="logged-out-header">
+		
+		<!--#include virtual="/CT4009%202017-18%20001%201609415%2014%20Jan%202018/public/header.html" -->
+	</header>
+	
+	<!-- Main Body -->
+	<main>
+		<section class="centered">
+			My Bikes <hr>
+		
+			<table>
+				
+				<!-- Previous hard coded registered bike (superceded by working add-bike page) -->
+				<!--
+				<tr class="item">
+					<td>
+						<table class = "registered_bike">
+							<tr class="registered_bike_row_img">
+								<td rowspan="6">
+									<div class="bike_Image">
+										<div class="outer_constraint">
+											<div class="inner_constraint">
+												<img src="http://ct4009-17bn.studentsites.glos.ac.uk/CT4009%202017-18%20001%201609415%2014%20Jan%202018/images/bike1.jpg" alt="bike1">
+											</div>
+										</div>
+									</div>
+								</td>
+								<td class="registered_bike_heading">Brand:</td>
+								<td class="registered_bike_values">Fortified</td>
+								<td rowspan="3" class="registered_bike_buttons">
+									<button class="edit_bike"> <a href="../report-stolen/index.shtml">Report Stolen</a></button>
+								</td>
+							</tr>
+							<tr class="registered_bike_row">
+								<td class="registered_bike_heading">Model:</td>
+								<td>Cruser</td>
+							</tr>
+							<tr class="registered_bike_row">
+								<td class="registered_bike_heading">Type:</td>
+								<td>Road</td>
+							</tr>
+							<tr class="registered_bike_row">
+								<td class="registered_bike_heading">Colour:</td>
+								<td>Black</td>
+								<td rowspan="3">
+									<button class="edit_bike">Remove Bike  <div class="rotate">&#10073</div></button>
+								</td>
+							</tr>
+							<tr class="registered_bike_row">
+								<td class="registered_bike_heading">S/N: </td>
+								<td>29706429</td>
+							</tr>
+							<tr class="registered_bike_row">
+								<td class="registered_bike_heading">Tag:	</td>
+								<td>BikeTrack - ID: 29706429</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				-->
+				
+				<!-- Hard coded stolen bike -->
+				<tr class="item">
+					<td>
+						<table class = "registered_bike">
+							<tr class="missing_bike_row_img">
+								<td rowspan="7">
+									<div class="bike_Image">
+										<div class="outer_constraint">
+											<div class="inner_constraint">
+												<img src="http://ct4009-17bn.studentsites.glos.ac.uk/CT4009%202017-18%20001%201609415%2014%20Jan%202018/images/bike2.jpg" alt="bike2">
+											</div>
+										</div>
+									</div>
+								</td>
+								<td class="missing_bike_heading">Last Seen:</td>
+								<td class="missing_bike_values">24 Humber Rd.<div>12/11/2016</div></td>
+								<td rowspan="7" class="registered_bike_buttons">
+									<button class="edit_bike"> <a href="../found-bike/index.shtml">Report Found</a></button>
+								</td>
+							</tr>
+							<tr class="missing_bike_row">
+								<td class="registered_bike_heading">Brand:</td>
+								<td class="registered_bike_values">Highlander</td>
+							</tr>
+							<tr class="missing_bike_row">
+								<td class="registered_bike_heading">Model:</td>
+								<td>Townbike</td>
+							</tr>
+							<tr class="missing_bike_row">
+								<td class="registered_bike_heading">Type:</td>
+								<td>City</td>
+							</tr>
+							<tr class="missing_bike_row">
+								<td class="registered_bike_heading">Colour:</td>
+								<td>Blue</td>
+							</tr>
+							<tr class="missing_bike_row">
+								<td class="registered_bike_heading">S/N: </td>
+								<td>50661825</td>
+							</tr>
+							<tr class="missing_bike_row">
+								<td class="registered_bike_heading">Tag:	</td>
+								<td>None</td>
+							</tr>
+							<tr class="missing_status_row">
+								<td colspan="2" class="missing_status_heading">Investigation Status:	</td>
+								<td>Under Investigation</td>
+								<td class="missing_status_explain"> <a href="../explain-investigation-status/index.shtml">Explain Status?</a> </td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr class="cell">
+					<td>
+						<!-- Add new bike button -->
+						<a href="../add-bike/index.shtml">
+							<button class="add_bike"> Add Bike <b>+</b></button>
+						</a>
+					</td>
+				</tr>
+				
+			</table>
+		</section>
+		
+		<!-- Grid of how to articles for common tasks -->
+		<section class="help_grid">
+			<div class="column">
+				<a href="..\how-to-change-account-details\index.shtml">
+					<article id="change-details">
+						<div class="how-to-title">
+							<span>How to change your account details</span>
+						</div>
+					</article>
+				</a>
+				<a href="..\..\logged-out\how-to-report-a-bike-stolen\index.html">
+					<article id="report-stolen">
+						<div class="how-to-title">
+							<span>How to report your bike stolen</span>
+						</div>
+					</article>
+				</a>
+			</div>
+			<div class="column">
+				<a href="..\..\logged-out\how-to-register-a-bike\index.html">
+					<article id="register-bike">
+						<div class="how-to-title">
+							<span>How to register your bike</span>
+						</div>
+					</article>
+				</a>
+				<a href="..\..\logged-out\how-to-check-an-investigations-progress\index.html">
+					<article id="investigation-progress">
+						<div class="how-to-title">
+							<span>How to check an investigations progress</span>
+						</div>
+					</article>
+				</a>
+			</div>
+		</section>
+		
+	</main>
+	
+	<script src="../../js/bikedb_io.js"></script>
+	<script src="../public.js"></script>
+	<script src="./my-bikes.js"></script>
+</body>
+
+</html>
+

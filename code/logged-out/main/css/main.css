@@ -1,0 +1,59 @@
+
+/*center contect on screen*/
+section{
+	width: 1000px;
+	height: 560px;
+	margin: 0px auto 0px auto;
+   padding-top: 40px;
+   padding-bottom: 40px;
+}
+
+/*create two columns for help article grid*/
+.column{
+    float: left;
+    width: 50%;
+}
+
+/*define size of help grid images*/
+article {
+	position: relative;
+	color: white;
+	margin: 6% auto 6% auto;
+    margin-top: 3%;
+    width: 93%;
+	height: 250px;
+	background-repeat: no-repeat;
+	background-color: #EEE;
+	background-size: cover;
+}
+/*add help grid images*/
+#setup-account {
+	background-image: url(../../how-to-setup-an-account/images/setupAccount.png);
+	z-index: -1;
+}
+#register-bike {
+	background-image: url(../../how-to-register-a-bike/images/registerBike.jpg);
+	z-index: -1;
+}
+#report-stolen {
+	background-image: url(../../how-to-report-a-bike-stolen/images/reportBike.jpeg);
+	z-index: -1;
+}
+#investigation-progress {
+	background-image: url(../../how-to-check-an-investigations-progress/images/checkProgress.jpg);
+	z-index: -1;
+}
+
+/*style text under each image*/
+.how-to-title {
+    font-size: 15px;
+    font-family: Arial;
+	position: absolute;
+    font-weight: 700;
+    background-color: rgba(60, 60, 60, .7);
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0px;
+    bottom: 0;
+}

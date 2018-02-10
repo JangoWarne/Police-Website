@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> Gloucestershire Constabulary - How to setup an account </title>
+	<script
+		src="https://code.jquery.com/jquery-3.2.1.js"
+		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		crossorigin="anonymous">
+	</script>
+	<script src="../../js/cookie_io.js"></script>
+	<script src="../../js/userdb_io.js"></script>
+	<link href="../../css/styles.css" type="text/css" rel="stylesheet">
+	<link href="../../css/howto.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+	
+	<!-- Headers -->
+	<header id="logged-out-header">
+		<!--#include virtual="/CT4009%202017-18%20001%201609415%2014%20Jan%202018/logged-out/header.html" -->
+		<div class="heading_text">
+			<h1>
+				<a href="../main/index.shtml">
+					Home 
+				</a>
+				/ How to...
+			</h1>
+		</div>
+	</header>
+	
+	<!-- Main Body -->
+	<main>
+		<article>
+			<div class = "top_image">
+				<img src="images/setupAccount.png" alt="setupAccountImage">
+			</div>
+			<h2>How to setup an account</h2>
+			<section>
+				<!-- Steps to create an account -->
+				<ol>
+					<li>
+						Move the mouse cursor to &quot;Account&quot; in the top right corner so that the dropdown appears.
+					</li>
+					<br> <br>
+					<li> Click on &quot;Register&quot; in the list. </li>
+					<br> <br> 
+					<li>
+						Enter your personal details in each text box as labelled. <br>
+						<br>
+						The following information is required and are labelled on the page with an asterisk (*): <br>
+						<ul>
+							<br>
+							<li>Title</li>
+							<li>First Name</li>
+							<li>Last Name</li>
+							<li>Email</li>
+							<li>Password</li>
+							<li>Confirm Password</li>
+							<li>Address Line 1</li>
+							<li>Town/City</li>
+							<li>Postcode</li>
+							<br>
+							It is recommended that you select to be contacted &quot;By Email&quot;
+							or &quot;By Text&quot; so that you will be notified if the status of a stolen bicycle of yours changes. <br>
+						</ul>
+					</li>
+					<br><br>
+					<li>Click &quot;Create Account&quot; at the bottom of the page.</li>
+				</ol> <br><br> <br>
+			</section>
+		</article>
+	</main>
+	
+	<script src="../logged_out.js"></script>
+</body>
+
+</html>
+

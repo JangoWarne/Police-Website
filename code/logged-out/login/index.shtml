@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> Gloucestershire Constabulary - Login </title>
+	<script
+		src="https://code.jquery.com/jquery-3.2.1.js"
+		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		crossorigin="anonymous">
+	</script>
+	<script src="../../js/cookie_io.js"></script>
+	<script src="../../js/userdb_io.js"></script>
+	<script src="../../js/officerdb_io.js"></script>
+	<link href="../../css/styles.css" type="text/css" rel="stylesheet">
+	<link href="css/login.css" type="text/css" rel="stylesheet">
+	<link href="../../css/checkbox.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+	
+	<!-- Headers -->
+	<header id="logged-out-header">
+		<!--#include virtual="/CT4009%202017-18%20001%201609415%2014%20Jan%202018/logged-out/header.html" -->
+		<div class="heading_text">
+			<h1>
+				<a href="../main/index.shtml">
+					Home
+				</a>
+				/ Login
+			</h1>
+		</div>
+	</header>
+	
+	<!-- Main Body -->
+	<main>
+		<section class="centered">
+			<div class="box">
+				<!-- Login Form -->
+				<form action="login.php" method="post" id="form-login" name="formLogin">
+					<h2> Login </h2> <br> <br>
+					<input type="text" name="txtEmail" placeholder="EMAIL / USERNAME" required="required"> <br> <br>
+					<input type="password" name="txtPassword" placeholder="PASSWORD" required="required"> <br> <br>
+					<label class="container">Remember me
+					  <input type="checkbox" name="boolRememberMe" value="rememberme">
+					  <span class="checkmark"></span>
+					</label>
+					
+					<input class="submit_button" type="submit" value="Login"> <br>
+					<a href="../forgotten-password/index.html">
+						Forgotten Password?
+					</a>
+				</form>
+			</div>
+			<div class="box">
+				<!-- Register new account link -->
+				<form action="register.php" method="post" id="form-register">
+					<h2> New Account </h2> <br> <br>
+					Don't have an account yet? <br>
+					Don't worry it only takes a moment. <br> <br>
+					
+					<input class="submit_button" type="submit" value="Register">
+				</form>
+			</div>
+		</section>
+	</main>
+	
+	<script src="../logged_out.js"></script>
+	<script src="./login.js"></script>
+</body>
+
+</html>
+

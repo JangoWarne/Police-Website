@@ -1,0 +1,301 @@
+
+/*define text styling for all pages and set background to an off-white*/
+body{
+   margin: 0;
+    font-family: Arial , Helvetica, sans-serif;
+	background-color: #FEFCFA;
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+
+/*set width for headers*/
+#cookie-message, #header-accessibility, #header-main{
+	width: 1100px;
+	margin: 0 auto 0 auto;
+}
+
+/*set background colours for headers*/
+header{
+	background-color: #191919;
+}
+nav{
+	background-color: #000000;
+	border-bottom: 25px solid #333333;
+}
+
+/*set styles for EU cookie message accept button (html commented out)*/
+.cookie_button {
+	border-radius: 4px;
+	padding: 0px 6px;
+	color: black;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 13px;
+	margin: 0 0 0 10px;
+	transition-duration: 0.3s;
+	cursor: pointer;
+	background-color: #EFEFEC;
+   border: 2px solid #EFEFEC;
+}
+.cookie_button:hover {
+	background-color: white;
+	border: 2px solid white;
+}
+.cookie_button:active {
+	transition-duration: 0s;
+	background-color: #CECECE;
+	border: 2px solid #CECECE;
+}
+
+/*set styling for accessibility text size buttons (html commented out)*/
+.size_button {
+	padding: 0;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	text-decoration: underline;
+	margin: 0 0 0 8px;
+	cursor: pointer;
+	background: none;
+	border: none;
+}
+#text-larger {
+	font-size: 18px;
+}
+#text-smaller {
+	font-size: 13px;
+}
+
+/*set styling for accessibility text contrast buttons (html commented out)*/
+.contrast_button {
+	padding: 0px;
+	border-radius: 0;
+	color: black;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 15px;
+	margin: 0 0 0 4px;
+	cursor: pointer;
+	background-color: #EFEFEC;
+   border: 0px solid #EFEFEC;
+   width: 15px;
+   height: 22px;
+   vertical-align: top;
+}
+#contrast-black-on-white{
+	background-color: white;
+   border: 0px solid white;
+	color: black;
+}
+#contrast-white-on-black{
+	background-color: black;
+   border: 1px solid white;
+	color: white;
+}
+#contrast-black-on-blue{
+	background-color: lightblue;
+   border: 1px solid white;
+	color: black;
+}
+#contrast-black-on-yellow{
+	background-color: yellow;
+   border: 2px solid white;
+	color: black;
+}
+#contrast-reset{
+	padding: 0;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	text-decoration: underline;
+	margin: 0 0 0 4px;
+	cursor: pointer;
+	background: none;
+	border: none;
+}
+
+/*styling for accessibility minimise button (html commented out)*/
+.minimise_button {
+	padding: 0;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 15px;
+	text-decoration: underline;
+	margin: 0 0 0 10px;
+	cursor: pointer;
+	background: none;
+	border: none;
+}
+
+/*set font and colour for EU cookie message bar (html commented out)*/
+#header-cookie-message{
+	background-color: #114295;
+}
+#cookie-message{
+	color: #FFFFFF;
+	font-weight: 400;
+	text-align: center;
+	font-size: 14px;
+	padding: 7px 0 7px 0;
+}
+
+/*align items in accessibility bar with correct spacing (html commented out)*/
+#header-accessibility{
+	color: #FFFFFF;
+	font-weight: 400;
+	padding: 9px 0 9px 0;
+	text-align: center;
+}
+#text_size{
+	display: inline-block;
+	width: 300px;
+	text-align: left;
+}
+#text_contrast{
+	display: inline-block;
+	width: 360px;
+	text-align: left;
+}
+#accessibility-close{
+	display: inline-block;
+	text-align: left;
+}
+
+/*define style for constabulary logo on header bar: text and layout*/
+#header-main{
+	display: table;
+}
+#logo-text{
+	text-decoration: none;
+	color: #114295;
+	font-family: Arial;
+	letter-spacing: -1px;
+	margin: 14px 0 21px 5px;
+	font-weight: 700;
+	font-size: 2em;
+	float: left;
+}
+#logo-text span{
+	color: #A8B6BD;
+	display: block;
+	font-size: .8em;
+	font-weight: 400;
+	margin-top: -6px
+}
+#logo-img{
+	float: left;
+}
+#header-logo{
+	margin: 15px 0 15px 0;
+}
+
+/*define style for account 'button': text and layout*/
+#header-account{
+	float: right;
+	margin: 15px 0 0 0;
+}
+#account-button{
+	position: relative;
+	z-index: 1001;
+	width: 150px;
+	height: 50px;
+	transition-duration: 0s;
+	cursor: pointer;
+	background-color: black;
+	border-width: 0;
+	border-color: black;
+}
+#account-button #account-text{
+	color: #A8B6BD;
+}
+#header-account:hover #account-button{
+	background-color: white;
+	border-color: white;
+}
+#header-account:hover #account-text{
+	color: black;
+}
+.account_img{
+	margin-top: 7px;
+	margin-left: 4px;
+}
+#account-text{
+	display: table-cell;
+	text-decoration: none;
+	font-family: Arial;
+	font-size: 1.2em;
+	font-weight: 400;
+	padding: 10px;
+	vertical-align: middle;
+}
+
+/*define style for list of dropdown items under account and ensure they will be in the foreground*/
+.dropdown_items {
+	display: none;
+	position: absolute;
+	z-index: 1000;
+	background-color: white;
+	min-width: 160px;
+	overflow: auto;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	margin-left: -20px;
+}
+.dropdown_items a {
+	font-size: 1.1em;
+	font-weight: 500;
+	color: black;
+	padding: 12px 30px 12px 40px;
+	margin-left: -18px;
+	text-decoration: none;
+	display: block;
+}
+.dropdown_items a:hover {
+	background-color: #E8E8E8;
+}
+
+/*define the style for navigation bar that appears on sub-pages*/
+.heading_text{
+	background-color: #E6E6E6;
+	margin: 0 auto 20px auto;
+   padding-bottom: 4px;
+   padding-top: 4px;
+}
+.heading_text > h1{
+	width: 1000px;
+	margin: 0 auto 0 auto;
+   font-size: 20px;
+   text-decoration: none;
+   color: black;
+}
+
+
+/* The sticky class is added to the header with js when it reaches the top of the screen */
+.sticky {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 120px;
+}
+.stickybar {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 120px;
+}
+.sticky + main {
+	padding-top: 134px;
+}
+.stickybar+ main {
+	padding-top: 180px;
+}
+

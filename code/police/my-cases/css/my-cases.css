@@ -1,0 +1,206 @@
+
+/*position content in middle of window and set size*/
+section{
+	width: 1000px;
+	min-height: 100px;
+	margin: 0px auto 0px auto;
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+.centered{
+	font-size: 30px;
+}
+.help_grid{
+	padding-top: 20px;
+	height: 560px;
+}
+
+
+
+/*define size of google map*/
+#googleMap{
+	width: 160%;
+	margin-left: -30%;
+	height: 400px;
+	background-color: #8C8C8C;
+	cursor: pointer;
+}
+
+
+
+/*style text on google map*/
+.google-map-title {
+	font-size: 15px;
+	font-family: Arial;
+	position: absolute;
+	font-weight: 700;
+	background-color: rgba(60, 60, 60, .7);
+	width: 100%;
+	color: #fff;
+	text-align: center;
+	padding: 5px 0px;
+	bottom: 0;
+}
+
+
+/*format headings*/
+h2 {
+	margin: 0;
+	font-size: 25px;
+}
+
+
+/*style width for table children of centered */
+.centered > table{
+	width: 100%;
+}
+
+/*set size of table cells*/
+.cell{
+	height: 95px;
+}
+.item{
+	height: 265px;
+}
+
+/*remove border gap between cells*/
+table, td {
+	border-collapse: collapse;
+}
+
+
+/*rezise and zoom images of bikes*/
+.bike_Image {
+	width: 300px;
+	overflow: hidden;
+	height: 225px;
+}
+.outer_constraint {
+	width: 100%;
+	margin: 0 auto; 
+	overflow: visible;
+}
+.inner_constraint {
+	position: relative;
+	float: right;
+	right: 50%;
+}
+.inner_constraint > img {
+	height: 260px;
+	display: inline;
+	position: relative;
+	right:-50%;
+	z-index: -1;
+}
+
+
+/*style non stolen bikes*/
+.case {
+	height: 225px;
+}
+.case_row {
+	font-size: 22px;
+	height: 37.5px;
+	background-color: #E6E6E3;
+}
+.case_bike_img {
+	font-size: 22px;
+	height: 37.5px;
+}
+.case_heading {
+	width: 120px;
+	text-align: right;
+	padding-right: 10px;
+	background-color: #E6E6E3;
+}
+.case_values {
+	width: 365px;
+	background-color: #E6E6E3;
+}
+.case_buttons {
+	width: 190px;
+	background-color: #E6E6E3;
+}
+
+
+/*style buttons for changing bike status or remving bikes*/
+.edit_case {
+	height: 45px;
+	width: 95%;
+	border-radius: 0px;
+	color: #F3F3F3;
+	font-weight: 600;
+	font-size: 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	transition-duration: 0.3s;
+	cursor: pointer;
+	background-color: #616161;
+   border: 2px solid #616161;
+}
+.edit_case:hover {
+	background-color: #4C4C4C;
+	border: 2px solid #4C4C4C;
+	color: #F3F3F3;
+}
+.edit_case:active {
+	transition-duration: 0s;
+}
+.edit_case > a {
+	color: #F3F3F3;
+	font-weight: 600;
+	font-size: 20px;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/*create two columns of help article images*/
+.column{
+	float: left;
+	width: 50%;
+}
+
+/*style help article images*/
+article {
+	position: relative;
+	color: white;
+	margin: 6% auto 6% auto;
+   margin-top: 3%;
+   width: 93%;
+	height: 250px;
+	background-repeat: no-repeat;
+	background-color: #EEE;
+	background-size: cover;
+}
+#change-details {
+	background-image: url(../../how-to-change-details/images/changeDetails.png);
+	z-index: -1;
+}
+#register-bike {
+	background-image: url(../../../logged-out/how-to-register-a-bike/images/registerBike.jpg);
+	z-index: -1;
+}
+#report-stolen {
+	background-image: url(../../../logged-out/how-to-report-a-bike-stolen/images/reportBike.jpeg);
+	z-index: -1;
+}
+#investigation-progress {
+	background-image: url(../../../logged-out/how-to-check-an-investigations-progress/images/checkProgress.jpg);
+	z-index: -1;
+}
+
+/*style text below each help article image*/
+.how-to-title {
+	font-size: 15px;
+	font-family: Arial;
+	position: absolute;
+	font-weight: 700;
+	background-color: rgba(60, 60, 60, .7);
+	width: 100%;
+	color: #fff;
+	text-align: center;
+	padding: 5px 0px;
+	bottom: 0;
+}

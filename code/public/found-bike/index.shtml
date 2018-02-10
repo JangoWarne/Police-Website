@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> Gloucestershire Constabulary - Found Bike </title>
+	<script
+		src="https://code.jquery.com/jquery-3.2.1.js"
+		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		crossorigin="anonymous">
+	</script>
+	<script src="../../js/cookie_io.js"></script>
+	<script src="../../js/userdb_io.js"></script>
+	<link href="../../css/styles.css" type="text/css" rel="stylesheet">
+	<link href="../../css/checkbox.css" type="text/css" rel="stylesheet">
+	<link href="css/found-bike.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+	
+	<!-- Headers -->
+	<header id="logged-out-header">
+		
+		<!--#include virtual="/CT4009%202017-18%20001%201609415%2014%20Jan%202018/public/header.html" -->
+		<div class="heading_text">
+			<h1>
+				<a href="../my-bikes/index.shtml">
+					My Bikes
+				</a>
+				/ Found Bike
+			</h1>
+		</div>
+	</header>
+	
+	<!-- Main Body -->
+	<main>
+		<!-- Forms to report stolen bike as found -->
+		<section class="centered">
+			<!-- First form for if the bike was not stolen -->
+			<form action="register.php" method="post">
+			
+				<div class="box">
+					<div class="align_center">
+						<h1> Bike was Not Stolen </h1> 
+					</div>
+					<hr />  <br>
+					
+					<!-- disclaimer-->
+					<p class="disclaimer">
+						By clicking below you confirm that this bike was lost or misplaced NOT stolen.
+					</p>
+					
+					<div class="align_center">
+						<br>
+						<input class="submit_button" type="submit" value="Confirm">
+					</div>
+				</div>
+				<br>
+				
+			</form>
+			
+			<!-- Second form for if the bike was stolen -->
+			<form action="register.php" method="post">
+				
+				<!-- heading -->
+				<div class="box">
+					<div class="align_center">
+						<h1> Bike Found at Location </h1> 
+					</div>
+					<hr />  <br>
+					
+					
+					<div class="align_center">
+						<!-- enter date and time found -->
+						 <br><h2>Date and Time</h2> <br>
+						Enter below the date and time that the bicyle was revovered. <br> <br>
+						<input type="time" name="timeLastSeen" placeholder="HH:MM (24h)"> <br> <br>
+						<input type="date" name="dateLastSeen" max="4000-01-01" placeholder="yyyy-mm-dd"> <br> <br> <br>
+						
+						<!-- select where it was found -->
+						 <br><h2>Select location on map</h2> <br>
+						Drag the marker in the map below to select the location that the bike was recovered from. <br> <br>
+						<div id="googleMap"></div> <br> <br>
+					</div>
+					
+					<!-- add images of its condition -->
+					<div>
+						<section class="image_bounds">
+							<input id="file-input" type="file" style="display:none;" >
+							
+							<div class="column" id="col1">
+								<article id="add-box">
+									<div class="add_image">
+										<span><b>+ </b> Add Image</span>
+									</div>
+								</article>
+							</div>
+							<div class="column" id="col2">
+							</div>
+						</section>
+					</div>
+					
+					<!-- disclaimer -->
+					<div class="newline">
+						<p class="disclaimer">
+							By clicking below you confirm that the bike was stolen and you have recovered it.
+						</p>
+					</div>
+					
+					<!-- submit button -->
+					<div class="align_center">
+						<br>
+						<input class="submit_button" type="submit" value="Confirm">
+					</div>
+				</div>
+				<br>
+				
+			</form> <br> <br>
+			<br>			
+		
+		</section>
+	
+	</main>
+	
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>	
+	<script src="./found-bike.js"></script>
+	<script src="../public.js"></script>
+</body>
+
+</html>
+

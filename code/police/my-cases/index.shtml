@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> Gloucestershire Constabulary - My Cases </title>
+	<script
+		src="https://code.jquery.com/jquery-3.2.1.js"
+		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		crossorigin="anonymous">
+	</script>
+	<script src="../../js/cookie_io.js"></script>
+	<script src="../../js/officerdb_io.js"></script>
+	<link href="../../css/styles.css" type="text/css" rel="stylesheet">
+	<link href="css/my-cases.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+	
+	<!-- Headers -->
+	<header id="logged-out-header">
+		
+		<!--#include virtual="/CT4009%202017-18%20001%201609415%2014%20Jan%202018/police/header.html" -->
+		
+	</header>
+	
+	<!-- Main Body -->
+	<main>
+		<section class="centered">
+			
+				<!-- google map showing stolen bike and acting as link to stolen bikes -->
+				<div class="box">
+					<div id="googleMap">
+						<div class="google-map-title">
+							<span>Stolen Bikes</span>
+						</div>
+					</div>
+					<br>
+				</div>
+				
+				<hr> <br> <br>
+				
+				<!-- search option for cases -->
+				<div>
+					<h2>Search</h2>
+					
+					<hr>
+				</div>
+				
+				<br>
+				
+				<!-- cases assigned to officer -->
+				<table>
+				
+					<tr class="item">
+						<td>
+							<table class = "case">
+								<tr class="case_bike_img">
+									<td rowspan="6">
+										<div class="bike_Image">
+											<div class="outer_constraint">
+												<div class="inner_constraint">
+													<img src="http://ct4009-17bn.studentsites.glos.ac.uk/CT4009%202017-18%20001%201609415%2014%20Jan%202018/images/bike1.jpg" alt="bike1">
+												</div>
+											</div>
+										</div>
+									</td>
+									<td class="case_heading">When Last Seen:</td>
+									<td class="case_values">25/10/2016     10:30PM</td>
+									<td rowspan="3" class="case_buttons">
+										<button class="edit_case"> <a href="../report-stolen/index.shtml">Bike Details</a></button>
+									</td>
+								</tr>
+								<tr class="case_row">
+									<td class="case_heading">Where Last Seen:</td>
+									<td>216 Long Road, Cheltenham</td>
+								</tr>
+								<tr class="case_row">
+									<td class="case_heading">Model:</td>
+									<td>Cruser</td>
+								</tr>
+								<tr class="case_row">
+									<td class="case_heading">Type:</td>
+									<td>Road</td>
+									<td rowspan="3">
+										<button class="edit_case">User Details</button>
+									</td>
+								</tr>
+								<tr class="case_row">
+									<td class="case_heading">Colour:</td>
+									<td>Black</td>
+								</tr>
+								<tr class="case_row">
+									<td class="case_heading">Status:	</td>
+									<td><select>
+									  <option value="Open">Open</option>
+									  <option value="Closed">Closed</option>
+									  <option value="Under Investigation" selected="selected">Under Investigation</option>
+									  <option value="Under Investigation: Contacting User">Contacting User</option>
+									</select></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr class="item">
+						<td>
+							<table class = "case">
+								<tr class="case_bike_img">
+									<td rowspan="6">
+										<div class="bike_Image">
+											<div class="outer_constraint">
+												<div class="inner_constraint">
+													<img src="http://ct4009-17bn.studentsites.glos.ac.uk/CT4009%202017-18%20001%201609415%2014%20Jan%202018/images/bike1.jpg" alt="bike1">
+												</div>
+											</div>
+										</div>
+									</td>
+									<td class="case_heading">When Last Seen:</td>
+									<td class="case_values">25/10/2016     10:30PM</td>
+									<td rowspan="3" class="case_buttons">
+										<button class="edit_case"> <a href="../report-stolen/index.shtml">Bike Details</a></button>
+									</td>
+								</tr>
+								<tr class="case_row">
+									<td class="case_heading">Where Last Seen:</td>
+									<td>216 Long Road, Cheltenham</td>
+								</tr>
+								<tr class="case_row">
+									<td class="case_heading">Model:</td>
+									<td>Cruser</td>
+								</tr>
+								<tr class="case_row">
+									<td class="case_heading">Type:</td>
+									<td>Road</td>
+									<td rowspan="3">
+										<button class="edit_case">User Details</button>
+									</td>
+								</tr>
+								<tr class="case_row">
+									<td class="case_heading">Colour:</td>
+									<td>Black</td>
+								</tr>
+								<tr class="case_row">
+									<td class="case_heading">Status:	</td>
+									<td><select>
+									  <option value="Open">Open</option>
+									  <option value="Closed">Closed</option>
+									  <option value="Under Investigation" selected="selected">Under Investigation</option>
+									  <option value="Under Investigation: Contacting User">Contacting User</option>
+									</select></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				
+				</table>
+		</section>
+		
+		<br> <br>
+		
+		<!-- Grid of how to articles for common tasks -->
+		<section class="help_grid">
+			<div class="column">
+				<a href="..\how-to-change-details\index.shtml">
+					<article id="change-details">
+						<div class="how-to-title">
+							<span>How to change your account details</span>
+						</div>
+					</article>
+				</a>
+				<a href="..\..\logged-out\how-to-report-a-bike-stolen\index.html">
+					<article id="report-stolen">
+						<div class="how-to-title">
+							<span>How to report your bike stolen</span>
+						</div>
+					</article>
+				</a>
+			</div>
+			<div class="column">
+				<a href="..\..\logged-out\how-to-register-a-bike\index.html">
+					<article id="register-bike">
+						<div class="how-to-title">
+							<span>How to register your bike</span>
+						</div>
+					</article>
+				</a>
+				<a href="..\..\logged-out\how-to-check-an-investigations-progress\index.html">
+					<article id="investigation-progress">
+						<div class="how-to-title">
+							<span>How to check an investigations progress</span>
+						</div>
+					</article>
+				</a>
+			</div>
+		</section>
+	</main>
+	
+	<script src="../../js/bikedb_io.js"></script>
+	<script src="../../js/casedb_io.js"></script>
+	<script src="../police.js"></script>
+	<script src="./my-cases.js"></script>
+</body>
+
+</html>
+

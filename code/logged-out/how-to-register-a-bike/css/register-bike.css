@@ -1,0 +1,12 @@
+
+/*define size and scaling of main image*/
+.top_image {
+	position: relative;
+	width: 80%;
+	height: 200px;
+	overflow: hidden;
+}
+.top_image > img {
+	width: 100%;
+	margin-top: -160px;
+}

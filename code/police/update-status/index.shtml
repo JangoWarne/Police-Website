@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> Gloucestershire Constabulary - Update Status </title>
+	<script
+		src="https://code.jquery.com/jquery-3.2.1.js"
+		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		crossorigin="anonymous">
+	</script>
+	<script src="../../js/cookie_io.js"></script>
+	<script src="../../js/officerdb_io.js"></script>
+	<link href="../../css/styles.css" type="text/css" rel="stylesheet">
+	<link href="css/update-status.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+	
+	<!-- Headers -->
+	<header id="logged-out-header">
+		
+		<!--#include virtual="/CT4009%202017-18%20001%201609415%2014%20Jan%202018/police/header.html" -->
+		
+	</header>
+	
+	<!-- Main Body -->
+	<main>
+		
+		
+	</main>
+	
+	<script src="../../js/casedb_io.js"></script>
+	<script src="../police.js"></script>
+	<script src="./update-status.js"></script>
+</body>
+
+</html>
+

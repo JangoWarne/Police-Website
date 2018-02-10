@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> Gloucestershire Constabulary - Investigation Status </title>
+	<script
+		src="https://code.jquery.com/jquery-3.2.1.js"
+		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		crossorigin="anonymous">
+	</script>
+	<script src="../../js/cookie_io.js"></script>
+	<script src="../../js/userdb_io.js"></script>
+	<link href="../../css/styles.css" type="text/css" rel="stylesheet">
+	<link href="../../css/checkbox.css" type="text/css" rel="stylesheet">
+	<link href="css/investigation-status.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+	
+	<!-- Headers -->
+	<header id="logged-out-header">
+		
+		<!--#include virtual="/CT4009%202017-18%20001%201609415%2014%20Jan%202018/public/header.html" -->
+		<div class="heading_text">
+			<h1>
+				<a href="../my-bikes/index.shtml">
+					My Bikes
+				</a>
+				/ Investigation Status
+			</h1>
+		</div>
+	</header>
+	
+	<!-- Main Body -->
+	<main>
+		<section class="centered">
+			<article>
+				<!-- banner image -->
+				<div class = "top_image">
+					<img src="images/banner.jpg" alt="registerBikeImage">
+				</div> <br> <br>
+				
+				<!-- Open status explaination -->
+				<div class="box">
+					<div class = "status_image">
+						<img src="images/open.jpg" class = "open_image" alt="statusImage">
+					</div>
+					
+					<h2> Status: Open </h2> <hr> <br>
+					
+					This status shows when the bicycle is reported as stolen but no police officer has been allocated to the case. <br> <br>
+					It will typically show for the first few days after reporting a bicycle as stolen.
+
+				</div> <br> <br>
+				
+				<!-- Closed status explaination -->
+				<div class="box">
+					<div class = "status_image">
+						<img src="images/closed.jpg"class = "closed_image" alt="statusImage">
+					</div>
+					
+					<h2> Status: Closed </h2> <hr> <br>
+					
+					This status shows when the investigation for this bicycle has concluded. <br> <br>
+					It may show temporarily between the bicycle being found and being marked as no longer stolen.
+
+				</div> <br> <br>
+				
+				<!-- Under investigation status explaination -->
+				<div class="box">
+					<div class = "status_image">
+						<img src="images/investigation.jpg" class = "investigation_image" alt="statusImage">
+					</div>
+					
+					<h2> Status: Under Investigation </h2> <hr> <br>
+					
+					This status shows when a police officer has been allocated to finding your bicycle. <br> <br>
+					It will show for as long as your bicycle in under active investigation. 
+
+				</div> <br> <br>
+				
+				<!-- Under investigation - Contating user status explaination -->
+				<div class="box">
+					<div class = "status_image">
+						<img src="images/contact.jpg" class = "contact_image" alt="statusImage">
+					</div>
+					
+					<h2> Status: Under Investigation - Contacting User </h2> <hr> <br>
+					
+					This status shows when a police officer needs to contact you. <br> <br>
+					It will show until the officer is successful in contacting you.
+
+				</div> <br> <br>
+			
+			</article>
+		</section>
+	
+	</main>
+	
+	<script src="../public.js"></script>
+</body>
+
+</html>
+

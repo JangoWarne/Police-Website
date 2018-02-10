@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> Gloucestershire Constabulary - Report Stolen </title>
+	<script
+		src="https://code.jquery.com/jquery-3.2.1.js"
+		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		crossorigin="anonymous">
+	</script>
+	<script src="../../js/cookie_io.js"></script>
+	<script src="../../js/userdb_io.js"></script>
+	<link href="../../css/styles.css" type="text/css" rel="stylesheet">
+	<link href="../../css/checkbox.css" type="text/css" rel="stylesheet">
+	<link href="css/report-stolen.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+	
+	<!-- Headers -->
+	<header id="logged-out-header">
+		
+		<!--#include virtual="/CT4009%202017-18%20001%201609415%2014%20Jan%202018/public/header.html" -->
+		<div class="heading_text">
+			<h1>
+				<a href="../my-bikes/index.shtml">
+					My Bikes
+				</a>
+				/ Report Stolen
+			</h1>
+		</div>
+	</header>
+	
+	<!-- Main Body -->
+	<main>
+		<section class="centered">
+			
+			<!-- form to report bike as stolen -->
+			<form action="register.php" method="post">
+			
+				<div class="box">
+					<div class="align_center">
+						<h1> Report Bike as Stolen </h1> 
+					</div>
+					<hr />  <br>
+					
+					<!-- enter time frame for when the bike was stolen -->
+					<div class="align_center">
+						 <br><h2>Date and Time</h2> <br>
+						Enter below the date and time that the bike was last seen. <br> <br>
+						<input type="time" name="timeLastSeen" placeholder="HH:MM (24h)"> <br> <br>
+						<input type="date" name="dateLastSeen" max="4000-01-01" placeholder="yyyy-mm-dd"> <br> <br>
+						Enter below the date and time when tthe bike was spotted missing. <br> <br>
+						<input type="time" name="timeSpottedMissing" placeholder="HH:MM (24h)"> <br> <br>
+						<input type="date" name="dateSpottedMissing" max="4000-01-01" placeholder="yyyy-mm-dd"> <br> <br>
+					</div>
+				</div>
+				
+				<!-- select on google map where the bike was stolen from -->
+				<div class="box">
+					<div class="align_center">
+						 <br><h2>Select location on map</h2> <br>
+						Drag the marker in the map below to select the location that the bike was stolen from <br> <br>
+						<div id="googleMap"></div> <br> <br>
+					</div>
+				</div>
+				
+				<!-- multi-line boxes to enter any other information about the theft -->
+				<div class="box">
+					<div class="align_center">
+						 <br><h2>Comments</h2> <br>
+						Enter any other information about the theft below. <br> <br>
+						<textarea class="multiline" rows="5" name="txtPartsMissing" placeholder="Were bike parts left behind?"></textarea> <br> <br>
+						<textarea class="multiline" rows="5" name="txtPeopleSeen" placeholder="Did you see someone?"></textarea> <br> <br>
+					</div>
+				</div>
+				<br>
+				
+				<!-- submit button -->
+				<div class="box_hidden">
+					<div class="align_center">
+						<br>
+						<input class="submit_button" type="submit" value="Report">
+					</div>
+				</div>
+				
+			</form>
+			<br>			
+			
+			<!-- disclaimer -->
+			<p class="disclaimer">
+				By clicking report you confirm that to the best of your knowledge that this bike has been stolen. <br>
+				We may share your bike information during the investigation.
+			</p>
+		</section>
+	
+	</main>
+	
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+	<script src="./report-stolen.js"></script>
+	<script src="../public.js"></script>
+</body>
+
+</html>
+

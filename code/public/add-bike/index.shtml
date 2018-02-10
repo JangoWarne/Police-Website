@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> Gloucestershire Constabulary - Add Bike </title>
+	<script
+		src="https://code.jquery.com/jquery-3.2.1.js"
+		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		crossorigin="anonymous">
+	</script>
+	<script src="../../js/cookie_io.js"></script>
+	<script src="../../js/userdb_io.js"></script>
+	<link href="../../css/styles.css" type="text/css" rel="stylesheet">
+	<link href="../../css/checkbox.css" type="text/css" rel="stylesheet">
+	<link href="css/add-bike.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+	
+	<!-- Headers -->
+	<header id="logged-out-header">
+		
+		<!--#include virtual="/CT4009%202017-18%20001%201609415%2014%20Jan%202018/public/header.html" -->
+		<div class="heading_text">
+			<h1>
+				<a href="../my-bikes/index.shtml">
+					My Bikes
+				</a>
+				/ Add bike
+			</h1>
+		</div>
+	</header>
+	
+	<!-- Main Body -->
+	<main>
+		
+		<section class="centered">
+			<!-- Bike details form -->
+			<form action="register.php" method="post"  id="form-details" name="formDetails">
+			
+				<div class="box">
+					<div class="align_center">
+						<h1> Bike Details </h1> 
+					</div>
+					<hr />  <br>
+					
+					<div class="align_center">
+						Though none of the information below is required, the more you add, the more likely it is that we can recover your bike if it is stolen. <br> <br>
+						<input type="text" name="txtBrand" placeholder="BRAND"> <br> <br>
+						<input type="text" name="txtModel" placeholder="MODEL"> <br> <br>
+						<input type="text" name="txtType" placeholder="TYPE"> <br> <br>
+						<input type="text" name="txtGender" placeholder="GENDER"> <br> <br>
+						<input type="text" name="txtColour" placeholder="COLOUR"> <br> <br> <br> <br>
+						
+						<input type="text" name="txtFrameMaterial" placeholder="FRAME MATERIAL"> <br> <br>
+						<input type="text" name="txtFrameSize" placeholder="FRAME SIZE"> <br> <br>
+						<input type="number" name="numGears" placeholder="NUMBER OF GEARS"> <br> <br>
+						<input type="text" name="txtSuspension" placeholder="SUSPENSION"> <br> <br>
+						<input type="text" name="txtBrakeType" placeholder="BRAKE TYPE"> <br> <br>
+						<input type="text" name="txtHandleType" placeholder="HANDLEBAR TYPE" > <br> <br> <br>
+						
+						All bike frames have an engraved number typically underneath a bottom bracket. <br>
+						Including this number will significantly improve the likelihood of your bike being returned to you <br> <br>
+						<input type="number" name="numSerial" placeholder="FRAME NUMBER"> <br> <br> <br>
+						
+						As the frame number can be ground off, and some manufacturers use the same one for all bikes of the same model, it is reccomended to get a UV tag kit. <br>
+						The tag will create a hidden mark with a unique UV signature. <br> <br>
+						<input type="text" name="txtTagBrand" placeholder="TAG BRAND"> <br> <br>
+						<input type="number" name="numTagID" placeholder="TAG ID/NUMBER" > <br> <br> <br>
+						
+						Enter any other identifying features or marks on the bike. <br> <br>
+						<textarea class="multiline" rows="5" name="txtFeatures" placeholder="Other BASKET, KICKSTAND, MUDGUARDS etc."></textarea> <br> <br>
+						<textarea class="multiline" rows="5" name="txtDescription" placeholder="DISTINCTIVE MARKS etc."></textarea> <br> <br>
+					</div>
+				</div>
+				<br>
+				 
+				 <!-- Add / remove image section -->
+				<section class="image_bounds">
+					<input id="file-input" type="file" style="display:none;" >
+					
+					<div class="column" id="col1">
+						<article id="add-box">
+							<div class="add_image">
+								<span><b>+ </b> Add Image</span>
+							</div>
+						</article>
+					</div>
+					<div class="column" id="col2">
+					</div>
+				</section>
+				
+				<!-- Submit button -->
+				<div class="box_hidden">
+					<div class="align_center">
+						<br> <br>
+						<input class="submit_button" type="submit" value="Add Bike">
+					</div>	
+				</div>		
+				
+			</form>
+			<br>			
+			
+			<!-- Disclaimer -->
+			<p class="disclaimer">
+				The more information you can supply the more likely it is that we can recover your bike. <br>
+				We may share you bikes information during an active investigation.
+			</p>
+		</section>
+	</main>
+	
+	<script src="../../js/bikedb_io.js"></script>
+	<script src="../public.js"></script>
+	<script src="./add-bike.js"></script>
+</body>
+
+</html>
+

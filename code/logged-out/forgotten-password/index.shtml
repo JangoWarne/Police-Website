@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> Gloucestershire Constabulary - Forgotten Password </title>
+	<script
+		src="https://code.jquery.com/jquery-3.2.1.js"
+		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		crossorigin="anonymous">
+	</script>
+	<script src="../../js/cookie_io.js"></script>
+	<script src="../../js/userdb_io.js"></script>
+	<link href="../../css/styles.css" type="text/css" rel="stylesheet">
+	<link href="css/forgotten-password.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+	
+	<!-- Headers -->
+	<header id="logged-out-header">
+		<!--#include virtual="/CT4009%202017-18%20001%201609415%2014%20Jan%202018/logged-out/header.html" -->
+		<div class="heading_text">
+			<h1>
+				<a href="../main/index.shtml">
+					Home
+				</a>
+				/
+				<a href="../login/index.shtml">
+					Login
+				</a>
+				/ Reset Password
+			</h1>
+		</div>
+	</header>
+	
+	<!-- Main Body -->
+	<main>
+		<section  class="centered">
+			<div class="box">
+				<form action="reset.php" method="post">
+					<h2> Reset Password </h2> <br> <br>
+					<input type="text" name="email" placeholder="EMAIL / USERNAME" required="required"> <br> <br>
+					
+					<input class="submit_button" type="submit" value="Send email">
+				</form>
+			</div>
+			<div class="box">
+				<p>
+					Once you click &quot;Send email&quot; we will send you an email with a link to change your password. <br> <br>
+					It may take several minutes for the email to arrive.
+				</p>
+			</div>
+		</section>
+	</main>
+ 
+	<script src="../logged_out.js"></script>
+</body>
+
+</html>
+

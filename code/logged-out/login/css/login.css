@@ -1,0 +1,76 @@
+
+/*center content on screen*/
+.centered {
+	margin: 0 auto 20px auto;
+	width: 1100px;
+   padding-top: 40px;
+   padding-bottom: 40px;
+}
+.box {
+	float: left;
+	width: 50%;
+	height: 370px;
+}
+
+
+/*create box around each form*/
+form {
+	background-color: #F3F3F3;
+	margin: 6% auto 6% auto;
+	margin-top: 3%;
+	width: 80%;
+	height: 80%;
+	padding: 30px;
+	border-color: #BDBDBD;
+	border-width: 1px;
+	border-style: solid;
+	font-size: 18px;
+}
+
+/*style input feilds*/
+input {
+	width: 97%;
+	height: 30px;
+	font-size: 16px;
+	padding-left: 10px;
+}
+
+/*style text about registering a new account*/
+h2 {
+	margin: 0;
+	margin-bottom: -15px;
+	font-size: 40px;
+}
+form > a {
+	color: #6B6B6B;
+	font-weight: lighter;
+}
+
+/*style submit button*/
+.submit_button {
+	margin-top: 20px;
+	margin-bottom: 10px;
+	height: 40px;
+	width: 100%;
+	border-radius: 0px;
+	padding: 6px;
+	color: lightgray;
+	font-weight: 600;
+	font-size: 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	transition-duration: 0.3s;
+	cursor: pointer;
+	background-color: #373737;
+   border: 2px solid #373737;
+}
+.submit_button:hover {
+	background-color: #D7D7D4;
+	border: 2px solid #D7D7D4;
+	color: #373737;
+}
+.submit_button:active {
+	transition-duration: 0s;
+}
+

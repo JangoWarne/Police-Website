@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> Gloucestershire Constabulary - Change account details </title>
+	<script
+		src="https://code.jquery.com/jquery-3.2.1.js"
+		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		crossorigin="anonymous">
+	</script>
+	<script src="../../js/cookie_io.js"></script>
+	<script src="../../js/userdb_io.js"></script>
+	<link href="../../css/styles.css" type="text/css" rel="stylesheet">
+	<link href="../../css/checkbox.css" type="text/css" rel="stylesheet">
+	<link href="../../logged-out/register/css/register.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+	
+	<!-- Headers -->
+	<header id="logged-out-header">
+		
+		<!--#include virtual="/CT4009%202017-18%20001%201609415%2014%20Jan%202018/public/header.html" -->
+		<div class="heading_text">
+			<h1>
+				<a href="../my-bikes/index.shtml">
+					My Bikes
+				</a>
+				/ Change account details
+			</h1>
+		</div>
+	</header>
+	
+	<!-- Main Body -->
+	<main>
+		<section class="centered">
+			<!-- form to change account details -->
+			<form action="register.php" name="formDetails" method="post">
+				
+				<!-- first section covers name, email and password -->
+				<div class="box">
+					<div class="align_center">
+						<h1> Your Details </h1> 
+					</div>
+					<hr />  <br>
+					
+					<div class="align_center">
+						<input type="text" name="txtTitle" placeholder="TITLE*" required="required"> <br> <br>
+						<input type="text" name="txtFirstName" placeholder="FIRST NAME*" required="required"> <br> <br>
+						<input type="text" name="txtLastName" placeholder="LAST NAME*" required="required"> <br> <br>
+						<input type="email" name="txtEmail" placeholder="EMAIL*" required="required"> <br> <br> <br>
+						
+						Passwords must be atleast 12 characters long and contain 2 numbers or special characters <br>
+						(% * # / etc.) <br> <br>
+						<input type="password" name="txtPassword" placeholder="PASSWORD*" required="required"> <br> <br>
+						<input type="password" name="txtConfirm" placeholder="CONFIRM PASSWORD*" required="required"> <br> <br>
+					</div>
+				</div>
+				<br>
+				
+				<!-- second section of form covers address and contact details-->
+				<div class="box">
+					<div class="align_center">
+						<h1> Your Address </h1>
+					</div>
+					<hr />  <br>
+					
+					<div class="align_center">
+						<input type="text" name="txtAddressLine1" placeholder="ADDRESS LINE 1*" required="required"> <br> <br>
+						<input type="text" name="txtAddressLine2" placeholder="ADDRESS LINE 2"> <br> <br>
+						<input type="text" name="txtCity" placeholder="TOWN / CITY*" required="required"> <br> <br>
+						<input type="text" name="txtCounty" placeholder="COUNTY"> <br> <br>
+						<input type="text" name="txtPostcode" placeholder="POSTCODE*" required="required"> <br> <br> <br>
+						
+						Entering a moblie phone number will allow us to text you if we find your bike <br> <br>
+						<input type="tel" name="telNumber" placeholder="CONTACT NUMBER"> <br> <br>
+					</div>
+				</div>
+				<br>
+				 
+				 <!-- final section of form covers how you wish to be contacted -->
+				<div class="box_hidden">
+					<div class="align_center">
+						Contact me by: <br>
+						<label class="container">Email
+						  <input type="checkbox" id="by-email" name="byEmail" value="email">
+						  <span class="checkmark"></span>
+						</label>
+						<label class="container">Text Message
+						  <input type="checkbox" id="by-text" name="byText" value="text">
+						  <span class="checkmark"></span>
+						</label>
+						<br> <br>
+						
+						<!-- Submit button -->
+						<input class="submit_button" type="submit" value="Save Changes">
+					</div>	
+				</div>		
+				
+			</form>
+			<br>			
+			
+			<!-- Privacy agreement -->
+			<p class="disclaimer">
+				We will never share any of your personal details. <br>
+				We will only contact you in regards to active investigations. <br>
+				We may share your bike information during an investigation. <br>
+			</p>
+		</section>
+	</main>
+	
+	<script src="../public.js"></script>
+	<script src="./my-account-details.js"></script>
+</body>
+
+</html>
+

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> Gloucestershire Constabulary - My Bikes </title>
+	<script
+		src="https://code.jquery.com/jquery-3.2.1.js"
+		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		crossorigin="anonymous">
+	</script>
+	<script src="../../js/cookie_io.js"></script>
+	<script src="../../js/userdb_io.js"></script>
+	<link href="../../css/styles.css" type="text/css" rel="stylesheet">
+	<link href="./css/main.css" type="text/css" rel = "stylesheet">
+</head>
+
+<body>
+	
+	<!-- Headers -->
+	<header id="logged-out-header">
+		<!--#include virtual="/CT4009%202017-18%20001%201609415%2014%20Jan%202018/logged-out/header.html" -->
+	</header>
+	
+	<!-- Main Body -->
+	<main>
+		<section>
+			<!-- Grid of help pages for common actions -->
+			<div class="column">
+				<a href="..\how-to-setup-an-account\index.shtml">
+					<article id="setup-account">
+						<div class="how-to-title">
+							<span>How to setup an account</span>
+						</div>
+					</article>
+				</a>
+				<a href="..\how-to-report-a-bike-stolen\index.html">
+					<article id="report-stolen">
+						<div class="how-to-title">
+							<span>How to report your bike stolen</span>
+						</div>
+					</article>
+				</a>
+			</div>
+			<div class="column">
+				<a href="..\how-to-register-a-bike\index.html">
+					<article id="register-bike">
+						<div class="how-to-title">
+							<span>How to register your bike</span>
+						</div>
+					</article>
+				</a>
+				<a href="..\how-to-check-an-investigations-progress\index.html">
+					<article id="investigation-progress">
+						<div class="how-to-title">
+							<span>How to check an investigations progress</span>
+						</div>
+					</article>
+				</a>
+			</div>
+		</section>
+	</main>
+
+	<script src="../logged_out.js"></script>
+</body>
+
+</html>
+

@@ -1,0 +1,140 @@
+
+/*center content in screen*/
+.centered {
+	margin: 0 auto 20px auto;
+	width: 1100px;
+   padding-top: 40px;
+   padding-bottom: 40px;
+}
+
+/*add gap above form*/
+form {
+	font-size: 18px;
+	margin-top: 3%;
+}
+
+/*ad a box around each section of the form*/
+.box {
+	background-color: #F3F3F3;
+	margin: 10px auto 10px auto;
+	width: 80%;
+	height: 90%;
+	padding: 30px;
+	padding-top: 0;
+	border-color: #BDBDBD;
+	border-width: 1px;
+	border-style: solid;
+}
+.box_hidden {
+	margin: 0 auto 0 auto;
+	width: 80%;
+	padding: 0px;
+}
+
+/*align inputs in middle of box*/
+.align_center {
+	margin: 0 auto 0 auto;
+	width: 45%;
+}
+
+/*set size and style of inputs*/
+input {
+	width: 95%;
+	height: 30px;
+	font-size: 16px;
+	padding-left: 10px;
+}
+.multiline {
+	width: 95%;
+	font-size: 16px;
+	padding-left: 10px;
+}
+
+/*style heading text*/
+h2 {
+	margin: 0;
+	margin-bottom: -15px;
+	font-size: 40px;
+}
+
+/*style added images with remove 'button'*/
+.image_bounds{
+	margin: 0 auto 0 auto;
+   width: 87%;
+}
+.column{
+    float: left;
+    width: 50%;
+}
+article {
+	position: relative;
+	margin: 6% auto 6% auto;
+	margin-top: 3%;
+	width: 70%;
+	height: 200px;
+	background-repeat: no-repeat;
+	background-color: #EEE;
+	background-size: cover;
+}
+.remove_image {
+	cursor: pointer;
+	font-size: 16px;
+	font-family: Arial;
+	color: whitesmoke;
+	position: absolute;
+	font-weight: 600;
+	background-color: rgba(60, 60, 60, .7);
+	width: 100%;
+	text-align: center;
+	padding: 10px 0px;
+	bottom: 0;
+}
+/*style add image 'button'*/
+#add-box {
+	background-color: #4E4E4E;
+	cursor: pointer;
+}
+.add_image {
+	font-size: 20px;
+	font-family: Arial;
+	color: whitesmoke;
+	position: absolute;
+	font-weight: 600;
+	width: 100%;
+	text-align: center;
+	padding: 27% 0px;
+}
+
+/*style submit button*/
+.submit_button {
+	margin: 20px auto 0 20%;
+	height: 40px;
+	width: 60%;
+	border-radius: 0px;
+	padding: 6px;
+	color: lightgray;
+	font-weight: 600;
+	font-size: 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	transition-duration: 0.3s;
+	cursor: pointer;
+	background-color: #373737;
+   border: 2px solid #373737;
+}
+.submit_button:hover {
+	background-color: #D7D7D4;
+	border: 2px solid #D7D7D4;
+	color: #373737;
+}
+.submit_button:active {
+	transition-duration: 0s;
+}
+
+/*style disclaimer*/
+.disclaimer {
+	margin: 0 auto 0 auto;
+	width: 40%;
+}
+
