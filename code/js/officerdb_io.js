@@ -1,15 +1,15 @@
-var db; // global database object
+var officerdb; // global database object
 
-// add user to database of users
+// add officer to database of officers
 function officerdbAdd() {
 	
 	// open database then run callback
-	openDatabase( function callback() {
-		var transaction = db.transaction(["officerdb"], "readwrite");
+	openOfficerDatabase( function callback() {
+		var transaction = officerdb.transaction(["officerdb"], "readwrite");
 		var store = transaction.objectStore("officerdb");
 		
-		// Build user object for object store
-		var user = {
+		// Build officer object for object store
+		var officer = {
 			// read properties from window
 			title: "Mr",
 			firstName: "John",
@@ -22,9 +22,9 @@ function officerdbAdd() {
 		}
 		
 		// Add object to store
-		var add = store.add(user);
+		var add = store.add(officer);
 		
-		// report error to console if adding user failed
+		// report error to console if adding officer failed
 		add.onerror = function(e) { console.log("Error",e.target.error.name) };
 		
 		// do nothing if succesfull
@@ -33,12 +33,12 @@ function officerdbAdd() {
 }
 
 
-// read single parameter for one user from database of users
+// read single parameter for one officer from database of officers
 function officerdbRead(email, property, val, callback) {
 	
 	// open database then run callback
-	openDatabase( function openfun() {
-		var transaction = db.transaction(["officerdb"], "readwrite");
+	openOfficerDatabase( function openfun() {
+		var transaction = officerdb.transaction(["officerdb"], "readwrite");
 		var store = transaction.objectStore("officerdb");
 		
 		// Read object from store
@@ -65,13 +65,13 @@ function officerdbRead(email, property, val, callback) {
 }
 
 
-// update single parameter for one user from database of users
+// update single parameter for one officer from database of officers
 // oldval is only needed for login and bike ID lists (if there is no val for IDs set to "")
 function officerdbUpdate(email, property, newVal, oldVal) {
 	
 	// open database then run callback
-	openDatabase( function openfun() {
-		var transaction = db.transaction(["officerdb"], "readwrite");
+	openOfficerDatabase( function openfun() {
+		var transaction = officerdb.transaction(["officerdb"], "readwrite");
 		var store = transaction.objectStore("officerdb");
 		
 		// Read object from store
@@ -114,7 +114,7 @@ function officerdbUpdate(email, property, newVal, oldVal) {
 						// Add object to store
 						var put = store.put(storedVal);
 						
-						// report error to console if adding user failed
+						// report error to console if adding officer failed
 						put.onerror = function(e) { console.log("Error",e.target.error.name) };
 						
 						// do nothing if succesfull
@@ -131,7 +131,7 @@ function officerdbUpdate(email, property, newVal, oldVal) {
 					// Add object to store
 					var put = store.put(storedVal);
 					
-					// report error to console if adding user failed
+					// report error to console if adding officer failed
 					put.onerror = function(e) { console.log("Error",e.target.error.name) };
 					
 					// do nothing if succesfull
@@ -152,8 +152,8 @@ function officerdbUpdate(email, property, newVal, oldVal) {
 function officerdbLogout(email) {
 	
 	// open database then run callback
-	openDatabase( function openfun() {
-		var transaction = db.transaction(["officerdb"], "readwrite");
+	openOfficerDatabase( function openfun() {
+		var transaction = officerdb.transaction(["officerdb"], "readwrite");
 		var store = transaction.objectStore("officerdb");
 		
 		// Read object from store
@@ -175,7 +175,7 @@ function officerdbLogout(email) {
 				// Add object to store
 				var put = store.put(storedVal);
 				
-				// report error to console if adding user failed
+				// report error to console if adding officer failed
 				put.onerror = function(e) { console.log("Error",e.target.error.name) };
 				
 				// do nothing if succesfull
@@ -191,8 +191,8 @@ function officerdbLogout(email) {
 }
 
 
-// add user to database of users
-function openDatabase(callback) {
+// add officer to database of officers
+function openOfficerDatabase(callback) {
 	
 	// does the browser support indexedDB?
 	if("indexedDB" in window) {
@@ -200,17 +200,17 @@ function openDatabase(callback) {
 		var openRequest = indexedDB.open("officerdb",1);
 		
 		// create database object stores if required
-		openRequest.onupgradeneeded = function(e) { updateDatabase(e) };
+		openRequest.onupgradeneeded = function(e) { updateOfficerDatabase(e) };
 		
-		// add user if susscessfull
+		// add officer if susscessfull
 		openRequest.onsuccess = function(e) {
 			// opening database succeded
-			db = e.target.result;
+			officerdb = e.target.result;
 	
 			callback();
 			
 			// close open connection
-			db.close();
+			officerdb.close();
 			return;
 		}
 		
@@ -220,8 +220,8 @@ function openDatabase(callback) {
 			console.log("Error");
 			console.dir(e);
 			// close open connection
-			db = e.target.result;
-			db.close();
+			officerdb = e.target.result;
+			officerdb.close();
 			return;
 		}
 		
@@ -229,13 +229,13 @@ function openDatabase(callback) {
 		openRequest.onblocked = function(e) {
 			// close the database connection
 			console.log('blocked');
-			db = e.target.result;     
+			officerdb = e.target.result;     
 			// close open connection   
-			db.close();
+			officerdb.close();
 			return;
 		}
 	} else {
-		// alert user that this website will not work
+		// alert officer that this website will not work
 		alert("IndexedDB broswer support required: This browser cannot run this wesbise as it does not support IndexedDB");
 		return;
 	}
@@ -245,13 +245,13 @@ function openDatabase(callback) {
 
 
 // update database required -> create database (can handle version upgrade if needed))
-function updateDatabase(e) {
+function updateOfficerDatabase(e) {
 	console.log("Upgrading...");
-	db = e.target.result;
+	officerdb = e.target.result;
 	
 	// create missing officerdb
-	if(!db.objectStoreNames.contains("officerdb")) {
+	if(!officerdb.objectStoreNames.contains("officerdb")) {
 		// primary key is sequential unique number
-		db.createObjectStore("officerdb", {keyPath: "username"});
+		officerdb.createObjectStore("officerdb", {keyPath: "username"});
 	}
 }
