@@ -62,32 +62,68 @@
             <input class="submit_button" type="submit">
         
         </div> 
+        
+        <section class="centered">
+            Bikes reported stolen <hr>
     
         <table>
  	       <tr class="item">
-                <td>
-                    <table class = "registered_bike">
-                        <tr class="missing_bike_row_img"> 
-                            <td rowspan="7">
-                                <div class="bike_Image">
-                                    <div class="outer_constraint">
-                                        <div class="inner_constraint">
-                                            <img src="http://ct4009-17bn.studentsites.glos.ac.uk/CT4009%202017-18%20001%201609415%2014%20Jan%202018/images/bike2.jpg" alt="bike2">
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="missing_bike_heading">Last Seen:</td>
-                            <td class="missing_bike_values">24 Humber Rd.<div>12/11/2016</div></td>
-                            <td rowspan="7" class="registered_bike_buttons">
-                                <button class="edit_bike"> <a href="../found-bike/index.shtml">Report Found</a></button>
-                            </td>
-                                
-                        </tr>
-                    </table>
-               </td>
-            </tr>
-     </table>
+					<td>
+						<table class = "registered_bike">
+							<tr class="missing_bike_row_img">
+								<td rowspan="7">
+									<div class="bike_Image">
+										<div class="outer_constraint">
+											<div class="inner_constraint">
+												<img src="http://ct4009-17bn.studentsites.glos.ac.uk/CT4009%202017-18%20001%201609415%2014%20Jan%202018/images/bike2.jpg" alt="bike2">
+											</div>
+										</div>
+									</div>
+								</td>
+								<td class="missing_bike_heading">Last Seen:</td>
+								<td class="missing_bike_values">24 Humber Rd.<div>12/11/2016</div></td>
+								<td rowspan="7" class="registered_bike_buttons">
+									<button class="edit_bike"> <a href="../found-bike/index.shtml">Report Found</a></button>
+								</td>
+							</tr>
+							<tr class="missing_bike_row">
+								<td class="registered_bike_heading">Brand:</td>
+								<td class="registered_bike_values">Highlander</td>
+							</tr>
+							<tr class="missing_bike_row">
+								<td class="registered_bike_heading">Model:</td>
+								<td>Townbike</td>
+							</tr>
+							<tr class="missing_bike_row">
+								<td class="registered_bike_heading">Type:</td>
+								<td>City</td>
+							</tr>
+							<tr class="missing_bike_row">
+								<td class="registered_bike_heading">Colour:</td>
+								<td>Blue</td>
+							</tr>
+							<tr class="missing_bike_row">
+								<td class="registered_bike_heading">S/N: </td>
+								<td>50661825</td>
+							</tr>
+							<tr class="missing_bike_row">
+								<td class="registered_bike_heading">Tag:	</td>
+								<td>None</td>
+							</tr>
+							<tr class="missing_status_row">
+								<td colspan="2" class="missing_status_heading">Investigation Status:	</td>
+								<td>Under Investigation</td>
+								<td class="missing_status_explain"> <a href="../explain-investigation-status/index.shtml">Explain Status?</a> </td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+			</table>
+    		</section>
+
 		
 	</main>
 	

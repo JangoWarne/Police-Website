@@ -29,7 +29,7 @@
 			
 				<!-- google map showing stolen bike and acting as link to stolen bikes -->
 				<div class="box">
-					<div id="googleMap">
+					<article id="googleMap">
 						<div class="google-map-title">
 							<span>Stolen Bikes</span>
 						</div>
@@ -194,6 +194,7 @@
 		</section>
 	</main>
 	
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 	<script src="../../js/bikedb_io.js"></script>
 	<script src="../../js/casedb_io.js"></script>
 	<script src="../police.js"></script>

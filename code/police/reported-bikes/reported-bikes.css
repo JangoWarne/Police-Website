@@ -92,30 +92,44 @@
     text-align:center;
 }
 
+/* Reported stolen bikes table */
 
-/*style non stolen bikes*/
-.registered_bike {
-	height: 225px;
+
+/*position content in middle of window and set size*/
+section{
+	width: 1000px;
+	min-height: 100px;
+	margin: 0px auto 0px auto;
+	padding-top: 40px;
+	padding-bottom: 40px;
 }
-.registered_bike_row {
-	font-size: 22px;
-	height: 37.5px;
-	background-color: #E6E6E3;
+.centered{
+	font-size: 30px;
 }
-.registered_bike_row_img {
-	font-size: 22px;
-	height: 37.5px;
+.help_grid{
+	padding-top: 20px;
+	height: 560px;
 }
-.registered_bike_heading {
-	width: 120px;
-	text-align: right;
-	padding-right: 10px;
-	background-color: #E6E6E3;
+
+
+/*style width for table children of centered */
+.centered > table{
+	width: 100%;
 }
-.registered_bike_values {
-	width: 365px;
-	background-color: #E6E6E3;
+
+/*set size of table cells*/
+.cell{
+	height: 95px;
 }
+.item{
+	height: 265px;
+}
+
+/*remove border gap between cells*/
+table, td {
+	border-collapse: collapse;
+}
+
 
 /*rezise and zoom images of bikes*/
 .bike_Image {
@@ -141,36 +155,85 @@
 	z-index: -1;
 }
 
-/*style width for table children of centered */
-.centered > table{
-	width: 100%;
+
+/*style non stolen bikes*/
+.registered_bike {
+	height: 225px;
+}
+.registered_bike_row {
+	font-size: 22px;
+	height: 37.5px;
+	background-color: #E6E6E3;
+}
+.registered_bike_row_img {
+	font-size: 22px;
+	height: 37.5px;
+}
+.registered_bike_heading {
+	width: 120px;
+	text-align: right;
+	padding-right: 10px;
+	background-color: #E6E6E3;
+}
+.registered_bike_values {
+	width: 365px;
+	background-color: #E6E6E3;
+}
+.registered_bike_buttons {
+	width: 190px;
+	background-color: #E6E6E3;
 }
 
-/*set size of table cells*/
-.cell{
-	height: 95px;
+/*style stolen bikes*/
+.missing_bike_row {
+	font-size: 22px;
+	height: 32.2px;
+	background-color: #E6E6E3;
 }
-.item{
-	height: 265px;
+.missing_bike_row_img {
+	font-size: 22px;
+	height: 32.2px;
+}
+.missing_bike_heading {
+	font-size: 21px;
+	width: 120px;
+	text-align: right;
+	padding-right: 10px;
+	color: white;
+	background-color: grey;
+}
+.missing_bike_values {
+	font-size: 21px;
+	width: 365px;
+	color: white;
+	background-color: grey;
+}
+.missing_bike_values > div{
+	display: inline-block;
+	float: right;
+	padding-right: 10px;
 }
 
-/*remove border gap between cells*/
-table, td {
-	border-collapse: collapse;
+/*style extra status row for stolen bikes*/
+.missing_status_row {
+	font-size: 21px;
+	height: 32.2px;
+	color: white;
+	background-color: grey;
+}
+.missing_status_heading {
+	text-align: right;
+	padding-right: 10px;
+}
+.missing_status_explain {
+	text-align: right;
+	padding-right: 13px;
+	font-size: 18px;
+}
+.missing_status_explain > a {
+	color: whitesmoke;
+	text-decoration: none;
+	cursor: pointer;
 }
 
-/*position content in middle of window and set size*/
-section{
-	width: 1000px;
-	min-height: 100px;
-	margin: 0px auto 0px auto;
-	padding-top: 40px;
-	padding-bottom: 40px;
-}
-.centered{
-	font-size: 30px;
-}
-.help_grid{
-	padding-top: 20px;
-	height: 560px;
-}
+
