@@ -19,8 +19,8 @@ section{
 
 /*define size of google map*/
 #googleMap{
-	width: 160%;
-	margin-left: -30%;
+	width: 120%;
+	margin-left: -10%;
 	height: 400px;
 	background-color: #8C8C8C;
 	cursor: pointer;
@@ -108,7 +108,7 @@ table, td {
 	height: 37.5px;
 }
 .case_heading {
-	width: 120px;
+	width: 180px;
 	text-align: right;
 	padding-right: 10px;
 	background-color: #E6E6E3;
