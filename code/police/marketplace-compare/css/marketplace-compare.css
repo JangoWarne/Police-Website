@@ -1,0 +1,44 @@
+
+/*center content on screen*/
+.centered {
+    background-color: yellow;
+	margin: 0 auto 20px auto;
+	width: 1600px;
+   padding-top: 40px;
+   padding-bottom: 40px;
+}
+.box {
+	float: left;
+	width: 50%;
+	height: 1000px;
+}
+
+
+/*create box around each form*/
+.spacing {
+	background-color: #F3F3F3;
+	margin: 6% auto 6% auto;
+	margin-top: 3%;
+	width: 80%;
+	height: 80%;
+	padding: 30px;
+	border-color: #BDBDBD;
+	border-width: 1px;
+	border-style: solid;
+	font-size: 18px;
+}
+
+/*style input feilds*/
+input {
+	width: 97%;
+	height: 30px;
+	font-size: 16px;
+	padding-left: 10px;
+}
+
+/*style text about registering a new account*/
+h2 {
+	margin: 0;
+	margin-bottom: -15px;
+	font-size: 40px;
+}

@@ -24,9 +24,77 @@
 	</header>
 	
 	<!-- Main Body -->
+    
+    <h1> Market-Place Compare </h1>
+    
 	<main>
+      
+        <section class="centered">
+            <div class="box">
+                <div class="spacing">
+                    <!-- Bike details form -->
+
+
+                    <div class="align_center">
+
+                        <input type="text" name="txtBrand" placeholder="BRAND"> <br> 
+                        <input type="text" name="txtModel" placeholder="MODEL"> <br> 
+                        <input type="text" name="txtType" placeholder="TYPE"> <br> 
+                        <input type="text" name="txtGender" placeholder="GENDER"> <br> 
+                        <input type="text" name="txtColour" placeholder="COLOUR"> <br> 
+
+                        <input type="text" name="txtFrameMaterial" placeholder="FRAME MATERIAL"> <br>
+                        <input type="text" name="txtFrameSize" placeholder="FRAME SIZE"> <br>
+                        <input type="number" name="numGears" placeholder="NUMBER OF GEARS"> <br>
+                        <input type="text" name="txtSuspension" placeholder="SUSPENSION"> <br>
+                        <input type="text" name="txtBrakeType" placeholder="BRAKE TYPE"> <br>
+                        <input type="text" name="txtHandleType" placeholder="HANDLEBAR TYPE" > <br> 
+
+                        <input type="number" name="numSerial" placeholder="FRAME NUMBER"> <br>
+
+
+
+                        <input type="text" name="txtTagBrand" placeholder="TAG BRAND"> <br>
+                        <input type="number" name="numTagID" placeholder="TAG ID/NUMBER" > <br>
+
+
+                        <textarea class="multiline" rows="5" name="txtFeatures" placeholder="Other BASKET, KICKSTAND, MUDGUARDS etc."></textarea> <br> <br>
+                        <textarea class="multiline" rows="5" name="txtDescription" placeholder="DISTINCTIVE MARKS etc."></textarea> <br> <br>
+                    </div>
+                    <br>
+
+                     <!-- Add / remove image section -->
+                    <section class="image_bounds">
+                        <input id="file-input" type="file" style="display:none;" >
+
+                        <div class="column" id="col1">
+                            <article id="add-box">
+                                <div class="add_image">
+                                    <span><b>+ </b> Add Image</span>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="column" id="col2">
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="box">
+                <div class="spacing">
+                    <!-- Register new account link -->
+                    
+                </div>
+            </div>
+		</section>
 		
-		
+	
+				
+			
+					
+
+
+       
+       
 	</main>
 	
 	<script src="../../js/bikedb_io.js"></script>
