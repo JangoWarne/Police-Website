@@ -1,7 +1,7 @@
 
 /*center content on screen*/
 .centered {
-    background-color: yellow;
+    background-color: #F3F3F3;
 	margin: 0 auto 20px auto;
 	width: 1600px;
    padding-top: 40px;
@@ -10,7 +10,7 @@
 .box {
 	float: left;
 	width: 50%;
-	height: 1000px;
+	height: 1300px;
 }
 
 
@@ -28,17 +28,55 @@
 	font-size: 18px;
 }
 
-/*style input feilds*/
-input {
-	width: 97%;
-	height: 30px;
-	font-size: 16px;
-	padding-left: 10px;
-}
+
 
 /*style text about registering a new account*/
 h2 {
 	margin: 0;
 	margin-bottom: -15px;
 	font-size: 40px;
+}
+.align_center {
+	margin: 0 auto 0 auto;
+	width: 45%;
+}
+
+/*set size and style of inputs*/
+input {
+	width: 95%;
+	height: 30px;
+	font-size: 16px;
+	padding-left: 10px;
+}
+.multiline {
+	width: 95%;
+	font-size: 16px;
+	padding-left: 10px;
+}
+
+/*style heading text*/
+h2 {
+	margin: 0;
+	margin-bottom: -15px;
+	font-size: 40px;
+}
+
+/*style added images with remove 'button'*/
+.image_bounds{
+	margin: 0 auto 0 auto;
+   width: 87%;
+}
+.column{
+    float: left;
+    width: 50%;
+}
+article {
+	position: relative;
+	margin: 6% auto 6% auto;
+	margin-top: 3%;
+	width: 70%;
+	height: 200px;
+	background-repeat: no-repeat;
+	background-color: #EEE;
+	background-size: cover;
 }

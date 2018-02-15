@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> Gloucestershire Constabulary - Marketplace Comparison </title>
+	<script
+		src="https://code.jquery.com/jquery-3.2.1.js"
+		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		crossorigin="anonymous">
+	</script>
+	<script src="../../js/cookie_io.js"></script>
+	<script src="../../js/officerdb_io.js"></script>
+	<link href="../../css/styles.css" type="text/css" rel="stylesheet">
+	<link href="css/marketplace-compare.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+	
+	<!-- Headers -->
+	<header id="logged-out-header">
+		
+		<!--#include virtual="/CT4009%202017-18%20001%201609415%2014%20Jan%202018/police/header.html" -->
+		
+	</header>
+	
+	<!-- Main Body -->
+    
+    <h1> Market-Place Compare </h1>
+    
+	<main>
+      
+        <section class="centered">
+            <div class="box">
+                <div class="spacing">
+                    <!-- Bike details form -->
+                    <div class="align_center">
+						<h1> Bike Details </h1> 
+					</div>
+                    <hr />  <br>
+
+                    <div class="align_center">
+
+                        <input type="text" name="txtBrand" placeholder="BRAND"> <br> <br>
+                        Brand: jfkkvn <br><br>
+                        <input type="text" name="txtModel" placeholder="MODEL"> <br> <br>
+                        Model: jdjfdjfhvhjhfj <br> <br>
+                        <input type="text" name="txtType" placeholder="TYPE"> <br> <br>
+                        Type: jhfjdhfjkdjfj <br> <br>
+                        <input type="text" name="txtGender" placeholder="GENDER"> <br> <br>
+                        Gender: dhfjdfjj <br> <br>
+                        <input type="text" name="txtColour" placeholder="COLOUR"> <br> <br>
+                        Colour: Red <br> <br>
+                        <input type="text" name="txtFrameMaterial" placeholder="FRAME MATERIAL"> <br> <br>
+                        Frame Material: kjkdfjkfjkjlf <br> <br>
+                         <input type="text" name="txtFrameSize" placeholder="FRAME SIZE"> <br> <br>
+                        Frame Size: kjkjkjflkjldkjkl
+                        <input type="number" name="numGears" placeholder="NUMBER OF GEARS"> <br> <br>
+                        Number of Gears: jhjsdhjhfjhakj<br> <br>
+                        <input type="text" name="txtSuspension" placeholder="SUSPENSION"> <br> <br>
+                        Suspensin:fihfdjddj<br> <br>
+                        <input type="text" name="txtBrakeType" placeholder="BRAKE TYPE"> <br> <br>
+                        Brake Type: hjjfhjsdkjfj<br> <br>
+                        <input type="text" name="txtHandleType" placeholder="HANDLEBAR TYPE" > <br> <br>
+                        Handle Type: jfjsdjf <br> <br>
+                        <input type="number" name="numSerial" placeholder="FRAME NUMBER"> <br> <br>
+                        Frame Number: hjdkfjkf <br> <br>
+                        <input type="text" name="txtTagBrand" placeholder="TAG BRAND"> <br> <br>
+                        Tag Brand: jhdjkhjdk <br> <br>
+                        <input type="number" name="numTagID" placeholder="TAG ID/NUMBER" > <br> <br>
+                        Tag Id/Number: shdjkh skjh<br> <br>
+
+                        <textarea class="multiline" rows="5" name="txtFeatures" placeholder="Other BASKET, KICKSTAND, MUDGUARDS etc."></textarea> <br> <br>
+                        Notes: jjhsdjhkajshdjkhj <br> <br>
+                        <textarea class="multiline" rows="5" name="txtDescription" placeholder="DISTINCTIVE MARKS etc."></textarea> <br> <br>
+                        Distinctive Marks: hjdhajj<br> <br>
+                    </div>
+                    <br>
+
+                     <!-- Add / remove image section -->
+                    <section class="image_bounds">
+                        <input id="file-input" type="file" style="display:none;" >
+
+                        <div class="column" id="col1">
+                            <article id="add-box">
+                                <div class="add_image">
+                                    <span><b>+ </b> Add Image</span>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="column" id="col2">
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="box">
+                <div class="spacing">
+                    <!-- Register new account link -->
+                    
+                </div>
+            </div>
+		</section>
+		
+	
+				
+			
+					
+
+
+       
+       
+	</main>
+	
+	<script src="../../js/bikedb_io.js"></script>
+	<script src="../../js/userdb_io.js"></script>
+	<script src="../../js/casedb_io.js"></script>
+	<script src="../police.js"></script>
+	<script src="./markeyplace-compare.js"></script>
+</body>
+
+</html>
+
