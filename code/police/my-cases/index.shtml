@@ -34,19 +34,30 @@
 						
 					</article>
 						<div id="googleMapTitle">
-							<span>See Stolen Bikes</span>
+							<span>See Reported Bikes / Create Case</span>
 						</div>
 					
 				</div>
 				
-				<hr> <br> <br>
+				<br>
 				
 				<!-- search option for cases -->
-				<div>
-					<h2>Search</h2>
+				<div class="search">
+       				<br>
+					<h2>Search Options</h2>
+		       
+					<input type="text" placeholder="Enter frame number..">
+					<br>
+					<input type="text" placeholder="Enter make..">
+					<br>
+					<input type="text" placeholder="Enter model..">
+					<br>
+					<input type="text" placeholder="Enter colour..">
+					<br><br>
 					
-					<hr>
-				</div>
+					<input class="search_button" type="submit" value="Search">
+					
+				</div> 
 				
 				<br>
 				
@@ -84,7 +95,7 @@
 									<td class="case_heading">Type:</td>
 									<td>Road</td>
 									<td rowspan="3">
-										<button class="edit_case"><a href="../case-details/index.shtml">User Details</a></button>
+										<button class="edit_case"><a href="../case-details/index.shtml">Case Details</a></button>
 									</td>
 								</tr>
 								<tr class="case_row">
@@ -134,7 +145,7 @@
 									<td class="case_heading">Type:</td>
 									<td>Road</td>
 									<td rowspan="3">
-										<button class="edit_case"><a href="../case-details/index.shtml">User Details</a></button>
+										<button class="edit_case"><a href="../case-details/index.shtml">Case Details</a></button>
 									</td>
 								</tr>
 								<tr class="case_row">

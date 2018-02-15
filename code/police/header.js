@@ -58,7 +58,7 @@ $("#logout").click(function(){
 	
 	// delete userdb IDs
 	email = cookieRead("login_uemail");
-	userdbLogout(email);
+	officerdbLogout(email);
 	
 	// delete cookie
 	cookieDelete();
