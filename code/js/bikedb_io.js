@@ -26,7 +26,7 @@ function bikedbAdd( callbackFn ) {
 			// add url to list
 			urlList.push(url);
 			
-		}		
+		}	
 		
 		
 		// Build bike object for object store
@@ -91,6 +91,40 @@ function bikedbRead(bikeID, val, callback) {
 			} else {
 				storedVal = "";
 			}
+			// run code that uses property
+			callback(bikeID, val, storedVal);
+			
+			return;
+		};
+	} );
+}
+
+// read all bikes in the database
+function bikedbReadStolen(val, callback) {
+	
+	// open database then run callback
+	openBikeDatabase( function openfun() {
+		var transaction = bikedb.transaction(["bikedb"], "readwrite");
+		var store = transaction.objectStore("bikedb");
+		
+		// Getting all bikes from store 
+		var bikes = store.getAll();
+		
+		// report error to console if reading failed
+		index.onerror = function(e) { console.log("Error",e.target.error.name) };
+		
+		// read property from object if succesfull
+		index.onsuccess = function(e) {
+            
+            //creating a var called storedVal to store the bikes reported stolen / that have a caseID
+            var storedVal = [];
+            //iterating for each element in the array
+            for (var i = 0; 1 < bikes.length; i++) {
+                
+                if(bikes[i].caseID != 0) {
+                    storedVal.push(bikes[i]); 
+                }
+            }
 			// run code that uses property
 			callback(bikeID, val, storedVal);
 			
