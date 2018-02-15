@@ -20,20 +20,109 @@
 	<header id="logged-out-header">
 		
 		<!--#include virtual="/CT4009%202017-18%20001%201609415%2014%20Jan%202018/police/header.html" -->
+        
+        <div class="heading_text">
+			<h1>
+				<a href="../my-cases/index.shtml">
+					My Cases
+				</a>
+				/ Reported Bikes
+			</h1>
+		</div>
 		
 	</header>
 	
 	<!-- Main Body -->
 	<main>
+		<br> <br>
 		
+        <div class="box">
+            <div class="align_center">
+				<br><h2>Location of reported bike theft</h2> 
+                <div id="googleMap"></div> <br> <br>
+            </div>
+        </div>
+        
+    <section class="centered">
+			Bikes reported stolen <hr>
+    
+			<table>
+				<tr class="item">
+					<td>
+						<table class = "case">
+							<tr class="case_bike_img">
+								<td rowspan="6">
+									<div class="bike_Image">
+										<div class="outer_constraint">
+											<div class="inner_constraint">
+												<img src="http://ct4009-17bn.studentsites.glos.ac.uk/CT4009%202017-18%20001%201609415%2014%20Jan%202018/images/bike2.jpg" alt="bike1">
+											</div>
+										</div>
+									</div>
+								</td>
+								<td class="case_heading">Time last seen:</td>
+								<td class="case_values">10:30PM</td>
+								<td rowspan="6" class="case_buttons"></td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Date last seen:</td>
+								<td>25/10/2016 </td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Time spotted missing:</td>
+								<td>11:30pm</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Date spotted missing:</td>
+								<td>25/10/2016</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Anything seen:</td>
+								<td>Nothing unsual</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Parts missing:</td>
+								<td>Everything</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Bike ID:</td>
+								<td>373474737</td>
+							</tr>
+                             <tr class="case_row">
+								<td class="case_heading">Owner Emai:l</td>
+								<td>JAO@wannacry.com</td>
+                            </tr>
+                        </table>
+				    </td>
+                </tr>
+					
+            </table>
+    </section>
+        
+    <div class="container">
+  <form action="Message.php">
+
+    <label for="subject">Subject</label>
+    <input type="text" id="subject" name="subject" placeholder="Enter the subject of your message...">
+
+    <label for="message">Message</label>
+    <textarea id="message" name="message" placeholder="Write your message here..." style="height:200px"></textarea>
+
+    <input type="submit" value="send">
+
+  </form>
+</div>
+        
 		
 	</main>
-	
+    
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 	<script src="../../js/bikedb_io.js"></script>
 	<script src="../../js/userdb_io.js"></script>
 	<script src="../../js/casedb_io.js"></script>
 	<script src="../police.js"></script>
-	<script src="./case-details.js"></script>
+	<script src= "./case-details.js"></script>
+    
 </body>
 
 </html>
