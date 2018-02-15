@@ -19,6 +19,9 @@ a{
 /*set background colours for headers*/
 header{
 	background-color: #191919;
+	position: relative;
+	z-index: 990;
+	width: 100%;
 }
 nav{
 	background-color: #000000;

@@ -1,0 +1,57 @@
+.cusDD_default {
+  position: relative;
+  width: 200px;
+  margin-left: -5px;
+  
+  font-size: 18px;
+  cursor: pointer;
+  
+  text-align: left;
+  text-indent: 5px;
+}
+
+.cusDD_default .cusDD_select {
+  background: #F6F6F5;
+  border: 1px solid #f0f0f0;
+  height: 25px;
+  line-height: 25px;
+  position: relative;
+  z-index: 0;
+}
+.cusDD_default .cusDD_arrow {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 30px;
+  background: url("http://skyscrapercenter.com/img/chevron-down.png") no-repeat;
+  background-size: 60% auto;
+  background-position: 50% 50%;
+}
+.cusDD_default .cusDD_arrow.active {
+  background: url("http://skyscrapercenter.com/img/chevron-down.png") no-repeat;
+  background-size: 60% auto;
+  background-position: 50% 50%;
+}
+
+.cusDD_default .cusDD_options {
+  background: #F6F6F5;
+  position: absolute;
+  top: 28px;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  display: none;
+}
+
+.cusDD_default .cusDD_opt {
+  height: 30px;
+  line-height: 30px;
+  width: 100%;
+  display: block;
+}
+
+.cusDD_default .cusDD_opt:hover {
+  background: rgba(0, 0, 0, 0.5);
+  color: #F7F7F6;
+}

@@ -12,6 +12,7 @@
 	<script src="../../js/officerdb_io.js"></script>
 	<link href="../../css/styles.css" type="text/css" rel="stylesheet">
 	<link href="css/my-cases.css" type="text/css" rel="stylesheet">
+	<link href="../../css/dropdown.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
@@ -30,11 +31,12 @@
 				<!-- google map showing stolen bike and acting as link to stolen bikes -->
 				<div class="box">
 					<article id="googleMap">
-						<div class="google-map-title">
-							<span>Stolen Bikes</span>
+						
+					</article>
+						<div id="googleMapTitle">
+							<span>See Stolen Bikes</span>
 						</div>
-					</div>
-					<br>
+					
 				</div>
 				
 				<hr> <br> <br>
@@ -67,7 +69,7 @@
 									<td class="case_heading">When Last Seen:</td>
 									<td class="case_values">25/10/2016     10:30PM</td>
 									<td rowspan="3" class="case_buttons">
-										<button class="edit_case"> <a href="../report-stolen/index.shtml">Bike Details</a></button>
+										<button class="edit_case"> <a href="../bike-details/index.shtml">Bike Details</a></button>
 									</td>
 								</tr>
 								<tr class="case_row">
@@ -82,7 +84,7 @@
 									<td class="case_heading">Type:</td>
 									<td>Road</td>
 									<td rowspan="3">
-										<button class="edit_case">User Details</button>
+										<button class="edit_case"><a href="../case-details/index.shtml">User Details</a></button>
 									</td>
 								</tr>
 								<tr class="case_row">
@@ -91,7 +93,7 @@
 								</tr>
 								<tr class="case_row">
 									<td class="case_heading">Status:	</td>
-									<td><select>
+									<td><select id="select1" class="dropdown">
 									  <option value="Open">Open</option>
 									  <option value="Closed">Closed</option>
 									  <option value="Under Investigation" selected="selected">Under Investigation</option>
@@ -117,7 +119,7 @@
 									<td class="case_heading">When Last Seen:</td>
 									<td class="case_values">25/10/2016     10:30PM</td>
 									<td rowspan="3" class="case_buttons">
-										<button class="edit_case"> <a href="../report-stolen/index.shtml">Bike Details</a></button>
+										<button class="edit_case"> <a href="../bike-details/index.shtml">Bike Details</a></button>
 									</td>
 								</tr>
 								<tr class="case_row">
@@ -132,7 +134,7 @@
 									<td class="case_heading">Type:</td>
 									<td>Road</td>
 									<td rowspan="3">
-										<button class="edit_case">User Details</button>
+										<button class="edit_case"><a href="../case-details/index.shtml">User Details</a></button>
 									</td>
 								</tr>
 								<tr class="case_row">
@@ -141,7 +143,7 @@
 								</tr>
 								<tr class="case_row">
 									<td class="case_heading">Status:	</td>
-									<td><select>
+									<td><select id="select2" class="dropdown">
 									  <option value="Open">Open</option>
 									  <option value="Closed">Closed</option>
 									  <option value="Under Investigation" selected="selected">Under Investigation</option>
