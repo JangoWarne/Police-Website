@@ -34,6 +34,7 @@
 	<main>
 		
 		<section class="centered">
+		<div id="divMessage"></div>
 			<!-- form to create new account -->
 			<form action="register.php" method="post" id="form-details" name="formDetails">
 				
