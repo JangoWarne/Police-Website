@@ -38,59 +38,19 @@
 						<h1> Bike Details </h1> 
 					</div>
                     <hr />  <br>
-
-                    <div class="align_center">
-
-                        
-                        Brand: jfkkvn <br><br>
-                        Model: jdjfdjfhvhjhfj <br> <br>
-                        
-                        Type: jhfjdhfjkdjfj <br> <br>
-                        
-                        Gender: dhfjdfjj <br> <br>
-                       
-                        Colour: Red <br> <br>
-                        
-                        Frame Material: kjkdfjkfjkjlf <br> <br>
-                       
-                        Frame Size: kjkjkjflkjldkjkl <br> <br>
-                        
-                        Number of Gears: jhjsdhjhfjhakj<br> <br>
-                        
-                        Suspension:fihfdjddj<br> <br>
-                       
-                        Brake Type: hjjfhjsdkjfj<br> <br>
-                       
-                        Handle Type: jfjsdjf <br> <br>
-                        
-                        Frame Number: hjdkfjkf <br> <br>
-                        
-                        Tag Brand: jhdjkhjdk <br> <br>
-                       
-                        Tag Id/Number: shdjkh skjh<br> <br>
-
-                       
-                        Features: jjhsdjhkajshdjkhj <br> <br>
-                        
-                        Distinctive Marks: hjdhajj<br> <br>
-                    </div>
-                    <br>
-
-                     <!-- Add / remove image section -->
-                    <section class="image_bounds">
-                        <input id="file-input" type="file" style="display:none;" >
-
-                        <div class="column" id="col1">
-                            <article id="add-box">
-                                <div class="add_image">
-                                    <span><b>+ </b> Add Image</span>
-                                </div>
-                            </article>
-                        </div>
-                        <div class="column" id="col2">
-                        </div>
-                    </section>
+                    <div id= "bike-detail"></div>
+                   
                 </div>
+                
+                 <!-- Add / remove image section -->
+				<section class="image_bounds">
+                    
+				    <div class="column" id="col1">
+                    </div>
+                    
+					<div class="column" id="col2">
+					</div>
+				</section>
             </div>
             <div class="box">
                 <div class="spacing">
@@ -115,7 +75,7 @@
 	<script src="../../js/userdb_io.js"></script>
 	<script src="../../js/casedb_io.js"></script>
 	<script src="../police.js"></script>
-	<script src="./markeyplace-compare.js"></script>
+	<script src="./compare.js"></script>
 </body>
 
 </html>
