@@ -20,7 +20,7 @@
 	<!-- Headers -->
 	<header id="logged-out-header">
 		
-		<!--#include virtual="/CT4009%202017-18%20001%201609415%2014%20Jan%202018/public/header.html" -->
+		<!--#include virtual="../header.html" -->
 		<div class="heading_text">
 			<h1>
 				<a href="../my-bikes/index.shtml">
@@ -36,7 +36,7 @@
 		<section class="centered">
 			
 			<!-- form to report bike as stolen -->
-			<form action="register.php" method="post">
+			<form action="report.php" method="post"  id="form-report" name="formReport">
 			
 				<div class="box">
 					<div class="align_center">

@@ -1,7 +1,7 @@
 var casedb; // global database object
 
 // add case to database of cases
-function casedbAdd( callbackFn ) {
+function casedbAdd( bikeIDval, callbackFn ) {
 	
 	// open database then run callback
 	openCaseDatabase( function callback() {
@@ -11,17 +11,17 @@ function casedbAdd( callbackFn ) {
 		// Build investigation object for object store
 		var investigation = {
 			// read properties from window
-			timeLastSeen: document.formDetails.txtBrand.value,
-			dateLastSeen: document.formDetails.txtModel.value,
-			timeSeenMissing: document.formDetails.txtType.value,
-			dateSeenMissing: document.formDetails.txtGender.value,
-			latlngLastSeen: document.formDetails.txtColour.value,
-			partsMissing: document.formDetails.txtFrameMaterial.value,
-			peopleSeen: document.formDetails.txtFrameSize.value,
-			bikeID: document.formDetails.numGears.value,
-			caseStatus: document.formDetails.txtSuspension.value,
+			timeLastSeen: document.formDetails.timeLastSeen.value,
+			dateLastSeen: document.formDetails.dateLastSeen.value,
+			timeSeenMissing: document.formDetails.timeSpottedMissing.value,
+			dateSeenMissing: document.formDetails.dateSpottedMissing.value,
+			latlngLastSeen: document.formDetails..value,
+			partsMissing: document.formDetails.txtPartsMissing.value,
+			peopleSeen: document.formDetails.txtPeopleSeen.value,
+			bikeID: bikeIDval,
+			caseStatus: "Open",
 			userID: cookieRead("login_uemail"),
-			officerID: document.formDetails.txtHandleType.value
+			officerID: ""
 		}
 		
 		// Add object to store
@@ -64,33 +64,6 @@ function casedbRead(caseID, val, callback) {
 			}
 			// run code that uses property
 			callback(caseID, val, storedVal);
-			
-			return;
-		};
-	} );
-}
-
-
-
-// read all cases in the database
-function casedbReadStolen(val, callback) {
-	
-	// open database then run callback
-	openCaseDatabase( function openfun() {
-		var transaction = casedb.transaction(["casedb"], "readwrite");
-		var store = transaction.objectStore("casedb");
-		
-		// Getting all cases from store 
-		var cases = store.getAll();
-		
-		// report error to console if reading failed
-		index.onerror = function(e) { console.log("Error",e.target.error.name) };
-		
-		// read property from object if succesfull
-		index.onsuccess = function(e) {
-			
-			// run code that uses property
-			callback(bikeID, val, cases);
 			
 			return;
 		};

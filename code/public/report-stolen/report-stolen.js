@@ -1,6 +1,4 @@
 
-
-
 google.maps.event.addDomListener(window, 'load', initialize);
  
  var mapCenter = new google.maps.LatLng(51.884310, -2.164599);
@@ -42,5 +40,37 @@ function initialize(){
 			infowindow.setContent(results[0].formatted_address);
 			infowindow.open(myMap, marker);
 		}
-	}         
+	}
 }
+
+
+// check user detail when register is clicked and if valid go to myBikes
+$('#form-report').on('submit', function(e) {
+	e.preventDefault();  //prevent form from submitting
+	
+	
+	// if cookie exists
+	email = cookieRead("login_uemail");
+	if (email != "" && email != "0") {
+		
+		// if URL bikeID parameter exists
+		params = new URLSearchParams(document.location.search.substring(1));
+		bikeID = params.get("bikeID");
+		if (bikeID != "") {
+			
+			// if marker exists on map
+			
+			
+			
+				// add content to database
+				caseID = casedbAdd(bikeID, function (result) {
+					// add case id to bike
+					bikedbUpdate(bikeID, "caseID", result);
+					
+					// send user to login page
+					window.location.href = "../my-bikes/index.shtml";
+				});
+		}
+	}
+});
+

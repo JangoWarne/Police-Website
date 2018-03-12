@@ -136,7 +136,7 @@ function bikedbReadStolen(val, callback) {
 
 // update single parameter for one bike from database of bikes
 // oldval is only needed for login and bike ID lists (if there is no val for IDs set to "")
-function bikedbUpdate(email, property, newVal, oldVal) {
+function bikedbUpdate(email, property, newVal) {
 	
 	// open database then run callback
 	openBikeDatabase( function openfun() {
@@ -156,56 +156,17 @@ function bikedbUpdate(email, property, newVal, oldVal) {
 				// copy read property to variable
 				var storedVal = index.result;
 				
-				// update differently if list
-				if (property == "loginIDs" || property == "bikeIDs") {
-					// get value list
-					var valList = storedVal[property];
-					
-					// check if there was an old value
-					if (oldVal == "") {
-						// set new location to end of array
-						var i = valList.length;
-					} else {
-						// get old value location
-						var i = valList.indexOf(oldVal);
-					}
-					
-					// check if old value was found in array
-					if (i  != -1 ) { // if value was found
-						// update value
-						if (newVal == "") {
-    						valList.splice(index, 1);
-						} else {
-							valList[i] = newVal;
-						}
-						storedVal[property] = valList;
-					
-						// Add object to store
-						var put = store.put(storedVal);
-						
-						// report error to console if adding bike failed
-						put.onerror = function(e) { console.log("Error",e.target.error.name) };
-						
-						// do nothing if succesfull
-						put.onsuccess = function(e) { };
-						
-					} else {
-						console.log("old value does not exist")
-					}
-					
-				} else {
-					// update value
-					storedVal[property] = newVal;
-					
-					// Add object to store
-					var put = store.put(storedVal);
-					
-					// report error to console if adding bike failed
-					put.onerror = function(e) { console.log("Error",e.target.error.name) };
-					
-					// do nothing if succesfull
-					put.onsuccess = function(e) { };
-				}
+				// update value
+				storedVal[property] = newVal;
+				
+				// Add object to store
+				var put = store.put(storedVal);
+				
+				// report error to console if adding bike failed
+				put.onerror = function(e) { console.log("Error",e.target.error.name) };
+				
+				// do nothing if succesfull
+				put.onsuccess = function(e) { };
 				
 			} else {
 				console.log("Property does not exist");
