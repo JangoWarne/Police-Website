@@ -51,13 +51,13 @@ function bikedbAdd( callbackFn ) {
 			imageList: urlList,
 			caseID: 0,
 			ownerID: cookieRead("login_uemail"),
-		}
+		};
 		
 		// Add object to store
 		var add = store.add(bike);
 		
 		// report error to console if adding bike failed
-		add.onerror = function(e) { console.log("Error",e.target.error.name) };
+		add.onerror = function(e) { console.log("Error",e.target.error.name); };
 		
 		// do nothing if succesfull
 		add.onsuccess = function(e) {
@@ -80,14 +80,15 @@ function bikedbRead(bikeID, val, callback) {
 		var index = store.get(bikeID);
 		
 		// report error to console if reading failed
-		index.onerror = function(e) { console.log("Error",e.target.error.name) };
+		index.onerror = function(e) { console.log("Error",e.target.error.name); };
 		
 		// read property from object if succesfull
 		index.onsuccess = function(e) {
+			var storedVal;
 			
 			if (typeof index.result !== 'undefined') {
 				// copy read property to variable
-				var storedVal = index.result;
+				storedVal = index.result;
 			} else {
 				storedVal = "";
 			}
@@ -111,7 +112,7 @@ function bikedbReadStolen(val, callback) {
 		var bikes = store.getAll();
 		
 		// report error to console if reading failed
-		index.onerror = function(e) { console.log("Error",e.target.error.name) };
+		index.onerror = function(e) { console.log("Error",e.target.error.name); };
 		
 		// read property from object if succesfull
 		index.onsuccess = function(e) {
@@ -121,7 +122,7 @@ function bikedbReadStolen(val, callback) {
             //iterating for each element in the array
             for (var i = 0; 1 < bikes.length; i++) {
                 
-                if(bikes[i].caseID != 0) {
+                if(bikes[i].caseID !== 0) {
                     storedVal.push(bikes[i]); 
                 }
             }
@@ -136,7 +137,7 @@ function bikedbReadStolen(val, callback) {
 
 // update single parameter for one bike from database of bikes
 // oldval is only needed for login and bike ID lists (if there is no val for IDs set to "")
-function bikedbUpdate(email, property, newVal) {
+function bikedbUpdate(bikeID, property, newVal, callback) {
 	
 	// open database then run callback
 	openBikeDatabase( function openfun() {
@@ -144,14 +145,13 @@ function bikedbUpdate(email, property, newVal) {
 		var store = transaction.objectStore("bikedb");
 		
 		// Read object from store
-		var index = store.get(email);
+		var index = store.get(bikeID);
 		
 		// report error to console if reading failed
-		index.onerror = function(e) { console.log("Error", e.target.error.name) };
+		index.onerror = function(e) { console.log("Error", e.target.error.name); };
 		
 		// read property from object if succesfull
 		index.onsuccess = function(e) {
-			
 			if (typeof index.result !== 'undefined') {
 				// copy read property to variable
 				var storedVal = index.result;
@@ -163,10 +163,10 @@ function bikedbUpdate(email, property, newVal) {
 				var put = store.put(storedVal);
 				
 				// report error to console if adding bike failed
-				put.onerror = function(e) { console.log("Error",e.target.error.name) };
+				put.onerror = function(e) { console.log("Error",e.target.error.name); };
 				
 				// do nothing if succesfull
-				put.onsuccess = function(e) { };
+				put.onsuccess = function(e) { callback(); };
 				
 			} else {
 				console.log("Property does not exist");
@@ -187,7 +187,7 @@ function openBikeDatabase(callback) {
 		var openRequest = indexedDB.open("bikedb",1);
 		
 		// create database object stores if required
-		openRequest.onupgradeneeded = function(e) { updateBikeDatabase(e) };
+		openRequest.onupgradeneeded = function(e) { updateBikeDatabase(e); };
 		
 		// add bike if susscessfull
 		openRequest.onsuccess = function(e) {
@@ -199,7 +199,7 @@ function openBikeDatabase(callback) {
 			// close open connection
 			bikedb.close();
 			return;
-		}
+		};
 		
 		// dump to console if error occured
 		openRequest.onerror = function(e) {
@@ -210,7 +210,7 @@ function openBikeDatabase(callback) {
 			bikedb = e.target.result;
 			bikedb.close();
 			return;
-		}
+		};
 		
 		// close open database connection if blocked
 		openRequest.onblocked = function(e) {
@@ -220,7 +220,7 @@ function openBikeDatabase(callback) {
 			// close open connection   
 			bikedb.close();
 			return;
-		}
+		};
 	} else {
 		// alert bike that this website will not work
 		alert("IndexedDB broswer support required: This browser cannot run this wesbise as it does not support IndexedDB");

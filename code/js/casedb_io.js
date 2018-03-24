@@ -1,7 +1,8 @@
 var casedb; // global database object
 
+
 // add case to database of cases
-function casedbAdd( bikeIDval, callbackFn ) {
+function casedbAdd(bikeIDval, latlng, callbackFn) {
 	
 	// open database then run callback
 	openCaseDatabase( function callback() {
@@ -11,31 +12,37 @@ function casedbAdd( bikeIDval, callbackFn ) {
 		// Build investigation object for object store
 		var investigation = {
 			// read properties from window
-			timeLastSeen: document.formDetails.timeLastSeen.value,
-			dateLastSeen: document.formDetails.dateLastSeen.value,
-			timeSeenMissing: document.formDetails.timeSpottedMissing.value,
-			dateSeenMissing: document.formDetails.dateSpottedMissing.value,
-			latlngLastSeen: document.formDetails..value,
-			partsMissing: document.formDetails.txtPartsMissing.value,
-			peopleSeen: document.formDetails.txtPeopleSeen.value,
+			timeLastSeen: document.formReport.timeLastSeen.value,
+			dateLastSeen: document.formReport.dateLastSeen.value,
+			timeSeenMissing: document.formReport.timeSpottedMissing.value,
+			dateSeenMissing: document.formReport.dateSpottedMissing.value,
+			latlngLastSeen: {lat: latlng.lat(), lng: latlng.lng()},
+			partsMissing: document.formReport.txtPartsMissing.value,
+			peopleSeen: document.formReport.txtPeopleSeen.value,
 			bikeID: bikeIDval,
 			caseStatus: "Open",
 			userID: cookieRead("login_uemail"),
-			officerID: ""
-		}
+			officerID: "",
+			found: false,
+			foundStolen: false,
+			timeFound: "",
+			dateFound: "",
+			latlngFound: {},
+			imagesFound: []
+		};
 		
 		// Add object to store
 		var add = store.add(investigation);
 		
 		// report error to console if adding bike failed
-		add.onerror = function(e) { console.log("Error",e.target.error.name) };
+		add.onerror = function(e) { console.log("Error",e.target.error.name); };
 		
 		// do nothing if succesfull
 		add.onsuccess = function(e) {
 			callbackFn(e.target.result);
 		};
 		
-	} );
+	});
 }
 
 
@@ -51,14 +58,15 @@ function casedbRead(caseID, val, callback) {
 		var index = store.get(caseID);
 		
 		// report error to console if reading failed
-		index.onerror = function(e) { console.log("Error",e.target.error.name) };
+		index.onerror = function(e) { console.log("Error",e.target.error.name); };
 		
 		// read property from object if succesfull
 		index.onsuccess = function(e) {
 			
+			var storedVal;
 			if (typeof index.result !== 'undefined') {
 				// copy read property to variable
-				var storedVal = index.result;
+				storedVal = index.result;
 			} else {
 				storedVal = "";
 			}
@@ -67,14 +75,84 @@ function casedbRead(caseID, val, callback) {
 			
 			return;
 		};
-	} );
+	});
 }
 
 
 
 // update single parameter for one bike from database of cases
 // oldval is only needed for login and case ID lists (if there is no val for IDs set to "")
-function casedbUpdate(email, property, newVal, oldVal) {
+function casedbFound(caseID, latlng, callback) {
+	
+	// open database then run callback
+	openCaseDatabase( function openfun() {
+		var transaction = casedb.transaction(["casedb"], "readwrite");
+		var store = transaction.objectStore("casedb");
+		console.log(caseID);
+		// Read object from store
+		var index = store.get(caseID);
+		
+		// report error to console if reading failed
+		index.onerror = function(e) { console.log("Error", e.target.error.name); };
+		
+		// read property from object if succesfull
+		index.onsuccess = function(e) {
+		console.log(index);
+			
+			if (typeof index.result !== 'undefined') {
+				// copy read property to variable
+				var storedVal = index.result;
+				
+				// get number of existing images
+				var number = document.getElementsByClassName("images").length;
+				
+				// iterate through getting images to create list
+				var imageID;
+				var urlList = [];
+				for (i = 0; i < number; i++ ) {
+					
+					imageID = "image-" + i + "-box";
+					
+					// get data url for image
+					var img = document.getElementById(imageID);
+					var style = img.currentStyle || window.getComputedStyle(img, false);
+					var url = style.backgroundImage.slice(4, -1).replace(/"/g, "");
+					
+					// add url to list
+					urlList.push(url);
+				}
+				
+				// update value
+				storedVal.found = true;
+				storedVal.foundStolen = true;
+				storedVal.timeFound = document.formFound.timeFound.value;
+				storedVal.dateFound = document.formFound.dateFound.value;
+				storedVal.latlngFound = {lat: latlng.lat(), lng: latlng.lng()};
+				storedVal.imagesFound = urlList;
+				
+				// Add object to store
+				put = store.put(storedVal);
+				
+				// report error to console if adding bike failed
+				put.onerror = function(e) { console.log("Error",e.target.error.name); };
+				
+				// run callback if succesfull
+				put.onsuccess = function(e) { callback(storedVal.bikeID); };
+				
+			} else {
+				console.log("Property does not exist");
+			}
+			
+			return;
+		};
+	});
+}
+
+
+
+// update single parameter for one bike from database of cases
+// oldval is only needed for login and case ID lists (if there is no val for IDs set to "")
+function casedbUpdate(caseID, property, newVal, oldVal, callback) {
 	
 	// open database then run callback
 	openCaseDatabase( function openfun() {
@@ -82,10 +160,10 @@ function casedbUpdate(email, property, newVal, oldVal) {
 		var store = transaction.objectStore("casedb");
 		
 		// Read object from store
-		var index = store.get(email);
+		var index = store.get(caseID);
 		
 		// report error to console if reading failed
-		index.onerror = function(e) { console.log("Error", e.target.error.name) };
+		index.onerror = function(e) { console.log("Error", e.target.error.name); };
 		
 		// read property from object if succesfull
 		index.onsuccess = function(e) {
@@ -93,6 +171,7 @@ function casedbUpdate(email, property, newVal, oldVal) {
 			if (typeof index.result !== 'undefined') {
 				// copy read property to variable
 				var storedVal = index.result;
+				var put;
 				
 				// update differently if list
 				if (property == "loginIDs" || property == "caseIDs") {
@@ -100,35 +179,36 @@ function casedbUpdate(email, property, newVal, oldVal) {
 					var valList = storedVal[property];
 					
 					// check if there was an old value
-					if (oldVal == "") {
+					var i;
+					if (oldVal === "") {
 						// set new location to end of array
-						var i = valList.length;
+						i = valList.length;
 					} else {
 						// get old value location
-						var i = valList.indexOf(oldVal);
+						i = valList.indexOf(oldVal);
 					}
 					
 					// check if old value was found in array
 					if (i  != -1 ) { // if value was found
 						// update value
-						if (newVal == "") {
-    						valList.splice(index, 1);
+						if (newVal === "") {
+							valList.splice(index, 1);
 						} else {
 							valList[i] = newVal;
 						}
 						storedVal[property] = valList;
 					
 						// Add object to store
-						var put = store.put(storedVal);
+						put = store.put(storedVal);
 						
 						// report error to console if adding bike failed
-						put.onerror = function(e) { console.log("Error",e.target.error.name) };
+						put.onerror = function(e) { console.log("Error",e.target.error.name); };
 						
 						// do nothing if succesfull
-						put.onsuccess = function(e) { };
+						put.onsuccess = function(e) { callback(storedVal.bikeID); };
 						
 					} else {
-						console.log("old value does not exist")
+						console.log("old value does not exist");
 					}
 					
 				} else {
@@ -136,13 +216,13 @@ function casedbUpdate(email, property, newVal, oldVal) {
 					storedVal[property] = newVal;
 					
 					// Add object to store
-					var put = store.put(storedVal);
+					put = store.put(storedVal);
 					
 					// report error to console if adding bike failed
-					put.onerror = function(e) { console.log("Error",e.target.error.name) };
+					put.onerror = function(e) { console.log("Error",e.target.error.name); };
 					
 					// do nothing if succesfull
-					put.onsuccess = function(e) { };
+					put.onsuccess = function(e) { callback(storedVal.bikeID); };
 				}
 				
 			} else {
@@ -151,7 +231,7 @@ function casedbUpdate(email, property, newVal, oldVal) {
 			
 			return;
 		};
-	} );
+	});
 }
 
 
@@ -161,10 +241,10 @@ function openCaseDatabase(callback) {
 	// does the browser support indexedDB?
 	if("indexedDB" in window) {
 		// open website database
-		var openRequest = indexedDB.open("casedb",1);
+		var openRequest = indexedDB.open("casedb",2);
 		
 		// create database object stores if required
-		openRequest.onupgradeneeded = function(e) { updateCaseDatabase(e) };
+		openRequest.onupgradeneeded = function(e) { updateCaseDatabase(e); };
 		
 		// add bike if susscessfull
 		openRequest.onsuccess = function(e) {
@@ -176,7 +256,7 @@ function openCaseDatabase(callback) {
 			// close open connection
 			casedb.close();
 			return;
-		}
+		};
 		
 		// dump to console if error occured
 		openRequest.onerror = function(e) {
@@ -187,7 +267,7 @@ function openCaseDatabase(callback) {
 			casedb = e.target.result;
 			casedb.close();
 			return;
-		}
+		};
 		
 		// close open database connection if blocked
 		openRequest.onblocked = function(e) {
@@ -197,7 +277,7 @@ function openCaseDatabase(callback) {
 			// close open connection   
 			casedb.close();
 			return;
-		}
+		};
 	} else {
 		// alert user that this website will not work
 		alert("IndexedDB broswer support required: This browser cannot run this wesbise as it does not support IndexedDB");
@@ -208,7 +288,7 @@ function openCaseDatabase(callback) {
 
 
 // update database required -> create database (can handle version upgrade if needed))
-function updateDatabase(e) {
+function updateCaseDatabase(e) {
 	console.log("Upgrading...");
 	casedb = e.target.result;
 	

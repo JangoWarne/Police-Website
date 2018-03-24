@@ -10,6 +10,8 @@
 	</script>
 	<script src="../../js/cookie_io.js"></script>
 	<script src="../../js/userdb_io.js"></script>
+	<script src="../../js/bikedb_io.js"></script>
+	<script src="../../js/casedb_io.js"></script>
 	<link href="../../css/styles.css" type="text/css" rel="stylesheet">
 	<link href="css/my-bikes.css" type="text/css" rel="stylesheet">
 </head>
@@ -80,8 +82,6 @@
 	</main>
 	
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-	<script src="../../js/bikedb_io.js"></script>
-	<script src="../../js/casedb_io.js"></script>
 	<script src="../public.js"></script>
 	<script src="./my-bikes.js"></script>
 </body>

@@ -1,8 +1,12 @@
 
+var geocoder = new google.maps.Geocoder();
+var place;
+
 // Shorthand for $( document ).ready() run on page load
 $(function() {
 	loadBikes();
 });
+
 
 // load bikes from database
 function loadBikes() {
@@ -10,7 +14,7 @@ function loadBikes() {
 	email = cookieRead("login_uemail");
 	
 	// if cookie exists
-	if (email != "" && email != "0") {
+	if (email !== "" && email != "0") {
 		
 		// get bike ID for account
 		userdbRead(email, "bikeIDs", "", function (a, b, bikeIDs) {
@@ -24,7 +28,7 @@ function loadBikes() {
 				bikeID = bikeIDs[i];
 				
 				displayBike(bikeID);
-			};
+			}
 		});
 	}
 	
@@ -37,7 +41,15 @@ function displayBike(bikeID) {
 	// read bike from database
 	bikedbRead(bikeID, "", function (a, b, bike) {
 		
-		if (bike.caseID == 0) {
+		if (bike.caseID === 0) {
+			// Is image missing?
+			var image;
+			if (bike.imageList[0] === undefined) {
+				image = "../../images/no-thumbnail.png";
+			} else {
+				image = bike.imageList[0];
+			}
+			
 			// add new not stolen bike html
 			var bikeRow = document.createElement('tr');
 			bikeRow.className = "item";
@@ -50,7 +62,7 @@ function displayBike(bikeID) {
 										'<div class="bike_Image">'+
 											'<div class="outer_constraint">'+
 												'<div class="inner_constraint">'+
-													'<img src="' + bike.imageList[0] + '" alt="bike' + bikeID + '">'+
+													'<img src="' + image + '" alt="bike' + bikeID + '">'+
 												'</div>'+
 											'</div>'+
 										'</div>'+
@@ -86,9 +98,22 @@ function displayBike(bikeID) {
 								'</tr>'+
 							'</table>'+
 						'</td>';
+				
+			// add html to page
+			$( ".cell" ).before( $( bikeRow ) );
+			
+			
 		} else {
 			// read case from database
 			casedbRead(bike.caseID, "", function (a, b, investigation) {
+				// Is image missing?
+				var image;
+				if (bike.imageList[0] === undefined) {
+					image = "../../images/no-thumbnail.png";
+				} else {
+					image = bike.imageList[0];
+				}
+				
 				// add new stolen bike html
 				var bikeRow = document.createElement('tr');
 				bikeRow.className = "item";
@@ -101,15 +126,15 @@ function displayBike(bikeID) {
 										'<div class="bike_Image">' +
 											'<div class="outer_constraint">' +
 												'<div class="inner_constraint">' +
-													'<img src="' + bike.imageList[0] + '" alt="bike' + bikeID + '">' +
+													'<img src="' + image + '" alt="bike' + bikeID + '">' +
 												'</div>' +
 											'</div>' +
 										'</div>' +
 									'</td>' +
 									'<td class="missing_bike_heading">Last Seen:</td>' +
-									'<td class="missing_bike_values">' + geocodeLocation(investigation.latlngLastSeen) + '<div>' + investigation.dateLastSeen + '</div></td>' +
+									'<td class="missing_bike_values">' + /*Temporary div to be replaced with location*/'<div class="replace' + bikeID + '"></div>' + '<div>' + investigation.dateLastSeen + '</div></td>' +
 									'<td rowspan="7" class="registered_bike_buttons">' +
-										'<button class="edit_bike"> <a href="../found-bike/index.shtml?bikeID=' + bikeID + '">Report Found</a></button>' +
+										'<button class="edit_bike"> <a href="../found-bike/index.shtml?caseID=' + investigation.caseID + '">Report Found</a></button>' +
 									'</td>' +
 								'</tr>' +
 								'<tr class="missing_bike_row">' +
@@ -143,11 +168,16 @@ function displayBike(bikeID) {
 								'</tr>' +
 							'</table>' +
 						'</td>';
-			};
+						
+				
+				// add html to page
+				$( ".cell" ).before( $( bikeRow ) );
+				
+				// update location
+				geocodeLocation(bikeID, investigation.latlngLastSeen);
+			});
 		}
 		
-		// add html to page
-		$( ".cell" ).before( $( bikeRow ) );
 		
 		// add listeners for new buttons
 		document.getElementById("remove-" + i).addEventListener('click', removeBike, false);
@@ -162,7 +192,7 @@ function removeBike(evt) {
 	email = cookieRead("login_uemail");
 	
 	// if cookie exists
-	if (email != "" && email != "0") {
+	if (email !== "" && email != "0") {
 		// get id for bike row
 		var parentID = evt.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.id;
 		var bikeID = parseInt(parentID.split('-')[2]);
@@ -172,20 +202,25 @@ function removeBike(evt) {
 		bikeRow.parentNode.removeChild(bikeRow);
 		
 		// remove bike from user
-		userdbUpdate(email, "bikeIDs", "", bikeID);
+		userdbUpdate(email, "bikeIDs", "", bikeID, function callback() {});
 	}
 }
 
 
 // get first line of address
-function geocodeLocation(latlng) {
+function geocodeLocation(bikeID, latlng) {
 	
-	var latlngStr = input.split(',', 2);
+	// get address from latlng
 	geocoder.geocode({'location': latlng}, function(results, status) {
 		if (status === 'OK') {
 			if (results[0]) {
+				
+				// get first line of address
 				var address = results[0].formatted_address.split(',', 2);
-				return address[0];
+				
+				// replace temporary div with location
+				$( "div.replace" + bikeID ).replaceWith( address[0] );
+				
 			} else {
 				window.alert('Location Unknown');
 			}
