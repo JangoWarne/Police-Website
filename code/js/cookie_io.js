@@ -132,7 +132,7 @@ function officerCookieRead(key) {
 
 // delete cookie from local system
 function officerCookieDelete() {
-<<<<<<< HEAD
+    
 	// set cookie expirery to value before now #Josh
 	document.cookie = "login_uname=" + "0" + ";domain=ct4009-17bn.studentsites.glos.ac.uk;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;";
 	document.cookie = "login_uremember=" + false + ";domain=ct4009-17bn.studentsites.glos.ac.uk;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;";
