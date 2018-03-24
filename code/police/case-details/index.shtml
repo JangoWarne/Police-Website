@@ -19,7 +19,16 @@
 	<!-- Headers -->
 	<header id="logged-out-header">
 		
-		<!--#include virtual="/CT4009%202017-18%20001%201609415%2014%20Jan%202018/police/header.html" -->
+		<!--#include virtual="../header.html" -->
+		
+        <div class="heading_text">
+			<h1>
+				<a href="../my-cases/index.shtml">
+					My Cases
+				</a>
+				/ Reported Bikes
+			</h1>
+		</div>
 		
 	</header>
 	
@@ -89,48 +98,24 @@
 					
             </table>
     </section>
-        
+    
     <div class="container">
-  <form action="Message.php">
-
-    <label for="subject">Subject</label>
-    <input type="text" id="subject" name="subject" placeholder="Enter the subject of your message...">
-
-    <label for="message">Message</label>
-    <textarea id="message" name="message" placeholder="Write your message here..." style="height:200px"></textarea>
-
-    <input type="submit" value="send">
-
-  </form>
-</div>
+		<form action="Message.php">
+	
+		    <label for="subject">Subject</label>
+		    <input type="text" id="subject" name="subject" placeholder="Enter the subject of your message...">
+		
+		    <label for="message">Message</label>
+		    <textarea id="message" name="message" placeholder="Write your message here..." style="height:200px"></textarea>
+		
+		    <input type="submit" value="send">
+	
+		</form>
+	</div>
         
 		
 	</main>
 	
-	<script src="../../js/bikedb_io.js"></script>
-	<script src="../../js/userdb_io.js"></script>
-	<script src="../../js/casedb_io.js"></script>
-	<script src="../police.js"></script>
-	<script src="./case-details.js"></script>
-</body>
-
-</html>
-
-
-</html>
-
-
-		<!--#include virtual="../header.html" -->
-        
-        <div class="heading_text">
-			<h1>
-				<a href="../my-cases/index.shtml">
-					My Cases
-				</a>
-				/ Reported Bikes
-			</h1>
-		</div>
-    
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 	<script src="../../js/bikedb_io.js"></script>
 	<script src="../../js/userdb_io.js"></script>
@@ -139,3 +124,7 @@
 	<script src= "./case-details.js"></script>
     
 </body>
+
+</html>
+
+    
