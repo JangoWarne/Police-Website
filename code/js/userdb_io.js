@@ -73,6 +73,39 @@ function userdbRead(email, property, val, callback) {
 }
 
 
+// read all parameters for one user from database of users
+function userdbReadFull(email, val, callback) {
+	
+	// open database then run callback
+	openDatabase( function openfun() {
+		var transaction = db.transaction(["userdb"], "readwrite");
+		var store = transaction.objectStore("userdb");
+		
+		// Read object from store
+		var index = store.get(email);
+		
+		// report error to console if reading failed
+		index.onerror = function(e) { console.log("Error",e.target.error.name); };
+		
+		// read property from object if succesfull
+		index.onsuccess = function(e) {
+			
+			var storedVal;
+			if (typeof index.result !== 'undefined') {
+				// copy user data to variable
+				storedVal = index.result;
+			} else {
+				storedVal = "";
+			}
+			// run code that uses data
+			callback(email, val, storedVal);
+			
+			return;
+		};
+	} );
+}
+
+
 // update single parameter for one user from database of users
 // oldval is only needed for login and bike ID lists (if there is no val for IDs set to "")
 function userdbUpdate(email, property, newVal, oldVal, callback) {
