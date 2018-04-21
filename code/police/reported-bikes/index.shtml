@@ -12,7 +12,8 @@
 	<script src="../../js/officerdb_io.js"></script>
 	<link href="../../css/styles.css" type="text/css" rel="stylesheet">
 	<link href="css/reported-bikes.css" type="text/css" rel="stylesheet">
-</head>
+    <script src="../../js/reported-bikes.js"></script>script>
+    </head>
 
 <body>
 	
