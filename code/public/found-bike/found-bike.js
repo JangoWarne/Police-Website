@@ -1,12 +1,12 @@
 
-
- document.getElementById('file-input').addEventListener('change', handleFileSelect, false);
- document.getElementById('add-box').addEventListener('click', clickFileSelect, false);
+document.getElementById('file-input').addEventListener('change', handleFileSelect, false);
+document.getElementById('add-box').addEventListener('click', clickFileSelect, false);
 google.maps.event.addDomListener(window, 'load', initialize);
  
- var mapCenter = new google.maps.LatLng(51.884310, -2.164599);
+var mapCenter = new google.maps.LatLng(51.884310, -2.164599);
 var geocoder = new google.maps.Geocoder();
 var infowindow = new google.maps.InfoWindow();
+var selectedPos = {};
 
 
 // create google map after DOM loads
@@ -32,7 +32,7 @@ function initialize(){
 	
 	// update address when marker finishes moving
 	function markerDragged() {
-		var selectedPos = {'latLng': marker.getPosition()};
+		selectedPos = {'latLng': marker.getPosition()};
 		geocoder.geocode(selectedPos, showAddressInInfoWindow);
 	}
 	
@@ -52,7 +52,72 @@ function clickFileSelect(evt) {
 	$("#file-input").trigger("click");
 }
 
-// show dialog to select new image and add to screen
+
+
+// check user detail when register is clicked and if valid go to myBikes
+$('#form-found').on('submit', function(e) {
+	e.preventDefault();  //prevent form from submitting
+	
+	// if cookie exists
+	email = cookieRead("login_uemail");
+	if (email !== "" && email != "0") {
+		// if URL bikeID parameter exists
+		params = new URLSearchParams( document.location.search.substring(1) );
+		caseID = params.get("caseID");
+		
+		if (caseID !== "") {
+			
+			// if marker has been moved on map (value has been recorded)
+			if ( !jQuery.isEmptyObject(selectedPos) ) {
+				
+				// add content to database
+				casedbFound(parseInt(caseID), selectedPos.latLng, function callback(bikeID) {
+					
+					// remove case id from bike
+					bikedbUpdate(parseInt(bikeID), "caseID", 0, function callback() {
+						
+						// send user to bikes page
+						window.location.href = "../my-bikes/index.shtml";
+					});
+				});
+			}
+		}
+	}
+});
+
+
+
+
+// check user detail when register is clicked and if valid go to myBikes
+$('#form-not-stolen').on('submit', function(e) {
+	e.preventDefault();  //prevent form from submitting
+	
+	// if cookie exists
+	email = cookieRead("login_uemail");
+	if (email !== "" && email != "0") {
+		// if URL bikeID parameter exists
+		params = new URLSearchParams( document.location.search.substring(1) );
+		caseID = params.get("caseID");
+		
+		if (caseID !== "") {
+			
+			// add content to database
+			casedbUpdate(parseInt(caseID), "found", true, "", function callback(bikeID) {
+				
+				// remove case id from bike
+				bikedbUpdate(parseInt(bikeID), "caseID", 0, function callback() {
+					
+					// send user to bikes page
+					window.location.href = "../my-bikes/index.shtml";
+				});
+			});
+		}
+	}
+});
+
+
+
+// show dialog to select file and render images on screen
 function handleFileSelect(evt) {
 	var files = evt.target.files; // FileList object
 	
@@ -78,12 +143,14 @@ function handleFileSelect(evt) {
 				var imageID = "image-" + number + "-box";
 				
 				// change column if even or odd
+				var imageColID;
+				var addColID;
 				if (isEven(number)) {
-					var imageColID = 'col1';
-					var addColID = 'col2';
+					imageColID = 'col1';
+					addColID = 'col2';
 				} else {
-					var imageColID = 'col2';
-					var addColID = 'col1';
+					imageColID = 'col2';
+					addColID = 'col1';
 				}
 				
 				// remove "add bike" button
@@ -106,7 +173,7 @@ function handleFileSelect(evt) {
 				addArticle.innerHTML = '<div class="add_image"> <span><b>+ </b> Add Image</span> </div>';
 				document.getElementById(addColID).appendChild(addArticle);
 				
-				// add listener for new "add bike" button
+				// add listeners for new buttons
 				document.getElementById('add-box').addEventListener('click', clickFileSelect, false);
 				document.getElementById('remove-' + number).addEventListener('click', removeFileImage, false);
 			};
@@ -150,9 +217,9 @@ function removeFileImage(evt) {
 	
 	// change column if even or odd
 	if (isEven(number)) {
-		var addColID = 'col2';
+		addColID = 'col2';
 	} else {
-		var addColID = 'col1';
+		addColID = 'col1';
 	}
 	
 	// add "add bike" button in new location

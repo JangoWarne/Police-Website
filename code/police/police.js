@@ -13,11 +13,11 @@ function verify() {
 	username = officerCookieRead("login_uname");
 	
 	// compare cookie if it exists
-	if (username != "" && username != "0") {
+	if (username !== "" && username != "0") {
 		
 		// check if id is valid (compare cookie and db) if it exists
 		id = officerCookieRead("login_uuid");
-		if (id != ""  && id != "0") {
+		if (id !== ""  && id != "0") {
 			officerdbRead(username, "loginIDs", id, update);
 		}
 		
@@ -42,7 +42,7 @@ function update(username, id, dbid) {
 		remember = officerCookieRead("login_uremember"); // retain remember-me status
 		id = officerCookieCreate(username, remember);
 		
-		officerdbUpdate(username, "loginIDs", id, dbid[index]);
+		officerdbUpdate(username, "loginIDs", id, dbid[index], function callback() {});
 		
 	} else {
 		
