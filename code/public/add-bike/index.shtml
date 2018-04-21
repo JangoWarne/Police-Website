@@ -20,7 +20,7 @@
 	<!-- Headers -->
 	<header id="logged-out-header">
 		
-		<!--#include virtual="/CT4009%202017-18%20001%201609415%2014%20Jan%202018/public/header.html" -->
+		<!--#include virtual="../header.html" -->
 		<div class="heading_text">
 			<h1>
 				<a href="../my-bikes/index.shtml">
@@ -63,7 +63,7 @@
 						Including this number will significantly improve the likelihood of your bike being returned to you <br> <br>
 						<input type="number" name="numSerial" placeholder="FRAME NUMBER"> <br> <br> <br>
 						
-						As the frame number can be ground off, and some manufacturers use the same one for all bikes of the same model, it is reccomended to get a UV tag kit. <br>
+						As the frame number can be ground off, and some manufacturers use the same one for all bikes of the same model, it is recommended to get a UV tag kit. <br>
 						The tag will create a hidden mark with a unique UV signature. <br> <br>
 						<input type="text" name="txtTagBrand" placeholder="TAG BRAND"> <br> <br>
 						<input type="number" name="numTagID" placeholder="TAG ID/NUMBER" > <br> <br> <br>

@@ -13,11 +13,11 @@ function verify() {
 	email = cookieRead("login_uemail");
 	
 	// compare cookie if it exists
-	if (email != "" && email != "0") {
+	if (email !== "" && email != "0") {
 		
 		// check if id is valid (compare cookie and db) if it exists
 		id = cookieRead("login_uuid");
-		if (id != ""  && id != "0") {
+		if (id !== ""  && id != "0") {
 			userdbRead(email, "loginIDs", id, update);
 		}
 		
@@ -38,10 +38,11 @@ function update(email, id, dbid) {
 		remember = cookieRead("login_uremember"); // retain remember-me status
 		id = cookieCreate(email, remember);
 		
-		userdbUpdate(email, "loginIDs", id, dbid[index]);
-		
-		// redirect to my-bikes
-		window.location.replace("../../public/my-bikes/index.shtml");
+		userdbUpdate(email, "loginIDs", id, dbid[index], function callback() {
+			
+			// redirect to my-bikes
+			window.location.replace("../../public/my-bikes/index.shtml");
+		});
 		
 	} else {
 		

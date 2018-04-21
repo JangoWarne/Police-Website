@@ -19,21 +19,63 @@
 	<!-- Headers -->
 	<header id="logged-out-header">
 		
-		<!--#include virtual="/CT4009%202017-18%20001%201609415%2014%20Jan%202018/police/header.html" -->
+		<!--#include virtual="../header.html" -->
 		
 	</header>
 	
 	<!-- Main Body -->
+    
+   
+    
 	<main>
+        <center> <h1> Market-Place Compare </h1> </center>
+      
+        <section class="centered">
+            <div class="box">
+                <div class="spacing">
+                    <!-- Bike details form -->
+                    <div class="align_center">
+						<h1> Bike Details </h1> 
+					</div>
+                    <hr />  <br>
+                    <div id= "bike-detail"></div>
+                   
+                </div>
+                
+                 <!-- Add / remove image section -->
+				<section class="image_bounds">
+                    
+				    <div class="column" id="col1">
+                    </div>
+                    
+					<div class="column" id="col2">
+					</div>
+				</section>
+            </div>
+            <div class="box">
+                <div class="spacing">
+                   <center> <h1> EBAY </h1> </center>
+                    <hr />
+                </div>
+                  
+            </div>
+		</section>
 		
-		
+	
+				
+			
+					
+
+
+       
+       
 	</main>
 	
 	<script src="../../js/bikedb_io.js"></script>
 	<script src="../../js/userdb_io.js"></script>
 	<script src="../../js/casedb_io.js"></script>
 	<script src="../police.js"></script>
-	<script src="./markeyplace-compare.js"></script>
+	<script src="./compare.js"></script>
 </body>
 
 </html>

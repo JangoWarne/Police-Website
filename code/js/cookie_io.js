@@ -14,7 +14,17 @@ function cookieCreate(email, remember) {
 		var expires = "expires="+d.toUTCString()+";";
 	}
 	
-	// write email and random id number to local cookie
+	// write email and random id number to local cookie #Josh
+	document.cookie = "login_uemail=" + email + ";domain=ct4009-17bn.studentsites.glos.ac.uk;path=/;" + expires;
+	document.cookie = "login_uremember=" + remember + ";domain=ct4009-17bn.studentsites.glos.ac.uk;path=/;" + expires;
+	document.cookie = "login_uuid=" + id + ";domain=ct4009-17bn.studentsites.glos.ac.uk;path=/;" + expires;
+	
+	// write email and random id number to local cookie #Aaron
+	document.cookie = "login_uemail=" + email + ";domain=ct4009-17cc.studentsites.glos.ac.uk;path=/;" + expires;
+	document.cookie = "login_uremember=" + remember + ";domain=ct4009-17cc.studentsites.glos.ac.uk;path=/;" + expires;
+	document.cookie = "login_uuid=" + id + ";domain=ct4009-17cc.studentsites.glos.ac.uk;path=/;" + expires;
+	
+	// write email and random id number to local cookie #Oliver
 	document.cookie = "login_uemail=" + email + ";domain=ct4009-17cr.studentsites.glos.ac.uk;path=/;" + expires;
 	document.cookie = "login_uremember=" + remember + ";domain=ct4009-17cr.studentsites.glos.ac.uk;path=/;" + expires;
 	document.cookie = "login_uuid=" + id + ";domain=ct4009-17cr.studentsites.glos.ac.uk;path=/;" + expires;
@@ -46,7 +56,17 @@ function cookieRead(key) {
 
 // delete cookie from local system
 function cookieDelete() {
-	// set cookie expirery to value before now
+	// set cookie expirery to value before now #Josh
+	document.cookie = "login_uemail=" + "0" + ";domain=ct4009-17bn.studentsites.glos.ac.uk;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+	document.cookie = "login_uremember=" + false + ";domain=ct4009-17bn.studentsites.glos.ac.uk;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+	document.cookie = "login_uuid=" + "0" + ";domain=ct4009-17bn.studentsites.glos.ac.uk;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+	
+	// set cookie expirery to value before now #Aaron
+	document.cookie = "login_uemail=" + "0" + ";domain=ct4009-17cc.studentsites.glos.ac.uk;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+	document.cookie = "login_uremember=" + false + ";domain=ct4009-17cc.studentsites.glos.ac.uk;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+	document.cookie = "login_uuid=" + "0" + ";domain=ct4009-17cc.studentsites.glos.ac.uk;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+	
+	// set cookie expirery to value before now #Oliver
 	document.cookie = "login_uemail=" + "0" + ";domain=ct4009-17cr.studentsites.glos.ac.uk;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;";
 	document.cookie = "login_uremember=" + false + ";domain=ct4009-17cr.studentsites.glos.ac.uk;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;";
 	document.cookie = "login_uuid=" + "0" + ";domain=ct4009-17cr.studentsites.glos.ac.uk;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;";
@@ -70,7 +90,17 @@ function officerCookieCreate(email, remember) {
 		var expires = "expires="+d.toUTCString()+";";
 	}
 	
-	// write email and random id number to local cookie
+	// write email and random id number to local cookie #Josh
+	document.cookie = "login_uname=" + email + ";domain=ct4009-17bn.studentsites.glos.ac.uk;path=/;" + expires;
+	document.cookie = "login_uremember=" + remember + ";domain=ct4009-17bn.studentsites.glos.ac.uk;path=/;" + expires;
+	document.cookie = "login_uuid=" + id + ";domain=ct4009-17bn.studentsites.glos.ac.uk;path=/;" + expires;
+	
+	// write email and random id number to local cookie #Aaron
+	document.cookie = "login_uname=" + email + ";domain=ct4009-17cc.studentsites.glos.ac.uk;path=/;" + expires;
+	document.cookie = "login_uremember=" + remember + ";domain=ct4009-17cc.studentsites.glos.ac.uk;path=/;" + expires;
+	document.cookie = "login_uuid=" + id + ";domain=ct4009-17cc.studentsites.glos.ac.uk;path=/;" + expires;
+	
+	// write email and random id number to local cookie #Oliver
 	document.cookie = "login_uname=" + email + ";domain=ct4009-17cr.studentsites.glos.ac.uk;path=/;" + expires;
 	document.cookie = "login_uremember=" + remember + ";domain=ct4009-17cr.studentsites.glos.ac.uk;path=/;" + expires;
 	document.cookie = "login_uuid=" + id + ";domain=ct4009-17cr.studentsites.glos.ac.uk;path=/;" + expires;
@@ -102,7 +132,18 @@ function officerCookieRead(key) {
 
 // delete cookie from local system
 function officerCookieDelete() {
-	// set cookie expirery to value before now
+    
+	// set cookie expirery to value before now #Josh
+	document.cookie = "login_uname=" + "0" + ";domain=ct4009-17bn.studentsites.glos.ac.uk;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+	document.cookie = "login_uremember=" + false + ";domain=ct4009-17bn.studentsites.glos.ac.uk;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+	document.cookie = "login_uuid=" + "0" + ";domain=ct4009-17bn.studentsites.glos.ac.uk;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+	
+	// set cookie expirery to value before now #Aaron
+	document.cookie = "login_uname=" + "0" + ";domain=ct4009-17cc.studentsites.glos.ac.uk;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+	document.cookie = "login_uremember=" + false + ";domain=ct4009-17cc.studentsites.glos.ac.uk;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+	document.cookie = "login_uuid=" + "0" + ";domain=ct4009-17cc.studentsites.glos.ac.uk;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+	
+	// set cookie expirery to value before now #Oliver
 	document.cookie = "login_uname=" + "0" + ";domain=ct4009-17cr.studentsites.glos.ac.uk;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;";
 	document.cookie = "login_uremember=" + false + ";domain=ct4009-17cr.studentsites.glos.ac.uk;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;";
 	document.cookie = "login_uuid=" + "0" + ";domain=ct4009-17cr.studentsites.glos.ac.uk;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;";

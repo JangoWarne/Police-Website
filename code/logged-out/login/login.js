@@ -5,6 +5,7 @@ $('#form-register').on('submit', function(e) {
 	window.location.href = "../register/index.shtml";
 });
 
+
 // check user detail when register is clicked and if valid go to myBikes
 $('#form-login').on('submit', function(e) {
 	e.preventDefault();  //prevent form from submitting
@@ -26,16 +27,18 @@ $('#form-login').on('submit', function(e) {
 				
 				// create login cookie and update userdb
 				id = cookieCreate(user, remember);
-				userdbUpdate(user, "loginIDs", id, "");
-				
-				// send user to myBikes page
-				window.location.href = "../../public/my-bikes/index.shtml";
+				userdbUpdate(user, "loginIDs", id, "", function callback() {
+					
+					// send user to myBikes page
+					window.location.href = "../../public/my-bikes/index.shtml";
+				});
 				
 			} else {
 				// else alert user that password or email is invalid
 				alert("Invalid username or password");
 			}
 		});
+		
 	} else {
 		// if username was entered
 		// compare values to police user database
@@ -48,10 +51,11 @@ $('#form-login').on('submit', function(e) {
 				
 				// create login cookie and update userdb
 				id = officerCookieCreate(user, remember);
-				officerdbUpdate(user, "loginIDs", id, "");
-				
-				// send user to myBikes page
-				window.location.href = "../../police/my-cases/index.shtml";
+				officerdbUpdate(user, "loginIDs", id, "", function callback() {
+					
+					// send user to myBikes page
+					window.location.href = "../../police/my-cases/index.shtml";
+				});
 				
 			} else {
 				officerdbAdd();
@@ -65,10 +69,11 @@ $('#form-login').on('submit', function(e) {
 						
 						// create login cookie and update userdb
 						id = officerCookieCreate(user, remember);
-						officerdbUpdate(user, "loginIDs", id, "");
-						
-						// send user to myBikes page
-						window.location.href = "../../police/my-cases/index.shtml";
+						officerdbUpdate(user, "loginIDs", id, "", function callback() {
+							
+							// send user to myBikes page
+							window.location.href = "../../police/my-cases/index.shtml";
+						});
 						
 					} else {
 						// else alert user that password or email is invalid

@@ -1,148 +1,277 @@
-/*define size of google map*/
-#googleMap{
-	width: 160%;
-	margin-left: -30%;
-	height: 400px;
-	background-color: #8C8C8C;
-    text-align:center;
+
+/* center content in screen */
+.centered {
+	margin: 0 auto 20px auto;
+	width: 1100px;
+	padding-top: 20px;
+	padding-bottom: 40px;
 }
 
-/*align inputs in middle of form*/
-.align_center {
-	margin: 0 auto 0 auto;
-	width: 45%;
-}
 
-/*create box around inputs*/
+/* ad a box around each section of the form */
 .box {
-	/*background-color: #F3F3F3; */
+	background-color: #F3F3F3;
 	margin: 10px auto 10px auto;
 	width: 80%;
 	height: 90%;
 	padding: 30px;
 	padding-top: 0;
-	/*border-color: #BDBDBD; */
+	border-color: #BDBDBD;
 	border-width: 1px;
-	/*border-style: solid; */
-    text-align:center;
+	border-style: solid;
+}
+.box_hidden {
+	margin: 0 auto 0 auto;
+	width: 80%;
+	padding: 0px;
 }
 
 
-/* Case details table */
-
-
-/*position content in middle of window and set size*/
-section{
-	width: 1000px;
-	min-height: 100px;
-	margin: 0px auto 0px auto;
-	padding-top: 40px;
-	padding-bottom: 40px;
-}
-.centered{
-	font-size: 30px;
-}
-.help_grid{
-	padding-top: 20px;
-	height: 560px;
+/* size google map */
+#googleMap {
+	margin-left: -110px;
+	width: 700px;
+	height: 400px;
 }
 
 
-/*style width for table children of centered */
-.centered > table{
-	width: 100%;
-}
-
-/*set size of table cells*/
-.cell{
-	height: 95px;
-}
-.item{
-	height: 220px;
-}
-
-/*remove border gap between cells*/
-table, td {
-	border-collapse: collapse;
+/* align items to middle of box */
+.align_center {
+	margin: 0 auto 0 auto;
+	width: 55%;
 }
 
 
-/*rezise and zoom images of bikes*/
-.bike_Image {
-	width: 260px;
-	overflow: hidden;
-	height: 180px;
+/* align IDs text */
+.heading_case {
+	padding-left: 130px;
 }
-.outer_constraint {
-	width: 100%;
-	margin: 0 auto; 
-	overflow: visible;
+.heading_bike {
+	padding-left: 30px;
 }
-.inner_constraint {
+
+
+/* style and align text in boxes */
+span {
+	margin: 3px;
+}
+#red-box {
+	width: 6px;
+	height: 15px;
+	background-color: #dd1717;
+	display: inline-block;
 	position: relative;
-	float: right;
-	right: 50%;
+	bottom: -3px;
 }
-.inner_constraint > img {
-	height: 220px;
-	display: inline;
+#green-box {
+	width: 6px;
+	height: 15px;
+	background-color: #26942f;
+	display: inline-block;
 	position: relative;
-	right:-50%;
-	z-index: -1;
+	bottom: -3px;
 }
-
-
-/*style non stolen bikes*/
-.case {
-	height: 180px;
+.map_heading {
+	display:inline-block;
+	width: 140px;
 }
-.case_row {
-	font-size: 20px;
-	height: 30px;
-	background-color: #E6E6E3;
-}
-.case_bike_img {
-	font-size: 20px;
-	height: 30px;
+.map_info {
+	
 }
 .case_heading {
-	width: 240px;
-	text-align: right;
-	padding-right: 10px;
-	background-color: #E6E6E3;
+	display:inline-block;
+	width: 170px;
 }
-.case_values {
-	width: 365px;
-	background-color: #E6E6E3;
+.case_info {
+	
 }
-
-/* Message box source: https://www.w3schools.com/howto/howto_css_contact_form.asp*/  
-
-/* Style inputs with type="text", select elements and textareas */
-input[type=text], select, textarea {
-    width: 100%; /* Full width */
-    padding: 12px; /* Some padding */  
-    border: 1px solid #ccc; /* Gray border */
-    border-radius: 4px; /* Rounded borders */
-    box-sizing: border-box; /* Make sure that padding and width stays in place */
-    margin-top: 6px; /* Add a top margin */
-    margin-bottom: 16px; /* Bottom margin */
-    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+.bike_heading {
+	display:inline-block;
+	width: 140px;
 }
-
-/* Style the submit button with a specific background color etc */
-input[type=submit] {
-    background-color: #C7C6C6;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+.bike_info {
+	
+}
+.bike_items {
+	padding-left: 40px;
+}
+.user_heading {
+	display:inline-block;
+	width: 70px;
+}
+.user_info {
+	
 }
 
-/* Add a background color and some padding around the form */
-.container {
-    border-radius: 5px;
-    background-color: #2f37f4;
-    padding: 20px;
+
+/* contact user form */
+#contact-form{
+	display: none;
+}
+.input {
+	width: 480px;
+}
+.message {
+	height: 200px;
+}
+
+
+
+/* style added images */
+.image_bounds{
+	margin: 0 auto 0 auto;
+	width: 87%;
+}
+.column{
+    float: left;
+    width: 50%;
+}
+article {
+	position: relative;
+	margin: 6% auto 6% auto;
+	margin-top: 3%;
+	width: 70%;
+	height: 200px;
+	background-repeat: no-repeat;
+	background-color: #EEE;
+	background-size: cover;
+}
+
+
+/* style and align buttons in boxes */
+.align_center > h1 {
+	display: inline-block;
+}
+.details_button {
+	float: right;
+	margin-top: 20px;
+	height: 30px;
+	width: 120px;
+	border-radius: 0px;
+	color: #F3F3F3;
+	font-weight: 600;
+	font-size: 15px;
+	text-align: center;
+	text-decoration: none;
+	transition-duration: 0.3s;
+	cursor: pointer;
+	background-color: #616161;
+	border: 2px solid #616161;
+}
+.details_button:hover {
+	background-color: #4C4C4C;
+	border: 2px solid #4C4C4C;
+	color: #F3F3F3;
+}
+.details_button:active {
+	transition-duration: 0s;
+}
+.details_button > a {
+	color: #F3F3F3;
+	font-weight: 600;
+	font-size: 15px;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+
+/* style and align buttons in boxes */
+#marketplace-button {
+	margin-left: 140px;
+	height: 40px;
+	width: 300px;
+	border-radius: 0px;
+	color: #F3F3F3;
+	font-weight: 600;
+	font-size: 20px;
+	text-align: center;
+	text-decoration: none;
+	transition-duration: 0.3s;
+	cursor: pointer;
+	background-color: #616161;
+	border: 2px solid #616161;
+}
+#marketplace-button:hover {
+	background-color: #4C4C4C;
+	border: 2px solid #4C4C4C;
+	color: #F3F3F3;
+}
+#marketplace-button:active {
+	transition-duration: 0s;
+}
+#marketplace-button > a {
+	color: #F3F3F3;
+	font-weight: 600;
+	font-size: 20px;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+
+/* style and align contact button */
+#contact-button {
+	display: block;
+	height: 30px;
+	width: 140px;
+	border-radius: 0px;
+	color: #F3F3F3;
+	font-weight: 600;
+	font-size: 15px;
+	text-align: center;
+	text-decoration: none;
+	transition-duration: 0.3s;
+	cursor: pointer;
+	background-color: #616161;
+	border: 2px solid #616161;
+}
+#contact-button:hover {
+	background-color: #4C4C4C;
+	border: 2px solid #4C4C4C;
+	color: #F3F3F3;
+}
+#contact-button:active {
+	transition-duration: 0s;
+}
+#contact-button > a {
+	color: #F3F3F3;
+	font-weight: 600;
+	font-size: 20px;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+
+/* style and align send button */
+#send-button {
+	height: 30px;
+	width: 100px;
+	border-radius: 0px;
+	color: #F3F3F3;
+	font-weight: 600;
+	font-size: 15px;
+	text-align: center;
+	text-decoration: none;
+	transition-duration: 0.3s;
+	cursor: pointer;
+	background-color: #616161;
+	border: 2px solid #616161;
+}
+#send-button:hover {
+	background-color: #4C4C4C;
+	border: 2px solid #4C4C4C;
+	color: #F3F3F3;
+}
+#send-button:active {
+	transition-duration: 0s;
+}
+#send-button > a {
+	color: #F3F3F3;
+	font-weight: 600;
+	font-size: 20px;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
 }

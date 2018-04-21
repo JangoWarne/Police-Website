@@ -26,13 +26,13 @@ function userdbAdd() {
 			textMe: document.formDetails.boolByText.checked,
 			loginIDs: [],
 			bikeIDs: []
-		}
+		};
 		
 		// Add object to store
 		var add = store.add(user);
 		
 		// report error to console if adding user failed
-		add.onerror = function(e) { console.log("Error",e.target.error.name) };
+		add.onerror = function(e) { console.log("Error",e.target.error.name); };
 		
 		// do nothing if succesfull
 		add.onsuccess = function(e) { };
@@ -52,14 +52,15 @@ function userdbRead(email, property, val, callback) {
 		var index = store.get(email);
 		
 		// report error to console if reading failed
-		index.onerror = function(e) { console.log("Error",e.target.error.name) };
+		index.onerror = function(e) { console.log("Error",e.target.error.name); };
 		
 		// read property from object if succesfull
 		index.onsuccess = function(e) {
 			
+			var storedVal;
 			if (typeof index.result !== 'undefined') {
 				// copy read property to variable
-				var storedVal = index.result[property];
+				storedVal = index.result[property];
 			} else {
 				storedVal = "";
 			}
@@ -72,9 +73,8 @@ function userdbRead(email, property, val, callback) {
 }
 
 
-// update single parameter for one user from database of users
-// oldval is only needed for login and bike ID lists (if there is no val for IDs set to "")
-function userdbUpdate(email, property, newVal, oldVal) {
+// read all parameters for one user from database of users
+function userdbReadFull(email, val, callback) {
 	
 	// open database then run callback
 	openDatabase( function openfun() {
@@ -85,7 +85,41 @@ function userdbUpdate(email, property, newVal, oldVal) {
 		var index = store.get(email);
 		
 		// report error to console if reading failed
-		index.onerror = function(e) { console.log("Error", e.target.error.name) };
+		index.onerror = function(e) { console.log("Error",e.target.error.name); };
+		
+		// read property from object if succesfull
+		index.onsuccess = function(e) {
+			
+			var storedVal;
+			if (typeof index.result !== 'undefined') {
+				// copy user data to variable
+				storedVal = index.result;
+			} else {
+				storedVal = "";
+			}
+			// run code that uses data
+			callback(email, val, storedVal);
+			
+			return;
+		};
+	} );
+}
+
+
+// update single parameter for one user from database of users
+// oldval is only needed for login and bike ID lists (if there is no val for IDs set to "")
+function userdbUpdate(email, property, newVal, oldVal, callback) {
+	
+	// open database then run callback
+	openDatabase( function openfun() {
+		var transaction = db.transaction(["userdb"], "readwrite");
+		var store = transaction.objectStore("userdb");
+		
+		// Read object from store
+		var index = store.get(email);
+		
+		// report error to console if reading failed
+		index.onerror = function(e) { console.log("Error", e.target.error.name); };
 		
 		// read property from object if succesfull
 		index.onsuccess = function(e) {
@@ -93,6 +127,7 @@ function userdbUpdate(email, property, newVal, oldVal) {
 			if (typeof index.result !== 'undefined') {
 				// copy read property to variable
 				var storedVal = index.result;
+				var put;
 				
 				// update differently if list
 				if (property == "loginIDs" || property == "bikeIDs") {
@@ -100,35 +135,36 @@ function userdbUpdate(email, property, newVal, oldVal) {
 					var valList = storedVal[property];
 					
 					// check if there was an old value
-					if (oldVal == "") {
+					var i;
+					if (oldVal === "") {
 						// set new location to end of array
-						var i = valList.length;
+						i = valList.length;
 					} else {
 						// get old value location
-						var i = valList.indexOf(oldVal);
+						i = valList.indexOf(oldVal);
 					}
 					
 					// check if old value was found in array
 					if (i  != -1 ) { // if value was found
 						// update value
-						if (newVal == "") {
-    						valList.splice(index, 1);
+						if (newVal === "") {
+							valList.splice(index, 1);
 						} else {
 							valList[i] = newVal;
 						}
 						storedVal[property] = valList;
 					
 						// Add object to store
-						var put = store.put(storedVal);
+						put = store.put(storedVal);
 						
 						// report error to console if adding user failed
-						put.onerror = function(e) { console.log("Error",e.target.error.name) };
+						put.onerror = function(e) { console.log("Error",e.target.error.name); };
 						
-						// do nothing if succesfull
-						put.onsuccess = function(e) { };
+						// run callback if succesfull
+						put.onsuccess = function(e) { callback(); };
 						
 					} else {
-						console.log("old value does not exist")
+						console.log("old value does not exist");
 					}
 					
 				} else {
@@ -136,13 +172,13 @@ function userdbUpdate(email, property, newVal, oldVal) {
 					storedVal[property] = newVal;
 					
 					// Add object to store
-					var put = store.put(storedVal);
+					put = store.put(storedVal);
 					
 					// report error to console if adding user failed
-					put.onerror = function(e) { console.log("Error",e.target.error.name) };
+					put.onerror = function(e) { console.log("Error",e.target.error.name); };
 					
-					// do nothing if succesfull
-					put.onsuccess = function(e) { };
+					// run callback if succesfull
+					put.onsuccess = function(e) { callback(); };
 				}
 				
 			} else {
@@ -167,7 +203,7 @@ function userdbLogout(email) {
 		var index = store.get(email);
 		
 		// report error to console if reading failed
-		index.onerror = function(e) { console.log("Error", e.target.error.name) };
+		index.onerror = function(e) { console.log("Error", e.target.error.name); };
 		
 		// read property from object if succesfull
 		index.onsuccess = function(e) {
@@ -183,7 +219,7 @@ function userdbLogout(email) {
 				var put = store.put(storedVal);
 				
 				// report error to console if adding user failed
-				put.onerror = function(e) { console.log("Error",e.target.error.name) };
+				put.onerror = function(e) { console.log("Error",e.target.error.name); };
 				
 				// do nothing if succesfull
 				put.onsuccess = function(e) { };
@@ -207,7 +243,7 @@ function openDatabase(callback) {
 		var openRequest = indexedDB.open("userdb",1);
 		
 		// create database object stores if required
-		openRequest.onupgradeneeded = function(e) { updateDatabase(e) };
+		openRequest.onupgradeneeded = function(e) { updateDatabase(e); };
 		
 		// add user if susscessfull
 		openRequest.onsuccess = function(e) {
@@ -219,7 +255,7 @@ function openDatabase(callback) {
 			// close open connection
 			db.close();
 			return;
-		}
+		};
 		
 		// dump to console if error occured
 		openRequest.onerror = function(e) {
@@ -230,7 +266,7 @@ function openDatabase(callback) {
 			db = e.target.result;
 			db.close();
 			return;
-		}
+		};
 		
 		// close open database connection if blocked
 		openRequest.onblocked = function(e) {
@@ -240,7 +276,7 @@ function openDatabase(callback) {
 			// close open connection   
 			db.close();
 			return;
-		}
+		};
 	} else {
 		// alert user that this website will not work
 		alert("IndexedDB broswer support required: This browser cannot run this wesbise as it does not support IndexedDB");
