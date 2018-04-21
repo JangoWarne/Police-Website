@@ -72,13 +72,14 @@ function cusDD(select, style) {
   $(document).click(function() {
     $(".cusDD_options").slideUp(200);
     $(".cusDD_arrow").removeClass("active");
-  })
+  });
   
   $(select).click(function(e) {
     e.stopPropagation();
     $(this).find(".cusDD_options").slideToggle(200);
     $(this).find(".cusDD_arrow").toggleClass("active");
-  })
+  });
+  
   $(".cusDD_opt").click(function() {
     $($(this).parent()).siblings(".cusDD_select").contents()[0].nodeValue = $(this).text();
     $(this).parent().find(".cusDD_opt").removeAttr("selected");
