@@ -10,6 +10,8 @@
 	</script>
 	<script src="../../js/cookie_io.js"></script>
 	<script src="../../js/userdb_io.js"></script>
+	<script src="../../js/casedb_io.js"></script>
+	<script src="../../js/bikedb_io.js"></script>
 	<link href="../../css/styles.css" type="text/css" rel="stylesheet">
 	<link href="../../css/checkbox.css" type="text/css" rel="stylesheet">
 	<link href="css/found-bike.css" type="text/css" rel="stylesheet">
@@ -20,7 +22,7 @@
 	<!-- Headers -->
 	<header id="logged-out-header">
 		
-		<!--#include virtual="/CT4009%202017-18%20001%201609415%2014%20Jan%202018/public/header.html" -->
+		<!--#include virtual="../header.html" -->
 		<div class="heading_text">
 			<h1>
 				<a href="../my-bikes/index.shtml">
@@ -36,7 +38,7 @@
 		<!-- Forms to report stolen bike as found -->
 		<section class="centered">
 			<!-- First form for if the bike was not stolen -->
-			<form action="register.php" method="post">
+			<form action="register.php" method="post" id="form-not-stolen">
 			
 				<div class="box">
 					<div class="align_center">
@@ -59,7 +61,7 @@
 			</form>
 			
 			<!-- Second form for if the bike was stolen -->
-			<form action="register.php" method="post">
+			<form action="register.php" method="post" id="form-found" name="formFound">
 				
 				<!-- heading -->
 				<div class="box">
@@ -73,8 +75,8 @@
 						<!-- enter date and time found -->
 						 <br><h2>Date and Time</h2> <br>
 						Enter below the date and time that the bicyle was revovered. <br> <br>
-						<input type="time" name="timeLastSeen" placeholder="HH:MM (24h)"> <br> <br>
-						<input type="date" name="dateLastSeen" max="4000-01-01" placeholder="yyyy-mm-dd"> <br> <br> <br>
+						<input type="time" name="timeFound" placeholder="HH:MM (24h)"> <br> <br>
+						<input type="date" name="dateFound" max="4000-01-01" placeholder="yyyy-mm-dd"> <br> <br> <br>
 						
 						<!-- select where it was found -->
 						 <br><h2>Select location on map</h2> <br>

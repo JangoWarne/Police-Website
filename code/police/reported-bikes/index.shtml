@@ -19,7 +19,7 @@
 	<!-- Headers -->
 	<header  id="logged-out-header">
         
-		<!--#include virtual="/CT4009%202017-18%20001%201609415%2014%20Jan%202018/police/header.html" -->
+		<!--#include virtual="../header.html" -->
 		<div class="heading_text">
 			<h1>
 				<a href="../my-cases/index.shtml">
@@ -32,11 +32,10 @@
 	
 	<!-- Main Body -->
 	<main>
-		<br> <br>
 		
         <div class="box">
             <div class="align_center">
-				<br><h2>Location of reported bike theft</h2> 
+				<br><h2>Search area for reported bike thefts</h2> 
                 <div id="googleMap"></div> <br> <br>
             </div>
         </div>
@@ -52,18 +51,18 @@
             <input type="text" placeholder="Enter model..">
             <br> 
              <input type="text" placeholder="Enter colour..">
-            <br>
+            <br> <br>
         
-            <label class="container">Case assigned to Officer
-                <input type="checkbox" name="boolAssignedToOfficer" value="rememberme">
+            <label class="container">Bike assigned to Officer
+                <input type="checkbox" name="boolAssignedToOfficer" value="assigned">
                 <span class="checkmark"></span>
             </label>
-            <label class="container">Case NOT assigned to Officer
-                <input type="checkbox" name="boolNotAssignedToOfficer" value="rememberme">
+            <label class="container">Bike NOT assigned to Officer
+                <input type="checkbox" name="boolNotAssignedToOfficer" value="notAssigned">
                 <span class="checkmark"></span>
             </label>
             <br> 
-            <input class="submit_button" type="submit">
+            <input class="search_button" type="submit" value="Search">
         
         </div> 
         
@@ -86,7 +85,7 @@
 								</td>
 								<td class="case_heading">When Last Seen:</td>
 								<td class="case_values">25/10/2016     10:30PM</td>
-								<td rowspan="6" class="case_buttons">
+								<td rowspan="3" class="case_buttons">
 									<button class="edit_case"> <a href="../bike-details/index.shtml">Bike Details</a></button>
 								</td>
 							</tr>
@@ -101,6 +100,9 @@
 							<tr class="case_row">
 								<td class="case_heading">Frame Number:</td>
 								<td>50661825</td>
+								<td rowspan="3" class="case_buttons">
+									<button class="edit_case">Create Case</button>
+								</td>
 							</tr>
 							<tr class="case_row">
 								<td class="case_heading">Colour:</td>
@@ -113,302 +115,456 @@
 						</table>
 					</td>
 				</tr>
-                  <tr class="item">
-						<td>
-							<table class = "case">
-								<tr class="case_bike_img">
-									<td rowspan="6">
-										<div class="bike_Image">
-											<div class="outer_constraint">
-												<div class="inner_constraint">
-													<img src="http://ct4009-17bn.studentsites.glos.ac.uk/CT4009%202017-18%20001%201609415%2014%20Jan%202018/images/bike2.jpg" alt="bike1">
-												</div>
+				<tr class="item">
+					<td>
+						<table class = "case">
+							<tr class="case_bike_img">
+								<td rowspan="6">
+									<div class="bike_Image">
+										<div class="outer_constraint">
+											<div class="inner_constraint">
+												<img src="http://ct4009-17bn.studentsites.glos.ac.uk/CT4009%202017-18%20001%201609415%2014%20Jan%202018/images/bike2.jpg" alt="bike1">
 											</div>
 										</div>
-									</td>
-									<td class="case_heading">When Last Seen:</td>
-									<td class="case_values">25/10/2016     10:30PM</td>
-									<td rowspan="6" class="case_buttons">
-										<button class="edit_case"> <a href="../bike-details/index.shtml">Bike Details</a></button>
-									</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Where Last Seen:</td>
-									<td>216 Long Road, Cheltenham</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Model:</td>
-									<td>Cruser</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Frame Number:</td>
-									<td>50661825</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Colour:</td>
-									<td>Black</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Status:	</td>
-									<td>Under Investigation</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr class="item">
-						<td>
-							<table class = "case">
-								<tr class="case_bike_img">
-									<td rowspan="6">
-										<div class="bike_Image">
-											<div class="outer_constraint">
-												<div class="inner_constraint">
-													<img src="http://ct4009-17bn.studentsites.glos.ac.uk/CT4009%202017-18%20001%201609415%2014%20Jan%202018/images/bike2.jpg" alt="bike1">
-												</div>
+									</div>
+								</td>
+								<td class="case_heading">When Last Seen:</td>
+								<td class="case_values">25/10/2016     10:30PM</td>
+								<td rowspan="3" class="case_buttons">
+									<button class="edit_case"> <a href="../bike-details/index.shtml">Bike Details</a></button>
+								</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Where Last Seen:</td>
+								<td>216 Long Road, Cheltenham</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Model:</td>
+								<td>Cruser</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Frame Number:</td>
+								<td>50661825</td>
+								<td rowspan="3" class="case_buttons">
+									<button class="edit_case">Create Case</button>
+								</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Colour:</td>
+								<td>Black</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Status:	</td>
+								<td>Under Investigation</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr class="item">
+					<td>
+						<table class = "case">
+							<tr class="case_bike_img">
+								<td rowspan="6">
+									<div class="bike_Image">
+										<div class="outer_constraint">
+											<div class="inner_constraint">
+												<img src="http://ct4009-17bn.studentsites.glos.ac.uk/CT4009%202017-18%20001%201609415%2014%20Jan%202018/images/bike2.jpg" alt="bike1">
 											</div>
 										</div>
-									</td>
-									<td class="case_heading">When Last Seen:</td>
-									<td class="case_values">25/10/2016     10:30PM</td>
-									<td rowspan="6" class="case_buttons">
-										<button class="edit_case"> <a href="../bike-details/index.shtml">Bike Details</a></button>
-									</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Where Last Seen:</td>
-									<td>216 Long Road, Cheltenham</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Model:</td>
-									<td>Cruser</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Frame Number:</td>
-									<td>50661825</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Colour:</td>
-									<td>Black</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Status:	</td>
-									<td>Under Investigation</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr class="item">
-						<td>
-							<table class = "case">
-								<tr class="case_bike_img">
-									<td rowspan="6">
-										<div class="bike_Image">
-											<div class="outer_constraint">
-												<div class="inner_constraint">
-													<img src="http://ct4009-17bn.studentsites.glos.ac.uk/CT4009%202017-18%20001%201609415%2014%20Jan%202018/images/bike2.jpg" alt="bike1">
-												</div>
+									</div>
+								</td>
+								<td class="case_heading">When Last Seen:</td>
+								<td class="case_values">25/10/2016     10:30PM</td>
+								<td rowspan="3" class="case_buttons">
+									<button class="edit_case"> <a href="../bike-details/index.shtml">Bike Details</a></button>
+								</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Where Last Seen:</td>
+								<td>216 Long Road, Cheltenham</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Model:</td>
+								<td>Cruser</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Frame Number:</td>
+								<td>50661825</td>
+								<td rowspan="3" class="case_buttons">
+									<button class="edit_case">Create Case</button>
+								</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Colour:</td>
+								<td>Black</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Status:	</td>
+								<td>Under Investigation</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr class="item">
+					<td>
+						<table class = "case">
+							<tr class="case_bike_img">
+								<td rowspan="6">
+									<div class="bike_Image">
+										<div class="outer_constraint">
+											<div class="inner_constraint">
+												<img src="http://ct4009-17bn.studentsites.glos.ac.uk/CT4009%202017-18%20001%201609415%2014%20Jan%202018/images/bike2.jpg" alt="bike1">
 											</div>
 										</div>
-									</td>
-									<td class="case_heading">When Last Seen:</td>
-									<td class="case_values">25/10/2016     10:30PM</td>
-									<td rowspan="6" class="case_buttons">
-										<button class="edit_case"> <a href="../bike-details/index.shtml">Bike Details</a></button>
-									</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Where Last Seen:</td>
-									<td>216 Long Road, Cheltenham</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Model:</td>
-									<td>Cruser</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Frame Number:</td>
-									<td>50661825</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Colour:</td>
-									<td>Black</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Status:	</td>
-									<td>Under Investigation</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr class="item">
-						<td>
-							<table class = "case">
-								<tr class="case_bike_img">
-									<td rowspan="6">
-										<div class="bike_Image">
-											<div class="outer_constraint">
-												<div class="inner_constraint">
-													<img src="http://ct4009-17bn.studentsites.glos.ac.uk/CT4009%202017-18%20001%201609415%2014%20Jan%202018/images/bike2.jpg" alt="bike1">
-												</div>
+									</div>
+								</td>
+								<td class="case_heading">When Last Seen:</td>
+								<td class="case_values">25/10/2016     10:30PM</td>
+								<td rowspan="3" class="case_buttons">
+									<button class="edit_case"> <a href="../bike-details/index.shtml">Bike Details</a></button>
+								</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Where Last Seen:</td>
+								<td>216 Long Road, Cheltenham</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Model:</td>
+								<td>Cruser</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Frame Number:</td>
+								<td>50661825</td>
+								<td rowspan="3" class="case_buttons">
+									<button class="edit_case">Create Case</button>
+								</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Colour:</td>
+								<td>Black</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Status:	</td>
+								<td>Under Investigation</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr class="item">
+					<td>
+						<table class = "case">
+							<tr class="case_bike_img">
+								<td rowspan="6">
+									<div class="bike_Image">
+										<div class="outer_constraint">
+											<div class="inner_constraint">
+												<img src="http://ct4009-17bn.studentsites.glos.ac.uk/CT4009%202017-18%20001%201609415%2014%20Jan%202018/images/bike2.jpg" alt="bike1">
 											</div>
 										</div>
-									</td>
-									<td class="case_heading">When Last Seen:</td>
-									<td class="case_values">25/10/2016     10:30PM</td>
-									<td rowspan="6" class="case_buttons">
-										<button class="edit_case"> <a href="../bike-details/index.shtml">Bike Details</a></button>
-									</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Where Last Seen:</td>
-									<td>216 Long Road, Cheltenham</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Model:</td>
-									<td>Cruser</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Frame Number:</td>
-									<td>50661825</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Colour:</td>
-									<td>Black</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Status:	</td>
-									<td>Under Investigation</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr class="item">
-						<td>
-							<table class = "case">
-								<tr class="case_bike_img">
-									<td rowspan="6">
-										<div class="bike_Image">
-											<div class="outer_constraint">
-												<div class="inner_constraint">
-													<img src="http://ct4009-17bn.studentsites.glos.ac.uk/CT4009%202017-18%20001%201609415%2014%20Jan%202018/images/bike2.jpg" alt="bike1">
-												</div>
+									</div>
+								</td>
+								<td class="case_heading">When Last Seen:</td>
+								<td class="case_values">25/10/2016     10:30PM</td>
+								<td rowspan="3" class="case_buttons">
+									<button class="edit_case"> <a href="../bike-details/index.shtml">Bike Details</a></button>
+								</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Where Last Seen:</td>
+								<td>216 Long Road, Cheltenham</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Model:</td>
+								<td>Cruser</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Frame Number:</td>
+								<td>50661825</td>
+								<td rowspan="3" class="case_buttons">
+									<button class="edit_case">Create Case</button>
+								</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Colour:</td>
+								<td>Black</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Status:	</td>
+								<td>Under Investigation</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr class="item">
+					<td>
+						<table class = "case">
+							<tr class="case_bike_img">
+								<td rowspan="6">
+									<div class="bike_Image">
+										<div class="outer_constraint">
+											<div class="inner_constraint">
+												<img src="http://ct4009-17bn.studentsites.glos.ac.uk/CT4009%202017-18%20001%201609415%2014%20Jan%202018/images/bike2.jpg" alt="bike1">
 											</div>
 										</div>
-									</td>
-									<td class="case_heading">When Last Seen:</td>
-									<td class="case_values">25/10/2016     10:30PM</td>
-									<td rowspan="6" class="case_buttons">
-										<button class="edit_case"> <a href="../bike-details/index.shtml">Bike Details</a></button>
-									</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Where Last Seen:</td>
-									<td>216 Long Road, Cheltenham</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Model:</td>
-									<td>Cruser</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Frame Number:</td>
-									<td>50661825</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Colour:</td>
-									<td>Black</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Status:	</td>
-									<td>Under Investigation</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr class="item">
-						<td>
-							<table class = "case">
-								<tr class="case_bike_img">
-									<td rowspan="6">
-										<div class="bike_Image">
-											<div class="outer_constraint">
-												<div class="inner_constraint">
-													<img src="http://ct4009-17bn.studentsites.glos.ac.uk/CT4009%202017-18%20001%201609415%2014%20Jan%202018/images/bike2.jpg" alt="bike1">
-												</div>
+									</div>
+								</td>
+								<td class="case_heading">When Last Seen:</td>
+								<td class="case_values">25/10/2016     10:30PM</td>
+								<td rowspan="3" class="case_buttons">
+									<button class="edit_case"> <a href="../bike-details/index.shtml">Bike Details</a></button>
+								</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Where Last Seen:</td>
+								<td>216 Long Road, Cheltenham</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Model:</td>
+								<td>Cruser</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Frame Number:</td>
+								<td>50661825</td>
+								<td rowspan="3" class="case_buttons">
+									<button class="edit_case">Create Case</button>
+								</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Colour:</td>
+								<td>Black</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Status:	</td>
+								<td>Under Investigation</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr class="item">
+					<td>
+						<table class = "case">
+							<tr class="case_bike_img">
+								<td rowspan="6">
+									<div class="bike_Image">
+										<div class="outer_constraint">
+											<div class="inner_constraint">
+												<img src="http://ct4009-17bn.studentsites.glos.ac.uk/CT4009%202017-18%20001%201609415%2014%20Jan%202018/images/bike2.jpg" alt="bike1">
 											</div>
 										</div>
-									</td>
-									<td class="case_heading">When Last Seen:</td>
-									<td class="case_values">25/10/2016     10:30PM</td>
-									<td rowspan="6" class="case_buttons">
-										<button class="edit_case"> <a href="../bike-details/index.shtml">Bike Details</a></button>
-									</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Where Last Seen:</td>
-									<td>216 Long Road, Cheltenham</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Model:</td>
-									<td>Cruser</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Frame Number:</td>
-									<td>50661825</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Colour:</td>
-									<td>Black</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Status:	</td>
-									<td>Under Investigation</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr class="item">
-						<td>
-							<table class = "case">
-								<tr class="case_bike_img">
-									<td rowspan="6">
-										<div class="bike_Image">
-											<div class="outer_constraint">
-												<div class="inner_constraint">
-													<img src="http://ct4009-17bn.studentsites.glos.ac.uk/CT4009%202017-18%20001%201609415%2014%20Jan%202018/images/bike2.jpg" alt="bike1">
-												</div>
+									</div>
+								</td>
+								<td class="case_heading">When Last Seen:</td>
+								<td class="case_values">25/10/2016     10:30PM</td>
+								<td rowspan="3" class="case_buttons">
+									<button class="edit_case"> <a href="../bike-details/index.shtml">Bike Details</a></button>
+								</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Where Last Seen:</td>
+								<td>216 Long Road, Cheltenham</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Model:</td>
+								<td>Cruser</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Frame Number:</td>
+								<td>50661825</td>
+								<td rowspan="3" class="case_buttons">
+									<button class="edit_case">Create Case</button>
+								</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Colour:</td>
+								<td>Black</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Status:	</td>
+								<td>Under Investigation</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr class="item">
+					<td>
+						<table class = "case">
+							<tr class="case_bike_img">
+								<td rowspan="6">
+									<div class="bike_Image">
+										<div class="outer_constraint">
+											<div class="inner_constraint">
+												<img src="http://ct4009-17bn.studentsites.glos.ac.uk/CT4009%202017-18%20001%201609415%2014%20Jan%202018/images/bike2.jpg" alt="bike1">
 											</div>
 										</div>
-									</td>
-									<td class="case_heading">When Last Seen:</td>
-									<td class="case_values">25/10/2016     10:30PM</td>
-									<td rowspan="6" class="case_buttons">
-										<button class="edit_case"> <a href="../bike-details/index.shtml">Bike Details</a></button>
-									</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Where Last Seen:</td>
-									<td>216 Long Road, Cheltenham</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Model:</td>
-									<td>Cruser</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Frame Number:</td>
-									<td>50661825</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Colour:</td>
-									<td>Black</td>
-								</tr>
-								<tr class="case_row">
-									<td class="case_heading">Status:	</td>
-									<td>Under Investigation</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					
-				
+									</div>
+								</td>
+								<td class="case_heading">When Last Seen:</td>
+								<td class="case_values">25/10/2016     10:30PM</td>
+								<td rowspan="3" class="case_buttons">
+									<button class="edit_case"> <a href="../bike-details/index.shtml">Bike Details</a></button>
+								</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Where Last Seen:</td>
+								<td>216 Long Road, Cheltenham</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Model:</td>
+								<td>Cruser</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Frame Number:</td>
+								<td>50661825</td>
+								<td rowspan="3" class="case_buttons">
+									<button class="edit_case">Create Case</button>
+								</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Colour:</td>
+								<td>Black</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Status:	</td>
+								<td>Under Investigation</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr class="item">
+					<td>
+						<table class = "case">
+							<tr class="case_bike_img">
+								<td rowspan="6">
+									<div class="bike_Image">
+										<div class="outer_constraint">
+											<div class="inner_constraint">
+												<img src="http://ct4009-17bn.studentsites.glos.ac.uk/CT4009%202017-18%20001%201609415%2014%20Jan%202018/images/bike2.jpg" alt="bike1">
+											</div>
+										</div>
+									</div>
+								</td>
+								<td class="case_heading">When Last Seen:</td>
+								<td class="case_values">25/10/2016     10:30PM</td>
+								<td rowspan="3" class="case_buttons">
+									<button class="edit_case"> <a href="../bike-details/index.shtml">Bike Details</a></button>
+								</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Where Last Seen:</td>
+								<td>216 Long Road, Cheltenham</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Model:</td>
+								<td>Cruser</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Frame Number:</td>
+								<td>50661825</td>
+								<td rowspan="3" class="case_buttons">
+									<button class="edit_case">Create Case</button>
+								</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Colour:</td>
+								<td>Black</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Status:	</td>
+								<td>Under Investigation</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr class="item">
+					<td>
+						<table class = "case">
+							<tr class="case_bike_img">
+								<td rowspan="6">
+									<div class="bike_Image">
+										<div class="outer_constraint">
+											<div class="inner_constraint">
+												<img src="http://ct4009-17bn.studentsites.glos.ac.uk/CT4009%202017-18%20001%201609415%2014%20Jan%202018/images/bike2.jpg" alt="bike1">
+											</div>
+										</div>
+									</div>
+								</td>
+								<td class="case_heading">When Last Seen:</td>
+								<td class="case_values">25/10/2016     10:30PM</td>
+								<td rowspan="3" class="case_buttons">
+									<button class="edit_case"> <a href="../bike-details/index.shtml">Bike Details</a></button>
+								</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Where Last Seen:</td>
+								<td>216 Long Road, Cheltenham</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Model:</td>
+								<td>Cruser</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Frame Number:</td>
+								<td>50661825</td>
+								<td rowspan="3" class="case_buttons">
+									<button class="edit_case">Create Case</button>
+								</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Colour:</td>
+								<td>Black</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Status:	</td>
+								<td>Under Investigation</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr class="item">
+					<td>
+						<table class = "case">
+							<tr class="case_bike_img">
+								<td rowspan="6">
+									<div class="bike_Image">
+										<div class="outer_constraint">
+											<div class="inner_constraint">
+												<img src="http://ct4009-17bn.studentsites.glos.ac.uk/CT4009%202017-18%20001%201609415%2014%20Jan%202018/images/bike2.jpg" alt="bike1">
+											</div>
+										</div>
+									</div>
+								</td>
+								<td class="case_heading">When Last Seen:</td>
+								<td class="case_values">25/10/2016     10:30PM</td>
+								<td rowspan="3" class="case_buttons">
+									<button class="edit_case"> <a href="../bike-details/index.shtml">Bike Details</a></button>
+								</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Where Last Seen:</td>
+								<td>216 Long Road, Cheltenham</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Model:</td>
+								<td>Cruser</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Frame Number:</td>
+								<td>50661825</td>
+								<td rowspan="3" class="case_buttons">
+									<button class="edit_case">Create Case</button>
+								</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Colour:</td>
+								<td>Black</td>
+							</tr>
+							<tr class="case_row">
+								<td class="case_heading">Status:	</td>
+								<td>Under Investigation</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
 				
 			</table>
     		</section>

@@ -56,6 +56,71 @@ h2 {
 	font-size: 25px;
 }
 
+/* Style Search Options area */
+.search {
+    overflow: hidden;
+    background-color: #e9e9e9;
+    width: 1000px;
+	height: 340px;
+	margin: 0px auto 0px auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    text-align:center;
+}
+
+/* Style the search box inside the navigation bar */
+.search input[type=text] {
+    
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-left: 30px;
+    font-size: 17px;
+}
+.search input[type=text] {
+    border: 1px solid #ccc;
+    }
+
+.search input[type=button] {
+    padding: 6px;
+    margin-top: 8px;
+    margin-left: 30px;
+    font-size: 17px;
+    height: 50px;
+    width: 100px;
+        
+}
+
+
+
+/*style search button*/
+.search_button {
+	margin-top: 20px;
+	margin-bottom: 10px;
+	height: 40px;
+	width: 100%;
+	border-radius: 0px;
+	padding: 6px;
+	color: lightgray;
+	font-weight: 600;
+	font-size: 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	transition-duration: 0.3s;
+	cursor: pointer;
+	background-color: #2f24b1;
+   border: 2px solid #2f24b1;
+}
+.search_button:hover {
+	background-color: #D7D7D4;
+	border: 2px solid #D7D7D4;
+	color: #373737;
+}
+.search_button:active {
+	transition-duration: 0s;
+}
+
 
 /*style width for table children of centered */
 .centered > table{

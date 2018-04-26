@@ -1,7 +1,7 @@
 
 
- document.getElementById('file-input').addEventListener('change', handleFileSelect, false);
- document.getElementById('add-box').addEventListener('click', clickFileSelect, false);
+document.getElementById('file-input').addEventListener('change', handleFileSelect, false);
+document.getElementById('add-box').addEventListener('click', clickFileSelect, false);
 
 
 // click file selector when user clicks "add bike"
@@ -9,7 +9,7 @@ function clickFileSelect(evt) {
 	$("#file-input").trigger("click");
 }
 
-
+// show dialog to select file and render images on screen
 function handleFileSelect(evt) {
 	var files = evt.target.files; // FileList object
 	
@@ -35,12 +35,14 @@ function handleFileSelect(evt) {
 				var imageID = "image-" + number + "-box";
 				
 				// change column if even or odd
+				var imageColID;
+				var addColID;
 				if (isEven(number)) {
-					var imageColID = 'col1';
-					var addColID = 'col2';
+					imageColID = 'col1';
+					addColID = 'col2';
 				} else {
-					var imageColID = 'col2';
-					var addColID = 'col1';
+					imageColID = 'col2';
+					addColID = 'col1';
 				}
 				
 				// remove "add bike" button
@@ -106,10 +108,11 @@ function removeFileImage(evt) {
 	addButton.parentNode.removeChild(addButton);
 	
 	// change column if even or odd
+	var addColID;
 	if (isEven(number)) {
-		var addColID = 'col2';
+		addColID = 'col2';
 	} else {
-		var addColID = 'col1';
+		addColID = 'col1';
 	}
 	
 	// add "add bike" button in new location
@@ -137,15 +140,17 @@ $('#form-details').on('submit', function(e) {
 	email = cookieRead("login_uemail");
 	
 	// if cookie exists
-	if (email != "" && email != "0") {
+	if (email !== "" && email != "0") {
 		
 		// add content to database
 		bikeID = bikedbAdd(function (result) {
-			// add bike id to user
-			userdbUpdate(email, "bikeIDs", result, "");
 			
-			// send user to login page
-			window.location.href = "../my-bikes/index.shtml";
+			// add bike id to user
+			userdbUpdate(email, "bikeIDs", result, "", function callback() {
+				
+				// send user to login page
+				window.location.href = "../my-bikes/index.shtml";
+			});
 		});
 	}
 });

@@ -18,7 +18,7 @@
 	
 	<!-- Headers -->
 	<header id="logged-out-header">
-		<!--#include virtual="/CT4009%202017-18%20001%201609415%2014%20Jan%202018/logged-out/header.html" -->
+		<!--#include virtual="../header.html" -->
 		<div class="heading_text">
 			<h1>
 				<a href="../main/index.shtml">

@@ -1,4 +1,6 @@
+
 var officerdb; // global database object
+
 
 // add officer to database of officers
 function officerdbAdd() {
@@ -19,13 +21,13 @@ function officerdbAdd() {
 			password: "1234",
 			loginIDs: [],
 			caseIDs: []
-		}
+		};
 		
 		// Add object to store
 		var add = store.add(officer);
 		
 		// report error to console if adding officer failed
-		add.onerror = function(e) { console.log("Error",e.target.error.name) };
+		add.onerror = function(e) { console.log("Error",e.target.error.name); };
 		
 		// do nothing if succesfull
 		add.onsuccess = function(e) { };
@@ -45,17 +47,19 @@ function officerdbRead(email, property, val, callback) {
 		var index = store.get(email);
 		
 		// report error to console if reading failed
-		index.onerror = function(e) { console.log("Error",e.target.error.name) };
+		index.onerror = function(e) { console.log("Error",e.target.error.name); };
 		
 		// read property from object if succesfull
 		index.onsuccess = function(e) {
+			var storedVal;
 			
 			if (typeof index.result !== 'undefined') {
 				// copy read property to variable
-				var storedVal = index.result[property];
+				storedVal = index.result[property];
 			} else {
 				storedVal = "";
 			}
+			
 			// run code that uses property
 			callback(email, val, storedVal);
 			
@@ -67,7 +71,7 @@ function officerdbRead(email, property, val, callback) {
 
 // update single parameter for one officer from database of officers
 // oldval is only needed for login and bike ID lists (if there is no val for IDs set to "")
-function officerdbUpdate(email, property, newVal, oldVal) {
+function officerdbUpdate(email, property, newVal, oldVal, callback) {
 	
 	// open database then run callback
 	openOfficerDatabase( function openfun() {
@@ -78,7 +82,7 @@ function officerdbUpdate(email, property, newVal, oldVal) {
 		var index = store.get(email);
 		
 		// report error to console if reading failed
-		index.onerror = function(e) { console.log("Error", e.target.error.name) };
+		index.onerror = function(e) { console.log("Error", e.target.error.name); };
 		
 		// read property from object if succesfull
 		index.onsuccess = function(e) {
@@ -86,42 +90,44 @@ function officerdbUpdate(email, property, newVal, oldVal) {
 			if (typeof index.result !== 'undefined') {
 				// copy read property to variable
 				var storedVal = index.result;
+				var put;
 				
 				// update differently if list
 				if (property == "loginIDs" || property == "bikeIDs") {
 					// get value list
 					var valList = storedVal[property];
+					var i;
 					
 					// check if there was an old value
-					if (oldVal == "") {
+					if (oldVal === "") {
 						// set new location to end of array
-						var i = valList.length;
+						i = valList.length;
 					} else {
 						// get old value location
-						var i = valList.indexOf(oldVal);
+						i = valList.indexOf(oldVal);
 					}
 					
 					// check if old value was found in array
 					if (i  != -1 ) { // if value was found
 						// update value
-						if (newVal == "") {
-    						valList.splice(index, 1);
+						if (newVal === "") {
+							valList.splice(index, 1);
 						} else {
 							valList[i] = newVal;
 						}
 						storedVal[property] = valList;
 					
 						// Add object to store
-						var put = store.put(storedVal);
+						put = store.put(storedVal);
 						
 						// report error to console if adding officer failed
-						put.onerror = function(e) { console.log("Error",e.target.error.name) };
+						put.onerror = function(e) { console.log("Error",e.target.error.name); };
 						
 						// do nothing if succesfull
-						put.onsuccess = function(e) { };
+						put.onsuccess = function(e) { callback(); };
 						
 					} else {
-						console.log("old value does not exist")
+						console.log("old value does not exist");
 					}
 					
 				} else {
@@ -129,13 +135,13 @@ function officerdbUpdate(email, property, newVal, oldVal) {
 					storedVal[property] = newVal;
 					
 					// Add object to store
-					var put = store.put(storedVal);
+					put = store.put(storedVal);
 					
 					// report error to console if adding officer failed
-					put.onerror = function(e) { console.log("Error",e.target.error.name) };
+					put.onerror = function(e) { console.log("Error",e.target.error.name); };
 					
 					// do nothing if succesfull
-					put.onsuccess = function(e) { };
+					put.onsuccess = function(e) { callback(); };
 				}
 				
 			} else {
@@ -160,7 +166,7 @@ function officerdbLogout(email) {
 		var index = store.get(email);
 		
 		// report error to console if reading failed
-		index.onerror = function(e) { console.log("Error", e.target.error.name) };
+		index.onerror = function(e) { console.log("Error", e.target.error.name); };
 		
 		// read property from object if succesfull
 		index.onsuccess = function(e) {
@@ -170,13 +176,13 @@ function officerdbLogout(email) {
 				var storedVal = index.result;
 				
 				// delete value list
-				storedVal["loginIDs"] = [];
+				storedVal.loginIDs = [];
 				
 				// Add object to store
 				var put = store.put(storedVal);
 				
 				// report error to console if adding officer failed
-				put.onerror = function(e) { console.log("Error",e.target.error.name) };
+				put.onerror = function(e) { console.log("Error",e.target.error.name); };
 				
 				// do nothing if succesfull
 				put.onsuccess = function(e) { };
@@ -200,7 +206,7 @@ function openOfficerDatabase(callback) {
 		var openRequest = indexedDB.open("officerdb",1);
 		
 		// create database object stores if required
-		openRequest.onupgradeneeded = function(e) { updateOfficerDatabase(e) };
+		openRequest.onupgradeneeded = function(e) { updateOfficerDatabase(e); };
 		
 		// add officer if susscessfull
 		openRequest.onsuccess = function(e) {
@@ -212,7 +218,7 @@ function openOfficerDatabase(callback) {
 			// close open connection
 			officerdb.close();
 			return;
-		}
+		};
 		
 		// dump to console if error occured
 		openRequest.onerror = function(e) {
@@ -223,7 +229,7 @@ function openOfficerDatabase(callback) {
 			officerdb = e.target.result;
 			officerdb.close();
 			return;
-		}
+		};
 		
 		// close open database connection if blocked
 		openRequest.onblocked = function(e) {
@@ -233,7 +239,7 @@ function openOfficerDatabase(callback) {
 			// close open connection   
 			officerdb.close();
 			return;
-		}
+		};
 	} else {
 		// alert officer that this website will not work
 		alert("IndexedDB broswer support required: This browser cannot run this wesbise as it does not support IndexedDB");
@@ -241,7 +247,6 @@ function openOfficerDatabase(callback) {
 	}
 	
 }
-
 
 
 // update database required -> create database (can handle version upgrade if needed))
