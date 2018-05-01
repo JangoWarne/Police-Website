@@ -103,6 +103,10 @@ function displayBike(bikeID) {
 			$( ".cell" ).before( $( bikeRow ) );
 			
 			
+			// add listeners for new buttons
+			document.getElementById("remove-" + i).addEventListener('click', removeBike, false);
+			
+			
 		} else {
 			// read case from database
 			casedbRead(bike.caseID, "", function (a, b, investigation) {
@@ -177,10 +181,6 @@ function displayBike(bikeID) {
 				geocodeLocation(bikeID, investigation.latlngLastSeen);
 			});
 		}
-		
-		
-		// add listeners for new buttons
-		document.getElementById("remove-" + i).addEventListener('click', removeBike, false);
 	});
 }
 
