@@ -103,6 +103,10 @@ function displayBike(bikeID) {
 			$( ".cell" ).before( $( bikeRow ) );
 			
 			
+			// add listeners for new buttons
+			document.getElementById("remove-" + i).addEventListener('click', removeBike, false);
+			
+			
 		} else {
 			// read case from database
 			casedbRead(bike.caseID, "", function (a, b, investigation) {
@@ -132,7 +136,7 @@ function displayBike(bikeID) {
 										'</div>' +
 									'</td>' +
 									'<td class="missing_bike_heading">Last Seen:</td>' +
-									'<td class="missing_bike_values">' + /*Temporary div to be replaced with location*/'<div class="replace' + bikeID + '"></div>' + '<div>' + investigation.dateLastSeen + '</div></td>' +
+									'<td class="missing_bike_values">' + /*Temporary div is replaced with location*/'<div class="replace' + bikeID + '"></div>' + '<div>' + investigation.dateLastSeen + '</div></td>' +
 									'<td rowspan="7" class="registered_bike_buttons">' +
 										'<button class="edit_bike"> <a href="../found-bike/index.shtml?caseID=' + investigation.caseID + '">Report Found</a></button>' +
 									'</td>' +
@@ -177,10 +181,6 @@ function displayBike(bikeID) {
 				geocodeLocation(bikeID, investigation.latlngLastSeen);
 			});
 		}
-		
-		
-		// add listeners for new buttons
-		document.getElementById("remove-" + i).addEventListener('click', removeBike, false);
 	});
 }
 

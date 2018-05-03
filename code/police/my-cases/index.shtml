@@ -80,7 +80,7 @@
 									<td class="case_heading">When Last Seen:</td>
 									<td class="case_values">25/10/2016     10:30PM</td>
 									<td rowspan="3" class="case_buttons">
-										<button class="edit_case"> <a href="../bike-details/index.shtml">Bike Details</a></button>
+										<button class="edit_case"> <a href="../bike-details/index.shtml?bikeID=19703">Bike Details</a></button>
 									</td>
 								</tr>
 								<tr class="case_row">
@@ -95,7 +95,7 @@
 									<td class="case_heading">Type:</td>
 									<td>Road</td>
 									<td rowspan="3">
-										<button class="edit_case"><a href="../case-details/index.shtml">Case Details</a></button>
+										<button class="edit_case"><a href="../case-details/index.shtml?caseID=2739">Case Details</a></button>
 									</td>
 								</tr>
 								<tr class="case_row">
@@ -130,7 +130,7 @@
 									<td class="case_heading">When Last Seen:</td>
 									<td class="case_values">25/10/2016     10:30PM</td>
 									<td rowspan="3" class="case_buttons">
-										<button class="edit_case"> <a href="../bike-details/index.shtml">Bike Details</a></button>
+										<button class="edit_case"> <a href="../bike-details/index.shtml?bikeID=1">Bike Details</a></button>
 									</td>
 								</tr>
 								<tr class="case_row">
@@ -145,7 +145,7 @@
 									<td class="case_heading">Type:</td>
 									<td>Road</td>
 									<td rowspan="3">
-										<button class="edit_case"><a href="../case-details/index.shtml">Case Details</a></button>
+										<button class="edit_case"><a href="../case-details/index.shtml?caseID=1">Case Details</a></button>
 									</td>
 								</tr>
 								<tr class="case_row">
