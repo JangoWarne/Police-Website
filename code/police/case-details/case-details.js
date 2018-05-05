@@ -253,11 +253,7 @@ function displayCase(investigation, bike, user) {
 					'<br>' +
 					
 					'<!-- Contact User Box -->' +
-					'<form action="Message.php" id="contact-form">' +
-						
-						'<div for="subject">Subject: </div>' +
-						'<input class="input" type="text" id="subject" name="subject"> <br>' +
-						'<br>' +
+					'<form action="mailer.php" id="contact-form" name="contactForm">' +
 						
 						'<div for="message">Message: </div>' +
 						'<textarea class="input" id="message" name="message" style="height:200px"></textarea> <br>' +
@@ -305,12 +301,32 @@ function displayCase(investigation, bike, user) {
 		
 		contactBtn.style.display = "block";
 		contactForm.style.display = "none";
-		
-		// run PHP function to contact user
-		//
-		//
-		//
-		//
+        
+        
+        // run PHP function to contact user
+        // check if email cookie exists and is non zero (not being deleted)
+        username = cookieRead("login_uname");
+        
+        officerdbRead(username, "firstName", "", function(username, a, firstName) {
+            
+            officerdbRead(username, "lastName", "", function(username, a, lastName) {
+                
+                // Submit the form using AJAX.
+                $.ajax({
+                    type: 'POST',
+                    url: $('#contact-form').attr('action'),
+                    data: {
+                        name: firstName + " " + lastName,
+                        email: investigation.userID,
+                        message: document.contactForm.message.value
+                    },
+                    success: function(response) {
+                        // Clear the form.
+                        $('#message').val('');
+                    }
+                });
+            });
+        });
 	});
 	
 	

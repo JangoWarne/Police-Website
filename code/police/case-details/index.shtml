@@ -148,11 +148,7 @@
 					<br>
 					
 					<!-- Contact User Box -->
-					<form action="Message.php" id="contact-form">
-				
-					    <div for="subject">Subject: </div>
-					    <input class="input" type="text" id="subject" name="subject"> <br>
-					    <br>
+					<form action="mailer.php" id="contact-form" name="contactForm">
 					
 					    <div for="message">Message: </div>
 					    <textarea class="input" id="message" name="message" style="height:200px"></textarea> <br>
