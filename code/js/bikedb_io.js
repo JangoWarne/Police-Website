@@ -109,25 +109,26 @@ function bikedbReadStolen(val, callback) {
 		var store = transaction.objectStore("bikedb");
 		
 		// Getting all bikes from store 
-		var bikes = store.getAll();
+		var index = store.getAll();
 		
 		// report error to console if reading failed
 		index.onerror = function(e) { console.log("Error",e.target.error.name); };
 		
 		// read property from object if succesfull
 		index.onsuccess = function(e) {
+            bikes = index.result;
             
             //creating a var called storedVal to store the bikes reported stolen / that have a caseID
             var storedVal = [];
             //iterating for each element in the array
-            for (var i = 0; 1 < bikes.length; i++) {
+            for (var i = 0; i < bikes.length; i++) {
                 
                 if(bikes[i].caseID !== 0) {
                     storedVal.push(bikes[i]); 
                 }
             }
 			// run code that uses property
-			callback(bikeID, val, storedVal);
+			callback(val, storedVal);
 			
 			return;
 		};
