@@ -1,0 +1,18 @@
+CREATE TABLE `case`
+(
+    `timeLastSeen` time NOT NULL,
+    `dateLastSeen` date NOT NULL,
+    `timeSeenMissing` time NOT NULL,
+    `dateSeenMissing` date NOT NULL,
+    `latlngLastSeen` varchar(1000) NOT NULL,
+    `partsMissing` 	varchar(1000) NULL,
+    `peopleSeen` varchar(1000) NULL,
+    `bikeID` int(255) NOT NULL,
+    `caseID` int(255) AUTO_INCREMENT PRIMARY KEY,
+    `caseStatus` varchar(30) NOT NULL,
+    `userID` varchar(1000) NOT NULL,
+    `officerID` int(255) NOT NULL
+ ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+ COMMIT;
+    
+    
