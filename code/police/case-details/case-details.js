@@ -9,7 +9,8 @@ var myMap;
 
 // Shorthand for $( document ).ready() run on page load
 $(function() {
-	google.maps.event.addDomListener(window, 'load', initializeMap);
+	//initializeMap();
+	//google.maps.event.addDomListener(window, 'load', initializeMap);
 	
 	loadCase();
 });
@@ -55,7 +56,7 @@ function initializeMap(){
 function loadCase() {
 	
 	// check if email cookie exists and is non zero (not being deleted)
-	email = cookieRead("login_uemail");
+	email = cookieRead("login_uname");
 	
 	// if cookie exists
 	if (email !== "" && email != "0") {
@@ -67,13 +68,13 @@ function loadCase() {
 		if (caseID !== "") {
 			// read case from database
 			casedbRead(caseID, "", function (a, b, investigation) {
-			
+				console.log(investigation);
 				// read bike from database
 				bikedbRead(investigation.bikeID, "", function (a, b, bike) {
-					
+					console.log(bike);
 					// read user from database
 					userdbReadFull(investigation.userID, "", function (a, b, user) {
-				
+						console.log(user);
 						// Display case, bike and user details on page
 						displayCase(investigation, bike, user);
 						
@@ -96,20 +97,30 @@ function displayCase(investigation, bike, user) {
 	
 	// Are bike images missing?
 	var image;
-	if (bike.imageList[0] === undefined) {
+	console.log(bike.imageList);
+	if (bike.imageList === undefined) {
 		image = "../../images/no-thumbnail.png";
 	} else {
-		image = bike.imageList[0];
+		if (bike.imageList[0] === undefined) {
+			image = "../../images/no-thumbnail.png";
+		} else {
+			image = bike.imageList[0];
+		}
 	}
+	
 	
 	// If recovered
 	var imagesFound;
 	if (foundStolen) {
 		// Are found images missing?
-		if (investigation.imagesFound[0] === undefined) {
-			imagesFound = "../../images/no-thumbnail.png";
+		if (investigation.imagesFound === undefined) {
+			image = "../../images/no-thumbnail.png";
 		} else {
-			imagesFound = bike.imageList;
+			if (investigation.imagesFound[0] === undefined) {
+				imagesFound = "../../images/no-thumbnail.png";
+			} else {
+				imagesFound = bike.imageList;
+			}
 		}
 		
 		// Create bike recovered HTML
@@ -242,14 +253,10 @@ function displayCase(investigation, bike, user) {
 					'<br>' +
 					
 					'<!-- Contact User Box -->' +
-					'<form action="Message.php" id="contact-form">' +
-						
-						'<div for="subject">Subject: </div>' +
-						'<input class="input" type="text" id="subject" name="subject"> <br>' +
-						'<br>' +
+					'<form action="mailer.php" id="contact-form" name="contactForm">' +
 						
 						'<div for="message">Message: </div>' +
-						'<textarea class="input" id="message" name="message"></textarea> <br>' +
+						'<textarea class="input" id="message" name="message" style="height:200px"></textarea> <br>' +
 						'<br>' +
 						
 						'<input id="send-button" type="submit" value="Send">' +
@@ -257,10 +264,11 @@ function displayCase(investigation, bike, user) {
 					'</form>' +
 				'</div>' +
 			'</div>';
-		
-	// add html to page
-	$( "main" ).innerHTML = caseSection;
 	
+	// add html to page
+	$( "main" ).html( caseSection );
+	
+	initializeMap();
 	
 	// update locations
 	geocodeLocation(1, investigation.latlngLastSeen);
@@ -269,6 +277,7 @@ function displayCase(investigation, bike, user) {
 		geocodeLocation(2, investigation.latlngFound);
 		createMarker("green", investigation.latlngFound);
 	}
+	
 	
 	// add listeners for new buttons
 	document.getElementById("bike-button").addEventListener('click', function bikeDetails(){
@@ -285,18 +294,39 @@ function displayCase(investigation, bike, user) {
 		contactForm.style.display = "block";
 	}, false);
 	
+	
 	// add listener for form
 	$('#contact-form').on('submit', function(e) {
 		e.preventDefault();  //prevent form from submitting
 		
 		contactBtn.style.display = "block";
 		contactForm.style.display = "none";
-		
-		// run PHP function to contact user
-		//
-		//
-		//
-		//
+        
+        
+        // run PHP function to contact user
+        // check if email cookie exists and is non zero (not being deleted)
+        username = cookieRead("login_uname");
+        
+        officerdbRead(username, "firstName", "", function(username, a, firstName) {
+            
+            officerdbRead(username, "lastName", "", function(username, a, lastName) {
+                
+                // Submit the form using AJAX.
+                $.ajax({
+                    type: 'POST',
+                    url: $('#contact-form').attr('action'),
+                    data: {
+                        name: firstName + " " + lastName,
+                        email: investigation.userID,
+                        message: document.contactForm.message.value
+                    },
+                    success: function(response) {
+                        // Clear the form.
+                        $('#message').val('');
+                    }
+                });
+            });
+        });
 	});
 	
 	
@@ -314,16 +344,21 @@ function createMarker(colour, latlng) {
 	// get coloured icon
 	var iconImage;
 	if (colour == "green") { // Green Marker
-		iconImage = '/images/green-pin.png';
+		iconImage = './images/green-pin.png';
 	} else { // Red marker (Default)
-		iconImage = '/images/red-pin.png';
+		iconImage = './images/red-pin.png';
 	}
+	
+	var iconObj = {
+	    url: iconImage, // url
+	    scaledSize: new google.maps.Size(30, 50) // scaled size
+	};
 	
 	// create map marker       
 	marker = new google.maps.Marker({
 		map: myMap,
 		position: latlng,
-		icon: iconImage,
+		icon: iconObj,
 		draggable: false
 	}); 
 }
@@ -334,6 +369,7 @@ function geocodeLocation(locationTag, latlng) {
 	
 	// get address from latlng
 	geocoder.geocode({'location': latlng}, function(results, status) {
+		
 		if (status === 'OK') {
 			if (results[0]) {
 				
@@ -341,7 +377,7 @@ function geocodeLocation(locationTag, latlng) {
 				var address = results[0].formatted_address.split(',', 2);
 				
 				// replace temporary div with location
-				$( "div.replace" + locationTag ).replaceWith( address[0] );
+				$( "div.replace" + locationTag ).replaceWith( results[0].formatted_address );
 				
 			} else {
 				window.alert('Location Unknown');

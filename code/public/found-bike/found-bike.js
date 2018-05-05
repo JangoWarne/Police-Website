@@ -105,7 +105,7 @@ $('#form-not-stolen').on('submit', function(e) {
 			casedbUpdate(parseInt(caseID), "found", true, "", function callback() {
 				
 				// set case status to closed
-				casedbUpdate(parseInt(caseID), "caseStatus", "closed", "", function callback(bikeID) {
+				casedbUpdate(parseInt(caseID), "caseStatus", "Closed", "", function callback(bikeID) {
 					
 					// remove case id from bike
 					bikedbUpdate(parseInt(bikeID), "caseID", 0, function callback() {

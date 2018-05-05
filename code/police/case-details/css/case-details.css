@@ -76,7 +76,7 @@ span {
 	width: 140px;
 }
 .map_info {
-	
+	display:inline-block;
 }
 .case_heading {
 	display:inline-block;

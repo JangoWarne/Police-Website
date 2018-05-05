@@ -1,13 +1,16 @@
+// runs at page load
 $(function(){
+    bikeSearch();
+    
 	loadcase();
 });
+
 
 // load bikes from database
 function loadcase() {
 	
-	
 	// if webaddress contains case id
-    new URLSearchParams(document.location.search.substring(1));
+    params = new URLSearchParams(document.location.search.substring(1));
     caseID = params.get("caseID");
 	if (caseID != "") {
 		
@@ -18,7 +21,31 @@ function loadcase() {
 			
 		});
 	}
-	
+}
+
+
+//on search submit
+$('#ebaysearch').on('submit', function(e){
+    e.preventDefault();
+    
+    bikeSearch();
+});
+
+
+// return bike search results
+function bikeSearch() {
+    //
+    $.ajax({
+        url: "Marketcompare.php",
+        method: "POST",
+        data: {
+            query: "(bicycle, bike) " + document.ebaysearch.query.value
+        },
+        success: function(data) {
+            // add html to page
+            $( "#results" ).html( $( data ) );
+        }
+    });
 }
 
 
@@ -63,7 +90,7 @@ function displayBike(bikeID) {
 
                         'Features: '+ bike.features+ ' <br> <br>'+
                         
-                        'Distinctive Marks: '+ bike.description+ '<br> <br>'+;
+                        'Distinctive Marks: '+ bike.description+ '<br> <br>'+
 		
 		// add html to page
 		$( "#bike-details" ).after( $( bikedetails ) );

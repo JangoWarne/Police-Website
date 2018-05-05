@@ -5,84 +5,98 @@ function casedbAdd(bikeIDval, latlng, callbackFn) {
 	
 	// Add object to database (PHP)
 	$.ajax({
-	    type: "POST",
-	    url: 'casedb_io.php',
-	    data: {
-		    caller: 'casedbAdd',
-		    
-		    // read properties from window
+		type: "POST",
+		url: '../../php/casedb_io.php',
+		data: {
+			caller: 'casedbAdd',
+			
+			// read properties from window
 			timeLastSeen: document.formReport.timeLastSeen.value,
 			dateLastSeen: document.formReport.dateLastSeen.value,
 			timeSeenMissing: document.formReport.timeSpottedMissing.value,
 			dateSeenMissing: document.formReport.dateSpottedMissing.value,
-			latlngLastSeen: {lat: latlng.lat(), lng: latlng.lng()},
+			latlngLastSeen: JSON.stringify({lat: latlng.lat(), lng: latlng.lng()}),
 			partsMissing: document.formReport.txtPartsMissing.value,
 			peopleSeen: document.formReport.txtPeopleSeen.value,
 			bikeID: bikeIDval,
 			caseStatus: "Open",
 			userID: cookieRead("login_uemail"),
-			officerID: "",
+			officerID: "NULL",
 			found: false,
 			foundStolen: false,
-			timeFound: "",
-			dateFound: "",
-			latlngFound: {},
-			imagesFound: []
-		    
+			timeFound: "NULL",
+			dateFound: "NULL",
+			latlngFound: "NULL",//JSON.stringify({}),
+			imagesFound: "NULL"//[].toString()
+			
 		},
-	    success: function(caseID){
-	        callbackFn( caseID );
-	    }
+		success: function(data){
+			data = JSON.parse(data);  // parse JSON data into js object
+			
+			if(data.status == 'success'){
+				callbackFn( data.caseID );
+			}else if(data.status == 'error'){
+				alert(data.error);
+			}
+		}
 	});
 }
 
 
 // read all parameters for one case from database of cases
-function casedbRead(caseID, val, callback) {
+function casedbRead(caseID, val, callbackFn) {
 	
 	// Read object from database (PHP)
 	$.ajax({
-	    type: "POST",
-	    url: 'casedb_io.php',
-	    data: {
-		    caller: 'casedbRead',
-		    
-		    // Case to read
+		type: "POST",
+		url: '../../php/casedb_io.php',
+		data: {
+			caller: 'casedbRead',
+			
+			// Case to read
 			caseID: caseID
 			
 		},
-	    success: function(encoded){
-		    // Build investigation object from database
+		success: function(data){
+            console.log(data);
+			data = JSON.parse(data);  // parse JSON data into js object
+			
+			// Build investigation object from database
 			var investigation = {
-				timeLastSeen: encoded[0],
-				dateLastSeen: encoded[1],
-				timeSeenMissing: encoded[2],
-				dateSeenMissing: encoded[3],
-				latlngLastSeen: {lat: latlng.lat(), lng: latlng.lng()},
-				partsMissing: encoded[5],
-				peopleSeen: encoded[6],
-				bikeID: encoded[7],
-				caseStatus: encoded[8],
-				userID: encoded[9],
-				officerID: encoded[10],
-				found: encoded[11],
-				foundStolen: encoded[12],
-				timeFound: encoded[13],
-				dateFound: encoded[14],
-				latlngFound: encoded[15],
-				imagesFound: encoded[16]
+				timeLastSeen: data.timeLastSeen,
+				dateLastSeen: data.dateLastSeen,
+				timeSeenMissing: data.timeSeenMissing,
+				dateSeenMissing: data.dateSeenMissing,
+				latlngLastSeen: JSONparse(data.latlngLastSeen, "", {}),
+				partsMissing: data.partsMissing,
+				peopleSeen: data.peopleSeen,
+				bikeID: data.bikeID,
+				caseID: data.caseID,
+				caseStatus: data.caseStatus,
+				userID: data.userID,
+				officerID: data.officerID,
+				found: data.found,
+				foundStolen: data.foundStolen,
+				timeFound: data.timeFound,
+				dateFound: data.dateFound,
+				latlngFound: JSONparse(data.latlngFound, "", {}),
+				imagesFound: data.imagesFound.split(",")
 			};
 			
 			// run code that uses property
-			callback(caseID, val, storedVal);
-	    }
+			if(data.status == 'success'){
+				callbackFn(caseID, val, investigation);
+			}else if(data.status == 'error'){
+				alert(data.error);
+			}
+		}
 	});
 }
 
 
 
 // add found information to case
-function casedbFound(caseID, latlng, callback) {
+function casedbFound(caseID, latlng, callbackFn) {
 	
 	// get number of existing images
 	var number = document.getElementsByClassName("images").length;
@@ -102,38 +116,91 @@ function casedbFound(caseID, latlng, callback) {
 		// add url to list
 		urlList.push(url);
 	}
+			console.log(urlList);
 	
-	// update value
-	var storedVal;
-	storedVal.found = true;
-	storedVal.foundStolen = true;
-	storedVal.timeFound = document.formFound.timeFound.value;
-	storedVal.dateFound = document.formFound.dateFound.value;
-	storedVal.latlngFound = {lat: latlng.lat(), lng: latlng.lng()};
-	storedVal.imagesFound = urlList;
 	
-	// Add object to database
-	// return bikeID
-	
-	// run callback if succesfull
-	callback(bikeID);
+	// Add object to database (PHP)
+	$.ajax({
+		type: "POST",
+		url: '../../php/casedb_io.php',
+		data: {
+			caller: 'casedbFound',
+			
+			// Case Found
+			caseID: caseID,
+			
+			// read properties from window
+			found: true,
+			foundStolen: true,
+			timeFound: document.formFound.timeFound.value,
+			dateFound: document.formFound.dateFound.value,
+			latlngFound: JSON.stringify({lat: latlng.lat(), lng: latlng.lng()}),
+			imagesFound: urlList
+			
+		},
+		success: function(data){
+			data = JSON.parse(data);  // parse JSON data into js object
+			
+			if(data.status == 'success'){
+				callbackFn( data.bikeID );
+			}else if(data.status == 'error'){
+				alert(data.error);
+			}
+		}
+	});
 }
 
 
 
 // update single parameter for one case from database of cases
-function casedbUpdate(caseID, property, newVal, oldVal, callback) {
+function casedbUpdate(caseID, property, newVal, oldVal, callbackFn) {
 	
-	// copy read property to variable
-	var storedVal;
+	// Add object to database (PHP)
+	$.ajax({
+		type: "POST",
+		url: '../../php/casedb_io.php',
+		data: {
+			caller: 'casedbUpdate',
+			
+			// Case to Update
+			caseID: caseID,
+			
+			// read properties from window
+			property: property,
+			newVal: newVal,
+			oldVal: oldVal //unused
+			
+		},
+		success: function(data){
+			data = JSON.parse(data);  // parse JSON data into js object
+			
+			if(data.status == 'success'){
+				callbackFn( data.bikeID );
+			}else if(data.status == 'error'){
+				alert(data.error);
+			}
+		}
+	});
+}
+
+
+
+// parse JSON stringified objects
+function JSONparse(JSONstring, valName, defaultVal) {
 	
-	// update value
-	storedVal[property] = newVal;
-	
-	// Add object to database
-	// return bikeID
-	
-	// run callback if succesfull
-	callback(bikeID);
+	// if value does not exist gracefully use a default value
+	try {
+		var obj = JSON.parse(JSONstring); // this is how you parse a string into JSON
+		
+		// return single varaible or entire object
+		if (valName !== "") {
+			return obj[valName];
+		} else {
+			return obj;
+		}
+		
+	} catch (e) {
+		return defaultVal;
+	}
 }
 
