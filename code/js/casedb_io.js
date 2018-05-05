@@ -58,6 +58,7 @@ function casedbRead(caseID, val, callbackFn) {
 			
 		},
 		success: function(data){
+            console.log(data);
 			data = JSON.parse(data);  // parse JSON data into js object
 			
 			// Build investigation object from database
@@ -153,7 +154,6 @@ function casedbFound(caseID, latlng, callbackFn) {
 
 // update single parameter for one case from database of cases
 function casedbUpdate(caseID, property, newVal, oldVal, callbackFn) {
-	
 	
 	// Add object to database (PHP)
 	$.ajax({

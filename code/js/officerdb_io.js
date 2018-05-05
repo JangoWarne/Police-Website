@@ -71,7 +71,7 @@ function officerdbRead(email, property, val, callback) {
 
 // update single parameter for one officer from database of officers
 // oldval is only needed for login and bike ID lists (if there is no val for IDs set to "")
-function officerdbUpdate(email, property, newVal, oldVal, callback) {
+function officerdbUpdate(username, property, newVal, oldVal, callback) {
 	
 	// open database then run callback
 	openOfficerDatabase( function openfun() {
@@ -79,7 +79,7 @@ function officerdbUpdate(email, property, newVal, oldVal, callback) {
 		var store = transaction.objectStore("officerdb");
 		
 		// Read object from store
-		var index = store.get(email);
+		var index = store.get(username);
 		
 		// report error to console if reading failed
 		index.onerror = function(e) { console.log("Error", e.target.error.name); };
@@ -93,7 +93,7 @@ function officerdbUpdate(email, property, newVal, oldVal, callback) {
 				var put;
 				
 				// update differently if list
-				if (property == "loginIDs" || property == "bikeIDs") {
+				if (property == "loginIDs" || property == "caseIDs") {
 					// get value list
 					var valList = storedVal[property];
 					var i;
