@@ -54,7 +54,7 @@ function clickFileSelect(evt) {
 
 
 
-// check user detail when register is clicked and if valid go to myBikes
+// check user detail when bike found (stolen) is clicked and if valid update db & go to myBikes
 $('#form-found').on('submit', function(e) {
 	e.preventDefault();  //prevent form from submitting
 	
@@ -88,7 +88,7 @@ $('#form-found').on('submit', function(e) {
 
 
 
-// check user detail when register is clicked and if valid go to myBikes
+// check user detail when bike found (not stolen) is clicked and if valid update db & go to myBikes
 $('#form-not-stolen').on('submit', function(e) {
 	e.preventDefault();  //prevent form from submitting
 	
@@ -101,14 +101,18 @@ $('#form-not-stolen').on('submit', function(e) {
 		
 		if (caseID !== "") {
 			
-			// add content to database
-			casedbUpdate(parseInt(caseID), "found", true, "", function callback(bikeID) {
+			// set case bike-found status to true
+			casedbUpdate(parseInt(caseID), "found", true, "", function callback() {
 				
-				// remove case id from bike
-				bikedbUpdate(parseInt(bikeID), "caseID", 0, function callback() {
+				// set case status to closed
+				casedbUpdate(parseInt(caseID), "caseStatus", "Closed", "", function callback(bikeID) {
 					
-					// send user to bikes page
-					window.location.href = "../my-bikes/index.shtml";
+					// remove case id from bike
+					bikedbUpdate(parseInt(bikeID), "caseID", 0, function callback() {
+						
+						// send user to bikes page
+						window.location.href = "../my-bikes/index.shtml";
+					});
 				});
 			});
 		}
