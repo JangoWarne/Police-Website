@@ -71,7 +71,6 @@
 			echo json_encode(array("status" => "error", "error" => mysqli_error($connection)));
 		}
 		
-		// sendEmail($email);
 		
 		mysqli_close($connection);
 	}
@@ -91,7 +90,7 @@
 		$sql = "SELECT timeLastSeen, dateLastSeen, timeSeenMissing, dateSeenMissing, latlngLastSeen, partsMissing, peopleSeen, bikeID, caseID, ".
 				"caseStatus, userID, officerID, found, foundStolen, timeFound, dateFound, latlngFound, imagesFound ".
 				"FROM `case` ".
-				"WHERE caseID = $caseID";
+				"WHERE caseID = '$caseID'";
 		
 		
 		// read from database
@@ -141,7 +140,7 @@
 		$sql = "Update `case` ".
 			   "SET found = '$found', foundStolen = '$foundStolen', timeFound = '$timeFound', ".
 			   "dateFound = '$dateFound', latlngFound = '$latlngFound', imagesFound = '$imagesFound' ".
-			   "WHERE caseID = $caseID";
+			   "WHERE caseID = '$caseID'";
 		
 		echo $sql;
 		// return success status and id of case / error
@@ -191,7 +190,7 @@
 		// insert case into database
 		$sql = "Update `case` ".
 			   "SET $property = '$newVal' ".
-			   "WHERE caseID = $caseID";
+			   "WHERE caseID = '$caseID'";
 		
 		
 		// return success status and id of case / error
@@ -200,7 +199,7 @@
 			// read bikeID from database
 			$sql = "SELECT bikeID ".
 				   "FROM `case` ".
-				   "WHERE caseID = $caseID";
+				   "WHERE caseID = '$caseID'";
 			
 			// get returned bikeID
 			$bikeID = 0;

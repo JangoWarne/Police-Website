@@ -36,7 +36,7 @@ function casedbAdd(bikeIDval, latlng, callbackFn) {
 			if(data.status == 'success'){
 				callbackFn( data.caseID );
 			}else if(data.status == 'error'){
-				alert(data.error);
+				console.log(data.error);
 			}
 		}
 	});
@@ -87,7 +87,7 @@ function casedbRead(caseID, val, callbackFn) {
 			if(data.status == 'success'){
 				callbackFn(caseID, val, investigation);
 			}else if(data.status == 'error'){
-				alert(data.error);
+				console.log(data.error);
 			}
 		}
 	});
@@ -144,7 +144,7 @@ function casedbFound(caseID, latlng, callbackFn) {
 			if(data.status == 'success'){
 				callbackFn( data.bikeID );
 			}else if(data.status == 'error'){
-				alert(data.error);
+				console.log(data.error);
 			}
 		}
 	});
@@ -177,7 +177,7 @@ function casedbUpdate(caseID, property, newVal, oldVal, callbackFn) {
 			if(data.status == 'success'){
 				callbackFn( data.bikeID );
 			}else if(data.status == 'error'){
-				alert(data.error);
+				console.log(data.error);
 			}
 		}
 	});

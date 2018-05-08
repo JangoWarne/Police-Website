@@ -83,6 +83,13 @@ function displayBike(bike) {
         } else {
             image = bike.imageList[0];
         }
+        
+        // Is case "Open"? then add button to assign
+        var createCaseBtn = '';
+        var isOpen = (investigation.caseStatus.toLowerCase().indexOf("open") != -1);
+        if  (isOpen) {
+			createCaseBtn = '<button class="edit_case" id="create-' + bike.caseID + '">Create Case</button>';
+        }
 
         // add new bike html
         var bikeRow = document.createElement('tr');
@@ -119,7 +126,7 @@ function displayBike(bike) {
                                 '<td class="case_heading">Frame Number:</td>' +
                                 '<td>' + bike.frameNumber + '</td>' +
                                 '<td rowspan="3" class="case_buttons">' +
-                                    '<button class="edit_case" id="create-' + bike.caseID + '">Create Case</button>' +
+                                    createCaseBtn +
                                 '</td>' +
                             '</tr>' +
                             '<tr class="case_row">' +
@@ -140,7 +147,9 @@ function displayBike(bike) {
        geocodeLocation(bikeID, investigation.latlngLastSeen);
 
         // add listeners for new buttons
-        document.getElementById("create-" + bike.caseID).addEventListener('click', createCase, false);
+        if (isOpen) {
+			document.getElementById("create-" + bike.caseID).addEventListener('click', createCase, false);
+        }
     });
 }
     
@@ -168,7 +177,7 @@ function createCase(evt) {
                 casedbUpdate(caseID, "caseStatus", "Under Investigation", "", function (bikeID){
                     
                     //send users to my-cases page
-                    window.location.href = "../my-cases/index.shtml"
+                    window.location.href = "../my-cases/index.shtml";
                 });
             });
         });

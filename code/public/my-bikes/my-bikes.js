@@ -25,9 +25,9 @@ function loadBikes() {
 			
 			for (i = 0; i < number; i++ ) {
 				// get bike ID
-				bikeID = bikeIDs[i];
+				bikeID = parseInt(bikeIDs[i]);
 				
-				displayBike(bikeID);
+				displayBike(bikeID, i);
 			}
 		});
 	}
@@ -36,7 +36,7 @@ function loadBikes() {
 
 
 //show bike from database
-function displayBike(bikeID) {
+function displayBike(bikeID, i) {
 	
 	// read bike from database
 	bikedbRead(bikeID, "", function (a, b, bike) {
@@ -112,6 +112,8 @@ function displayBike(bikeID) {
 			casedbRead(bike.caseID, "", function (a, b, investigation) {
 				// Is image missing?
 				var image;
+				console.log(bike);
+				console.log(bike.imageList);
 				if (bike.imageList[0] === undefined) {
 					image = "../../images/no-thumbnail.png";
 				} else {
@@ -190,13 +192,13 @@ function removeBike(evt) {
 	
 	// get user email
 	email = cookieRead("login_uemail");
-	
+	console.log(email);
 	// if cookie exists
 	if (email !== "" && email != "0") {
 		// get id for bike row
 		var parentID = evt.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.id;
 		var bikeID = parseInt(parentID.split('-')[2]);
-		
+		console.log(bikeID);
 		// remove bike row
 		var bikeRow = document.getElementById(parentID);
 		bikeRow.parentNode.removeChild(bikeRow);

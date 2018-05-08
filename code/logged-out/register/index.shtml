@@ -35,7 +35,7 @@
 		
 		<section class="centered">
 			<div id="divMessage"></div>
-			<form id="form-details" >
+			<form id="form-details" name="formDetails">
 <!--The action attribute specifies where to send the form-data when a form is submitted -->
 				<!-- first section covers name, email and password -->
 				<div class="box">
