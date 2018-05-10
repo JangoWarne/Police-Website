@@ -41,11 +41,11 @@ function displayBike(bikeID, i) {
 	// read bike from database
 	bikedbRead(bikeID, "", function (a, b, bike) {
 		
-		if (bike.caseID === 0) {
+		if (bike.caseID == 0) {
 			// Is image missing?
 			var image;
 			if (bike.imageList[0] === undefined) {
-				image = "../../images/no-thumbnail.png";
+				image = "../images/no-thumbnail.png";
 			} else {
 				image = bike.imageList[0];
 			}
@@ -62,7 +62,7 @@ function displayBike(bikeID, i) {
 										'<div class="bike_Image">'+
 											'<div class="outer_constraint">'+
 												'<div class="inner_constraint">'+
-													'<img src="' + image + '" alt="bike' + bikeID + '">'+
+													'<img src="../' + image + '" alt="bike' + bikeID + '">'+
 												'</div>'+
 											'</div>'+
 										'</div>'+
@@ -112,10 +112,9 @@ function displayBike(bikeID, i) {
 			casedbRead(bike.caseID, "", function (a, b, investigation) {
 				// Is image missing?
 				var image;
-				console.log(bike);
-				console.log(bike.imageList);
+				
 				if (bike.imageList[0] === undefined) {
-					image = "../../images/no-thumbnail.png";
+					image = "../images/no-thumbnail.png";
 				} else {
 					image = bike.imageList[0];
 				}
@@ -132,7 +131,7 @@ function displayBike(bikeID, i) {
 										'<div class="bike_Image">' +
 											'<div class="outer_constraint">' +
 												'<div class="inner_constraint">' +
-													'<img src="' + image + '" alt="bike' + bikeID + '">' +
+													'<img src="../' + image + '" alt="bike' + bikeID + '">' +
 												'</div>' +
 											'</div>' +
 										'</div>' +
@@ -192,13 +191,13 @@ function removeBike(evt) {
 	
 	// get user email
 	email = cookieRead("login_uemail");
-	console.log(email);
+	
 	// if cookie exists
 	if (email !== "" && email != "0") {
 		// get id for bike row
 		var parentID = evt.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.id;
 		var bikeID = parseInt(parentID.split('-')[2]);
-		console.log(bikeID);
+		
 		// remove bike row
 		var bikeRow = document.getElementById(parentID);
 		bikeRow.parentNode.removeChild(bikeRow);

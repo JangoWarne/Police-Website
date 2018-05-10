@@ -1,4 +1,3 @@
-var db; // global database object
 
 // add user to database of users
 function userdbAdd() {
@@ -127,7 +126,7 @@ function userdbReadFull(email, val, callbackFn) {
 
 
 // update single parameter for one user from database of users
-// oldval is only needed for login and bike ID lists (if there is no val for IDs set to "")
+// oldval is only needed for loginIDs and bikeIDs lists (if there is no val for IDs set to "")
 function userdbUpdate(email, property, newVal, oldVal, callbackFn) {
 	
 	// Update database (PHP)

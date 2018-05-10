@@ -92,7 +92,7 @@
 	}
 	
 	
-	// read all parameters for one user from database of users
+	// read one parameter for one user from database of users
 	function userdbRead()
 	{
 		// database settings
@@ -125,10 +125,12 @@
 			}
 			
 			// return JSON array of values
-			echo json_encode(array("status" => "success", "value" => $value, "val" => $result));
+			echo json_encode(array("status" => "success", "value" => $value));
 		} else {
 			echo json_encode(array("status" => "error", "error" => mysqli_error($connection)));
 		}
+		
+		mysqli_close($connection);
 	}
 	
 	
@@ -172,6 +174,8 @@
 		} else {
 			echo json_encode(array("status" => "error", "error" => mysqli_error($connection)));
 		}
+		
+		mysqli_close($connection);
 	}
 	
 	
@@ -187,9 +191,6 @@
 		$property	 = $_POST['property'];
 		$newVal		 = $_POST['newVal'];
 		$oldVal		 = $_POST['oldVal'];
-		
-	//		echo $$newVal;
-	//		echo $oldVal;
 		
 		$success = false;
 		
@@ -285,6 +286,8 @@
 		} else {
 			echo json_encode(array("status" => "error", "error" => $error));
 		}
+		
+		mysqli_close($connection);
 	}
 	
 	
@@ -309,6 +312,8 @@
 		} else {
 			echo json_encode(array("status" => "error", "error" => mysqli_error($connection)));
 		}
+		
+		mysqli_close($connection);
 	}
 	
 	

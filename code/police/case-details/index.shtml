@@ -108,27 +108,27 @@
 					<span class="bike_heading"> Frame Number: </span> <span id="bike-frame-number" class="bike_info">  </span> <br>
 					<span class="bike_heading"> Distinctive Items: </span> <br>
 					<span id="bike-items" class="bike_items">  </span> <br>
-					
-					<!-- Bike Images -->
-					<br>
-					<span class="bike_heading"> Bike Images: </span> <br>
-					<section class="image_bounds" id="bike-images">
-						<div class="column" id="col1">
-						</div>
-						<div class="column" id="col2">
-						</div>
-					</section> <br>
-					
-					<!-- Bike Found Images -->
-					<br>
-					<span class="bike_heading"> Bike Found Images: </span> <br>
-					<section class="image_bounds" id="found-images">
-						<div class="column" id="col1">
-						</div>
-						<div class="column" id="col2">
-						</div>
-					</section> <br>
 				</div>
+					
+				<!-- Bike Images -->
+				<br>
+				<span class="bike_heading"> Bike Images: </span> <br>
+				<section class="image_bounds" id="bike-images">
+					<div class="column" id="col1">
+					</div>
+					<div class="column" id="col2">
+					</div>
+				</section> <br>
+				
+				<!-- Bike Found Images -->
+				<br>
+				<span class="bike_heading"> Bike Found Images: </span> <br>
+				<section class="image_bounds" id="found-images">
+					<div class="column" id="col1">
+					</div>
+					<div class="column" id="col2">
+					</div>
+				</section> <br>
 			</div>
 			<br> <br>
 			

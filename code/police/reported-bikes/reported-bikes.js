@@ -79,7 +79,7 @@ function displayBike(bike) {
         // Is image missing?
         var image;
         if (bike.imageList[0] === undefined) {
-            image = "../../images/no-thumbnail.png";
+            image = "../images/no-thumbnail.png";
         } else {
             image = bike.imageList[0];
         }
@@ -103,7 +103,7 @@ function displayBike(bike) {
                                     '<div class="bike_Image">' +
                                         '<div class="outer_constraint">' +
                                             '<div class="inner_constraint">' +
-                                                '<img src="' + image + '" alt="bike' + bikeID + '">' +
+                                                '<img src="../' + image + '" alt="bike' + bikeID + '">' +
                                             '</div>' +
                                         '</div>' +
                                     '</div>' +
