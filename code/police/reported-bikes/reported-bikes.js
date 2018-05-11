@@ -1,7 +1,7 @@
 
 google.maps.event.addDomListener(window, 'load', initialize);
  
- var mapCenter = new google.maps.LatLng(51.884310, -2.164599);
+var mapCenter = new google.maps.LatLng(51.884310, -2.164599);
 var geocoder = new google.maps.Geocoder();
 var infowindow = new google.maps.InfoWindow();
 
