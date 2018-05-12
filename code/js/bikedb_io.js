@@ -51,7 +51,6 @@ function bikedbAdd( callbackFn ) {
 			
 		},
 		success: function(data){
-			console.log(data);
 			data = JSON.parse(data);  // parse JSON data into js object
 			
 			if(data.status == 'success'){
@@ -79,6 +78,7 @@ function bikedbRead(bikeID, val, callbackFn) {
 			
 		},
 		success: function(data){
+			console.log(data);
 			data = JSON.parse(data);  // parse JSON data into js object
 			
 			data.imageList = JSON.parse(data.imageList);

@@ -20,13 +20,22 @@
         <header id="logged-out-header">
 
             <!--#include virtual="/CT4009%202017-18%20001%201609415%2014%20Jan%202018/police/header.html" -->
-
+            
+            <div class="heading_text">
+                <h1>
+                    <a href="../my-cases/index.shtml">
+                        My Cases
+                    </a>
+                    <a id="link">
+                        / Case Details
+                    </a>
+                    / Marketplace Compare
+                </h1>
+            </div>
+            
         </header>
 
         <!-- Main Body -->
-
-
-
         <main>
             <center> <h1> Market-Place Compare </h1> </center>
 
@@ -37,33 +46,36 @@
                         <div class="align_center">
                         <center><h1> BIKE DETAILS </h1> </center>
                         </div>
+                        <div id="padding"> </div>
                         <hr />  <br>
-                        <div id= "bike-detail"></div>
+                        
+                        <div class="scroll">
+                            <div id= "bike-details"></div>
 
+                            <!-- Add / remove image section -->
+                            <section class="image_bounds">
+                                <div class="column" id="col1">
+                                </div>
+                                <div class="column" id="col2">
+                                </div>
+                            </section>
+                        </div>
                     </div>
-
-                     <!-- Add / remove image section -->
-                    <section class="image_bounds">
-
-                        <div class="column" id="col1">
-                        </div>
-
-                        <div class="column" id="col2">
-                        </div>
-                    </section>
                 </div>
+                
                 <div class="box" >
                     <div class="spacing">
                         <center> <h1> EBAY </h1> </center>
                         <form id="ebaysearch" name="ebaysearch" class="search" action="Marketcompare.php">
-                            <input type="text" name="query" placeholder="Search..">
-                            <input class="submit_button" type="submit"> <br>
+                            <input id="search-text" type="text" name="query" placeholder="Search..">
+                            <input id="search-button" class="submit_button" type="submit" value="Search"> <br>
                         </form>
 
-                        <hr />
+                        <hr />  <br>
                         
-                        <div id="results"></div>
-                        
+                        <div class="scroll">
+                            <table id="results"></table>
+                        </div>
                     </div>
                 </div>
             </section>
