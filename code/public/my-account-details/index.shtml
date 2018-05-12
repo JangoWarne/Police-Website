@@ -35,7 +35,7 @@
 	<main>
 		<section class="centered">
 			<!-- form to change account details -->
-			<form action="register.php" name="formDetails" method="post">
+			<form name="formDetails" method="post">
 				
 				<!-- first section covers name, email and password -->
 				<div class="box">

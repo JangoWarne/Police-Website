@@ -1,36 +1,33 @@
-var bikedb; // global database object
 
 // add bike to database of bikes
 function bikedbAdd( callbackFn ) {
 	
-	// open database then run callback
-	openBikeDatabase( function callback() {
-		var transaction = bikedb.transaction(["bikedb"], "readwrite");
-		var store = transaction.objectStore("bikedb");
+	// get number of existing images
+	var number = document.getElementsByClassName("images").length;
+	
+	// iterate through getting images to create list
+	var imageID;
+	var urlList = [];
+	for (i = 0; i < number; i++ ) {
 		
-		// get number of existing images
-		var number = document.getElementsByClassName("images").length;
+		imageID = "image-" + i + "-box";
 		
-		// iterate through getting images to create list
-		var imageID;
-		var urlList = [];
-		for (i = 0; i < number; i++ ) {
-			
-			imageID = "image-" + i + "-box";
-			
-			// get data url for image
-			var img = document.getElementById(imageID);
-			var style = img.currentStyle || window.getComputedStyle(img, false);
-			var url = style.backgroundImage.slice(4, -1).replace(/"/g, "");
-			
-			// add url to list
-			urlList.push(url);
-			
-		}	
+		// get data url for image
+		var img = document.getElementById(imageID);
+		var style = img.currentStyle || window.getComputedStyle(img, false);
+		var url = style.backgroundImage.slice(4, -1).replace(/"/g, "");
 		
-		
-		// Build bike object for object store
-		var bike = {
+		// add url to list
+		urlList.push(url);
+	}
+	
+	// Add object to database (PHP)
+	$.ajax({
+		type: "POST",
+		url: '../../php/bikedb_io.php',
+		data: {
+			caller: 'bikedbAdd',
+			
 			// read properties from window
 			brand: document.formDetails.txtBrand.value,
 			model: document.formDetails.txtModel.value,
@@ -48,197 +45,175 @@ function bikedbAdd( callbackFn ) {
 			tagID: document.formDetails.numTagID.value,
 			otherItems: document.formDetails.txtFeatures.value,
 			distinctiveMarks: document.formDetails.txtDescription.value,
-			imageList: urlList,
+			imageList: JSON.stringify(urlList),
 			caseID: 0,
-			ownerID: cookieRead("login_uemail"),
-		};
-		
-		// Add object to store
-		var add = store.add(bike);
-		
-		// report error to console if adding bike failed
-		add.onerror = function(e) { console.log("Error",e.target.error.name); };
-		
-		// do nothing if succesfull
-		add.onsuccess = function(e) {
-			callbackFn(e.target.result);
-		};
-		
-	} );
+			ownerID: cookieRead("login_uemail")
+			
+		},
+		success: function(data){
+			console.log(data);
+			data = JSON.parse(data);  // parse JSON data into js object
+			
+			if(data.status == 'success'){
+				callbackFn( data.bikeID );
+			}else if(data.status == 'error'){
+				console.log(data.error);
+			}
+		}
+	});
 }
 
 
 // read all parameters for one bike from database of bikes
-function bikedbRead(bikeID, val, callback) {
+function bikedbRead(bikeID, val, callbackFn) {
 	
-	// open database then run callback
-	openBikeDatabase( function openfun() {
-		var transaction = bikedb.transaction(["bikedb"], "readwrite");
-		var store = transaction.objectStore("bikedb");
-		
-		// Read object from store
-		var index = store.get(bikeID);
-		
-		// report error to console if reading failed
-		index.onerror = function(e) { console.log("Error",e.target.error.name); };
-		
-		// read property from object if succesfull
-		index.onsuccess = function(e) {
-			var storedVal;
+	// Read object from database (PHP)
+	$.ajax({
+		type: "POST",
+		url: '../../php/bikedb_io.php',
+		data: {
+			caller: 'bikedbRead',
 			
-			if (typeof index.result !== 'undefined') {
-				// copy read property to variable
-				storedVal = index.result;
-			} else {
-				storedVal = "";
-			}
+			// Bike to read
+			bikeID: bikeID
+			
+		},
+		success: function(data){
+			data = JSON.parse(data);  // parse JSON data into js object
+			
+			data.imageList = JSON.parse(data.imageList);
+			
+			// Build investigation object from database
+			var bike = {
+				brand: data.brand,
+				model: data.model,
+				bikeType: data.bikeType,
+				gender: data.gender,
+				colour: data.colour,
+				frameMaterial: data.frameMaterial,
+				frameSize: data.frameSize,
+				numberGears: data.numberGears,
+				suspension: data.suspension,
+				brakeType: data.brakeType,
+				handlebarType: data.handlebarType,
+				frameNumber: data.frameNumber,
+				tagBrand: data.tagBrand,
+				tagID: data.tagID,
+				otherItems: data.otherItems,
+				distinctiveMarks: data.distinctiveMarks,
+				imageList: data.imageList,//.split(","),
+				caseID: data.caseID,
+				ownerID: data.ownerID,
+				bikeID: data.bikeID
+			};
+			
 			// run code that uses property
-			callback(bikeID, val, storedVal);
-			
-			return;
-		};
-	} );
+			if(data.status == 'success'){
+				callbackFn(bikeID, val, bike);
+			}else if(data.status == 'error'){
+				console.log(data.error);
+			}
+		}
+	});
 }
 
+
 // read all bikes in the database
-function bikedbReadStolen(val, callback) {
+function bikedbReadStolen(val, callbackFn) {
 	
-	// open database then run callback
-	openBikeDatabase( function openfun() {
-		var transaction = bikedb.transaction(["bikedb"], "readwrite");
-		var store = transaction.objectStore("bikedb");
-		
-		// Getting all bikes from store 
-		var index = store.getAll();
-		
-		// report error to console if reading failed
-		index.onerror = function(e) { console.log("Error",e.target.error.name); };
-		
-		// read property from object if succesfull
-		index.onsuccess = function(e) {
-            bikes = index.result;
-            
-            //creating a var called storedVal to store the bikes reported stolen / that have a caseID
-            var storedVal = [];
-            //iterating for each element in the array
-            for (var i = 0; i < bikes.length; i++) {
-                
-                if(bikes[i].caseID !== 0) {
-                    storedVal.push(bikes[i]); 
-                }
-            }
-			// run code that uses property
-			callback(val, storedVal);
+	// Read object from database (PHP)
+	$.ajax({
+		type: "POST",
+		url: '../../php/bikedb_io.php',
+		data: {
+			caller: 'bikedbReadStolen'
 			
-			return;
-		};
-	} );
+		},
+		success: function(data){
+			// parse data
+			data = JSON.parse(data);  // parse JSON data into js object
+			bikes = JSON.parse(data.bikes);  // parse JSON data into js object
+			//console.log(bikes);
+			
+			// create bike array variable
+			var bikeArray = [];
+			var i = 0
+			
+			// create each bike object
+			bikes.forEach(function(entry) {
+				
+				entry.imageList = JSON.parse(entry.imageList);
+				
+			    // Build investigation object from database
+				var bike = {
+					brand: entry.brand,
+					model: entry.model,
+					bikeType: entry.bikeType,
+					gender: entry.gender,
+					colour: entry.colour,
+					frameMaterial: entry.frameMaterial,
+					frameSize: entry.frameSize,
+					numberGears: entry.numberGears,
+					suspension: entry.suspension,
+					brakeType: entry.brakeType,
+					handlebarType: entry.handlebarType,
+					frameNumber: entry.frameNumber,
+					tagBrand: entry.tagBrand,
+					tagID: entry.tagID,
+					otherItems: entry.otherItems,
+					distinctiveMarks: entry.distinctiveMarks,
+					imageList: entry.imageList,//.split(","),
+					caseID: entry.caseID,
+					ownerID: entry.ownerID,
+					bikeID: entry.bikeID
+				};
+				//console.log(bike);
+				// add bike to bike array
+				bikeArray[i] = bike;
+				i = i + 1;
+			});
+			
+			// run code that uses property
+			if(data.status == 'success'){
+				callbackFn(val, bikeArray);
+			}else if(data.status == 'error'){
+				console.log(data.error);
+			}
+		}
+	});
 }
 
 
 // update single parameter for one bike from database of bikes
-// oldval is only needed for login and bike ID lists (if there is no val for IDs set to "")
-function bikedbUpdate(bikeID, property, newVal, callback) {
+// oldval is only needed for imageList list (if there is no val for IDs set to "")
+function bikedbUpdate(bikeID, property, newVal, oldVal, callbackFn) {
 	
-	// open database then run callback
-	openBikeDatabase( function openfun() {
-		var transaction = bikedb.transaction(["bikedb"], "readwrite");
-		var store = transaction.objectStore("bikedb");
-		
-		// Read object from store
-		var index = store.get(bikeID);
-		
-		// report error to console if reading failed
-		index.onerror = function(e) { console.log("Error", e.target.error.name); };
-		
-		// read property from object if succesfull
-		index.onsuccess = function(e) {
-			if (typeof index.result !== 'undefined') {
-				// copy read property to variable
-				var storedVal = index.result;
-				
-				// update value
-				storedVal[property] = newVal;
-				
-				// Add object to store
-				var put = store.put(storedVal);
-				
-				// report error to console if adding bike failed
-				put.onerror = function(e) { console.log("Error",e.target.error.name); };
-				
-				// do nothing if succesfull
-				put.onsuccess = function(e) { callback(); };
-				
-			} else {
-				console.log("Property does not exist");
+	
+	// Update database (PHP)
+	$.ajax({
+		type: "POST",
+		url: '../../php/bikedb_io.php',
+		data: {
+			caller: 'bikedbUpdate',
+			
+			// User to Update
+			bikeID: bikeID,
+			
+			// read properties from window
+			property: property,
+			newVal: newVal,
+			oldVal: oldVal
+			
+		},
+		success: function(data){
+			data = JSON.parse(data);  // parse JSON data into js object
+			
+			if(data.status == 'success'){
+				callbackFn();
+			}else if(data.status == 'error'){
+				console.log(data.error);
 			}
-			
-			return;
-		};
-	} );
+		}
+	});
 }
 
-
-// add bike to database of bikes
-function openBikeDatabase(callback) {
-	
-	// does the browser support indexedDB?
-	if("indexedDB" in window) {
-		// open website database
-		var openRequest = indexedDB.open("bikedb",1);
-		
-		// create database object stores if required
-		openRequest.onupgradeneeded = function(e) { updateBikeDatabase(e); };
-		
-		// add bike if susscessfull
-		openRequest.onsuccess = function(e) {
-			// opening database succeded
-			bikedb = e.target.result;
-	
-			callback();
-			
-			// close open connection
-			bikedb.close();
-			return;
-		};
-		
-		// dump to console if error occured
-		openRequest.onerror = function(e) {
-			// dump list of object properties to console to aid in debugging
-			console.log("Error");
-			console.dir(e);
-			// close open connection
-			bikedb = e.target.result;
-			bikedb.close();
-			return;
-		};
-		
-		// close open database connection if blocked
-		openRequest.onblocked = function(e) {
-			// close the database connection
-			console.log('blocked');
-			bikedb = e.target.result;     
-			// close open connection   
-			bikedb.close();
-			return;
-		};
-	} else {
-		// alert bike that this website will not work
-		alert("IndexedDB broswer support required: This browser cannot run this wesbise as it does not support IndexedDB");
-		return;
-	}
-	
-}
-
-
-// update database required -> create database (can handle version upgrade if needed))
-function updateBikeDatabase(e) {
-	console.log("Upgrading...");
-	bikedb = e.target.result;
-	
-	// create missing bikedb
-	if(!bikedb.objectStoreNames.contains("bikedb")) {
-		// primary key is sequential unique number
-		bikedb.createObjectStore("bikedb", {keyPath: "bikeID", autoIncrement:true});
-	}
-}

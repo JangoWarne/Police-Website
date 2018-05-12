@@ -74,7 +74,7 @@ $('#form-found').on('submit', function(e) {
 				casedbFound(parseInt(caseID), selectedPos.latLng, function callback(bikeID) {
 					
 					// remove case id from bike
-					bikedbUpdate(parseInt(bikeID), "caseID", 0, function callback() {
+					bikedbUpdate(parseInt(bikeID), "caseID", 0, "", function callback() {
 						
 						// send user to bikes page
 						window.location.href = "../my-bikes/index.shtml";
@@ -108,7 +108,7 @@ $('#form-not-stolen').on('submit', function(e) {
 				casedbUpdate(parseInt(caseID), "caseStatus", "Closed", "", function callback(bikeID) {
 					
 					// remove case id from bike
-					bikedbUpdate(parseInt(bikeID), "caseID", 0, function callback() {
+					bikedbUpdate(parseInt(bikeID), "caseID", 0, "", function callback() {
 						
 						// send user to bikes page
 						window.location.href = "../my-bikes/index.shtml";

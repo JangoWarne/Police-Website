@@ -1,0 +1,5 @@
+Header set Cache-Control "max-age=0, private, no-cache, no-store, must-revalidate"
+
+php_value upload_max_filesize 50M
+
+php_value post_max_size 50M
