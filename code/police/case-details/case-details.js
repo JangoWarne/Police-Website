@@ -68,13 +68,13 @@ function loadCase() {
 		if (caseID !== "") {
 			// read case from database
 			casedbRead(caseID, "", function (a, b, investigation) {
-				console.log(investigation);
+				//console.log(investigation);
 				// read bike from database
 				bikedbRead(investigation.bikeID, "", function (a, b, bike) {
-					console.log(bike);
+					//console.log(bike);
 					// read user from database
 					userdbReadFull(investigation.userID, "", function (a, b, user) {
-						console.log(user);
+						//console.log(user);
 						// Display case, bike and user details on page
 						displayCase(investigation, bike, user);
 						
@@ -94,17 +94,17 @@ function displayCase(investigation, bike, user) {
 	var locationFound = "";
 	var dateTimeFound = "";
 	var foundStatus = "";
+	var bikeFoundImages = "";
 	
 	// Are bike images missing?
 	var image;
-	console.log(bike.imageList);
 	if (bike.imageList === undefined) {
-		image = "../../images/no-thumbnail.png";
+		bike.imageList[0] = "../images/no-thumbnail.png";
 	} else {
 		if (bike.imageList[0] === undefined) {
-			image = "../../images/no-thumbnail.png";
+			bike.imageList[0] = "../images/no-thumbnail.png";
 		} else {
-			image = bike.imageList[0];
+			// Do Nothing
 		}
 	}
 	
@@ -114,22 +114,33 @@ function displayCase(investigation, bike, user) {
 	if (foundStolen) {
 		// Are found images missing?
 		if (investigation.imagesFound === undefined) {
-			image = "../../images/no-thumbnail.png";
+			investigation.imagesFound[0] = "../images/no-thumbnail.png";
 		} else {
 			if (investigation.imagesFound[0] === undefined) {
-				imagesFound = "../../images/no-thumbnail.png";
+				investigation.imagesFound[0] = "../images/no-thumbnail.png";
 			} else {
-				imagesFound = bike.imageList;
+				// do nothing
 			}
 		}
 		
 		// Create bike recovered HTML
 		locationFound = 
 			'<span class="map_heading"> Location Found: <div id="green-box"></div> </span> <span id="location-found" class="map_info">' + /*Temporary div is replaced with location*/'<div class="replace2"></div>' + '</span> <br>';
+		
 		dateTimeFound = 
 			'<br>' +
 			'<span class="case_heading"> Date Found: </span> <span id="case-date-found" class="case_info">' + investigation.dateFound + '</span> <br>' +
 			'<span class="case_heading"> Time Found: </span> <span id="case-time-found" class="case_info">' + investigation.timeFound + '</span> <br>';
+		
+		bikeFoundImages = 
+			'<br>' +
+			'<span class="bike_heading"> Bike Found Images: </span> <br>' +
+			'<section class="image_bounds" id="found-images">' +
+				'<div class="column" id="col1_found-images">' +
+				'</div>' +
+				'<div class="column" id="col2_found-images">' +
+				'</div>' +
+			'</section> <br>';
 	}
 	
 	// Stolen status
@@ -218,21 +229,13 @@ function displayCase(investigation, bike, user) {
 					'<br>' +
 					'<span class="bike_heading"> Bike Images: </span> <br>' +
 					'<section class="image_bounds" id="bike-images">' +
-						'<div class="column" id="col1">' +
+						'<div class="column" id="col1_bike-images">' +
 						'</div>' +
-						'<div class="column" id="col2">' +
+						'<div class="column" id="col2_bike-images">' +
 						'</div>' +
 					'</section> <br>' +
 					
-					'<!-- Bike Found Images -->' +
-					'<br>' +
-					'<span class="bike_heading"> Bike Found Images: </span> <br>' +
-					'<section class="image_bounds" id="found-images">' +
-						'<div class="column" id="col1">' +
-						'</div>' +
-						'<div class="column" id="col2">' +
-						'</div>' +
-					'</section> <br>' +
+					'<!-- Bike Found Images -->' + bikeFoundImages +
 				'</div>' +
 			'</div>' +
 			'<br> <br>' +
@@ -391,16 +394,16 @@ function geocodeLocation(locationTag, latlng) {
 
 // insert images into page
 function addImages(locationID, imagesList) {
-	
+	//console.log(imagesList.length);
 	// get locations to insert images
 	var imageLocation = document.getElementById(locationID);
-	var col1 = imageLocation.getElementsByClassName("col1")[0];
-	var col2 = imageLocation.getElementsByClassName("col2")[0];
+	var col1 = "col1_" + locationID;
+	var col2 = "col2_" + locationID;
 	
 	
 	//Loop through the FileList and render image files as thumbnails.
-	for (var i = 0; i == imagesList.length; i++) {
-		
+	for (var i = 0; i < imagesList.length; i++) {
+		//console.log(1);
 		// Add image to page
 		
 		// number of existing images
@@ -420,13 +423,20 @@ function addImages(locationID, imagesList) {
 		// add new image html
 		var imageArticle = document.createElement('article');
 		imageArticle.className = "images";
-		imageArticle.id = imageID;
-		imageCol.appendChild(imageArticle);
-		
+		imageArticle.id = imageID+"_"+locationID;
+		document.getElementById(imageCol).appendChild(imageArticle);
+		//console.log(imageCol);
+		//console.log(document.getElementById(imageCol));
 		// add new image as background
-		imageLocation.getElementById(imageID).style.backgroundImage = "url(" + imagesList[i] + ")";
+		document.getElementById(imageID+"_"+locationID).style.backgroundImage = "url(../" + imagesList[i] + ")";
 		
 	}
+}
+
+
+// check if a number is even (non numbers return undefined))
+function isEven(n) {
+  return n == parseFloat(n)? !(n%2) : void 0;
 }
 
 

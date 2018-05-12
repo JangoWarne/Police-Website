@@ -64,7 +64,7 @@ $('#form-report').on('submit', function(e) {
 				casedbAdd(bikeID, selectedPos.latLng, function callback(result) {
 					
 					// add case id to bike
-					bikedbUpdate(parseInt(bikeID), "caseID", result, function callback() {
+					bikedbUpdate(parseInt(bikeID), "caseID", result, "", function callback() {
 						
 						// send user to bikes page
 						window.location.href = "../my-bikes/index.shtml";

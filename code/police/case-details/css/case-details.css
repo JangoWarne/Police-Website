@@ -120,7 +120,9 @@ span {
 /* style added images */
 .image_bounds{
 	margin: 0 auto 0 auto;
-	width: 87%;
+	margin-left: -100px;
+	width: 140%;
+	overflow: auto; /* fix for image out of bounds */
 }
 .column{
     float: left;
