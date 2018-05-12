@@ -170,8 +170,8 @@ function bikedbReadStolen(val, callbackFn) {
 				//console.log(bike);
 				// add bike to bike array
 				bikeArray[i] = bike;
+				i = i + 1;
 			});
-			
 			
 			// run code that uses property
 			if(data.status == 'success'){
