@@ -1,9 +1,9 @@
 <?php
 
 	$servername = "localhost:3306";
-	$username = "s1711500_user";
-	$password = "?]c}pz&zT}v+";
-	$dbname = "s1711500_police-website";
+	$username = "s1609415_user";
+	$password = "BTG=G~).#xKg";
+	$dbname = "s1609415_police-website";
 
 	$connection = new mysqli($servername, $username, $password, $dbname);
 

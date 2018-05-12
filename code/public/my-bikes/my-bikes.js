@@ -25,9 +25,9 @@ function loadBikes() {
 			
 			for (i = 0; i < number; i++ ) {
 				// get bike ID
-				bikeID = bikeIDs[i];
+				bikeID = parseInt(bikeIDs[i]);
 				
-				displayBike(bikeID);
+				displayBike(bikeID, i);
 			}
 		});
 	}
@@ -36,16 +36,16 @@ function loadBikes() {
 
 
 //show bike from database
-function displayBike(bikeID) {
+function displayBike(bikeID, i) {
 	
 	// read bike from database
 	bikedbRead(bikeID, "", function (a, b, bike) {
 		
-		if (bike.caseID === 0) {
+		if (bike.caseID == 0) {
 			// Is image missing?
 			var image;
 			if (bike.imageList[0] === undefined) {
-				image = "../../images/no-thumbnail.png";
+				image = "../images/no-thumbnail.png";
 			} else {
 				image = bike.imageList[0];
 			}
@@ -62,7 +62,7 @@ function displayBike(bikeID) {
 										'<div class="bike_Image">'+
 											'<div class="outer_constraint">'+
 												'<div class="inner_constraint">'+
-													'<img src="' + image + '" alt="bike' + bikeID + '">'+
+													'<img src="../' + image + '" alt="bike' + bikeID + '">'+
 												'</div>'+
 											'</div>'+
 										'</div>'+
@@ -112,8 +112,9 @@ function displayBike(bikeID) {
 			casedbRead(bike.caseID, "", function (a, b, investigation) {
 				// Is image missing?
 				var image;
+				
 				if (bike.imageList[0] === undefined) {
-					image = "../../images/no-thumbnail.png";
+					image = "../images/no-thumbnail.png";
 				} else {
 					image = bike.imageList[0];
 				}
@@ -130,7 +131,7 @@ function displayBike(bikeID) {
 										'<div class="bike_Image">' +
 											'<div class="outer_constraint">' +
 												'<div class="inner_constraint">' +
-													'<img src="' + image + '" alt="bike' + bikeID + '">' +
+													'<img src="../' + image + '" alt="bike' + bikeID + '">' +
 												'</div>' +
 											'</div>' +
 										'</div>' +

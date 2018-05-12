@@ -1,45 +1,38 @@
 
-//Password Validate
-//The following lines of code checks whether
-//or not user entered the same password in both
-//paasword and confirm password textbox
-var password = document.getElementById("txtPassword");
-var confirmPassword = document.getElementById("txtConfirm");
-
-//function validatePassword(){
-  //if(password.value != confirmPassword.value) {
-    //confirmPassword.setCustomValidity("Passwords Don't Match");
-  //} else {
-    //confirmPassword.setCustomValidity('');
-  //}
-//}
-
-//password.onchange = validatePassword;
-//confirmPassword.onkeyup = validatePassword;
-
-
-//Event handler for registration form submit 
-$('#form-details').submit(function(event){
-    // cancels the form submission
-    formData = $('#form-details').serialize();
-    //alert(formData);
-	event.preventDefault();
-
-	$.ajax({
+// check user detail when register is clicked and if valid go to myBikes
+$('#form-details').on('submit', function(e) {
+	e.preventDefault();  //prevent form from submitting
+	
+	// load password values
+	var password = document.formDetails.txtPassword.value;
+	var confirm = document.formDetails.txtConfirm.value;
+	
+	// check confirmed password matches password values
+	if (password == confirm) {
 		
-		type: "POST",
-		url: "RegisterDAO.php",
-		data: formData+"&phpfunction=createUser",
-		success: function(echoedMsg){
-			if(echoedMsg==true){
-				window.location="../login/index.shtml";
-			}else{
-				$("#divMessage").html(echoedMsg);
+		// load email values
+		var email = document.formDetails.txtEmail.value;
+		
+		// compare values to database
+		dbid = userdbRead(email, "email", password, function update(email, password, dbEmail){
+			
+			// if user does not exist
+			if (email != dbEmail) {
+				
+				// add content to database
+				userdbAdd();
+				
+				// send user to login page
+				window.location.href = "../login/index.shtml";
+				
+			} else {
+				// else alert user that user exists
+				alert("User exists");
 			}
-		},
-		error: function(msg){
-			console.log(msg);
-		}
-	});
+		});
+		
+	} else {
+		// else alert user that password or email is invalid
+		alert("Passwords do not match");
+	}
 });
-
