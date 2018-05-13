@@ -60,9 +60,6 @@ $("#logout").click(function(){
 	// delete userdb IDs
 	userdbLogout();
 	
-	// delete cookie
-	cookieDelete();
-	
 	// redirect to my-bikes
 	window.location.href = "../../logged-out/main/index.shtml";
 	

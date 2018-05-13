@@ -1,5 +1,0 @@
-Every table must have a PRIMARY KEY. This is determined by what comes after 'keypath' found on .js file connected with DB
-
-Select appropriate data types. Reference https://www.w3schools.com/sql/sql_datatypes.asp
-
-varchar has a maximum value of 1000 on this version of SQL 

@@ -141,7 +141,7 @@
 				if ($value == NULL) {$value = "";}
 				
 				// return JSON array of values
-				echo json_encode(array("status" => "success", "value" => $value));
+				echo json_encode(array("status" => "success", "value" => $value, "officer" => $username));
 			} else {
 				echo json_encode(array("status" => "error", "error" => mysqli_error($connection)));
 			}

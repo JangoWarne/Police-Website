@@ -32,7 +32,7 @@ $('#form-login').on('submit', function(e) {
 		
 		// if username was entered
 		// compare values to police user database
-		dbid = officerdbRead(user, password, function(){
+		officerdbLogin(user, password, function(){
 			
 			// send user to myCases page
 			window.location.href = "../../police/my-cases/index.shtml";

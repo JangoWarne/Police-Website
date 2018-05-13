@@ -1,13 +1,13 @@
 
 // read single parameter for one officer from database of officers
-function officerdbLogout(username, password, callbackFn) {
+function officerdbLogin(username, password, callbackFn) {
 	
 	// Read object from database (PHP)
 	$.ajax({
 		type: "POST",
 		url: '../../php/officerdb_io.php',
 		data: {
-			caller: 'officerdbRead',
+			caller: 'officerdbLogin',
 			
 			// property to read
 			username: username,
@@ -57,7 +57,7 @@ function officerdbRead(property, val, callbackFn) {
 			
 			// run code that uses property
 			if(data.status == 'success'){
-				callbackFn(username, val, storedVal);
+				callbackFn(data.officer, val, storedVal);
 			}else if(data.status == 'error'){
 				console.log(data.error);
 			}

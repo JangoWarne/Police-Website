@@ -67,6 +67,8 @@
 		// delete session
 		session_destroy();
 		
+		sleep(2);
+		
 		// user is logged out
 		echo json_encode(array("status" => "logout"));
 	}
