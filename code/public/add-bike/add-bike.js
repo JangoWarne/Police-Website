@@ -136,22 +136,15 @@ function isEven(n) {
 $('#form-details').on('submit', function(e) {
 	e.preventDefault();  //prevent form from submitting
 	
-	
-	email = cookieRead("login_uemail");
-	
-	// if cookie exists
-	if (email !== "" && email != "0") {
+	// add content to database
+	bikedbAdd(function (result) {
 		
-		// add content to database
-		bikeID = bikedbAdd(function (result) {
+		// add bike id to user
+		userdbUpdate("", "bikeIDs", result, "", function callback() {
 			
-			// add bike id to user
-			userdbUpdate(email, "bikeIDs", result, "", function callback() {
-				
-				// send user to login page
-				window.location.href = "../my-bikes/index.shtml";
-			});
+			// send user to login page
+			window.location.href = "../my-bikes/index.shtml";
 		});
-	}
+	});
 });
 

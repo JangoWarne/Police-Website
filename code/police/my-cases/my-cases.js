@@ -44,35 +44,28 @@ $(function() {
 
 // load bikes from database
 function loadBikes() {
-	
-	// check if username cookie exists and is non zero (not being deleted)
-	username = cookieRead("login_uname");
-	
-	// if cookie exists
-	if (username !== "" && username != "0") {
 		
-		// get case IDs for account
-		officerdbRead(username, "caseIDs", "", function (a, b, caseIDs) {
+	// get case IDs for account
+	officerdbRead("caseIDs", "", function (a, b, caseIDs) {
+		
+		// iterate through caseIDs
+		for (i = 0; i < caseIDs.length; i++ ) {
 			
-			// iterate through caseIDs
-			for (i = 0; i < caseIDs.length; i++ ) {
+			// get case ID
+			caseID = parseInt(caseIDs[i]);
+	
+			// read case from database
+			casedbRead(caseID, "", function (a, b, investigation) {
 				
-				// get case ID
-				caseID = parseInt(caseIDs[i]);
-		
-				// read case from database
-				casedbRead(caseID, "", function (a, b, investigation) {
-					
-					// read bike from database
-					bikedbRead(investigation.bikeID, "", function (a, b, bike) {
-					
-						displayBike(investigation, bike);
-					
-					});
+				// read bike from database
+				bikedbRead(investigation.bikeID, "", function (a, b, bike) {
+				
+					displayBike(investigation, bike);
+				
 				});
-			}
-		});
-	}
+			});
+		}
+	});
 }
 
 
@@ -95,20 +88,20 @@ function displayBike(investigation, bike) {
     var ddUnderInv = "";
     var ddUIContact = "";
     switch (investigation.caseStatus.toLowerCase()) {
-	    case "open":
-	    	ddOpen = ' selected="selected"';
-	    	break;
-	    case "closed":
-	    	ddClosed = ' selected="selected"';
-	    	break;
-	    case "under investigation":
-	    	ddUnderInv = ' selected="selected"';
-	    	break;
-	    case "under investigation: contacting user":
-	    	ddUIContact = ' selected="selected"';
-	    	break;
-	    default:
-	    	ddUnderInv = ' selected="selected"';
+		case "open":
+			ddOpen = ' selected="selected"';
+			break;
+		case "closed":
+			ddClosed = ' selected="selected"';
+			break;
+		case "under investigation":
+			ddUnderInv = ' selected="selected"';
+			break;
+		case "under investigation: contacting user":
+			ddUIContact = ' selected="selected"';
+			break;
+		default:
+			ddUnderInv = ' selected="selected"';
     }
 
     // add new bike html
@@ -156,10 +149,10 @@ function displayBike(investigation, bike) {
                         '<tr class="case_row">' +
                             '<td class="case_heading">Status:	</td>' +
 							'<td><select id="select-' + bikeID + '" class="dropdown">' +
-							  '<option value="Open"' + ddOpen + '>Open</option>' +
-							  '<option value="Closed"' + ddClosed + '>Closed</option>' +
-							  '<option value="Under Investigation"' + ddUnderInv + '>Under Investigation</option>' +
-							  '<option value="Under Investigation: Contacting User"' + ddUIContact + '>Contacting User</option>' +
+								'<option value="Open"' + ddOpen + '>Open</option>' +
+								'<option value="Closed"' + ddClosed + '>Closed</option>' +
+								'<option value="Under Investigation"' + ddUnderInv + '>Under Investigation</option>' +
+								'<option value="Under Investigation: Contacting User"' + ddUIContact + '>Contacting User</option>' +
 							'</select></td>' +
                         '</tr>' +
                     '</table>' +
@@ -180,7 +173,7 @@ function displayBike(investigation, bike) {
     // add listener for dropdown
     //
     /*
-	    $(".cusDD_opt").on('click', function() {
+		$(".cusDD_opt").on('click', function() {
 			alert($(this).parent().find("[selected='selected']").text());
 		});
 	*/

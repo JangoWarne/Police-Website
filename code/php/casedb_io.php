@@ -1,30 +1,35 @@
 <?php
+	// include files
+	require_once 'session_io.php';
 	
 	// Run different code based on caller
 	// If caller value exists
 	if(isset($_POST['caller']))
 	{
-		// switch function based on caller
-	    switch ($_POST['caller']) {
-		    
-		    case 'casedbAdd':
-		        casedbAdd();
-		        break;
-		        
-		    case 'casedbRead':
-		        casedbRead();
-		        break;
-		        
-		    case 'casedbFound':
-		        casedbFound();
-		        break;
-		        
-		    case 'casedbUpdate':
-		        casedbUpdate();
-		        break;
-		        
-		    default:
-		        // unknown caller - do nothing
+		// if logged in
+		if (checkSession()) {
+			// switch function based on caller
+		    switch ($_POST['caller']) {
+			    
+			    case 'casedbAdd':
+			        casedbAdd();
+			        break;
+			        
+			    case 'casedbRead':
+			        casedbRead();
+			        break;
+			        
+			    case 'casedbFound':
+			        casedbFound();
+			        break;
+			        
+			    case 'casedbUpdate':
+			        casedbUpdate();
+			        break;
+			        
+			    default:
+			        // unknown caller - do nothing
+			}
 		}
 	}
 	

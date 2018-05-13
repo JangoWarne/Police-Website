@@ -1,54 +1,27 @@
 
-// Check if user is logged on: if yes -> redirect to my-bikes, if not -> stay on page
-var email;
-var id;
-var dbid;
-
-verify();
-
-
-// check if user is logged in
-function verify() {
-	// check if email cookie exists and is non zero (not being deleted)
-	email = cookieRead("login_uemail");
-	
-	// compare cookie if it exists
-	if (email !== "" && email != "0") {
+// Check if user is logged on: if yes -> stay on page, if not -> redirect to login
+// Get php session information
+$.ajax({
+	type: "POST",
+	url: '../../php/checkLogin.php',
+	data: {},
+	success: function(data){
+		data = JSON.parse(data);  // parse JSON data into js object
 		
-		// check if id is valid (compare cookie and db) if it exists
-		id = cookieRead("login_uuid");
-		if (id !== ""  && id != "0") {
-			userdbRead(email, "loginIDs", id, update);
+		// check login status
+		if(data.loggedIn){
+			
+			// redirect to correct logged in page
+			if(data.officer){
+				// redirect to my-cases
+				window.location.replace("../../police/my-cases/index.shtml");
+			} else {
+				// Do nothing
+			}
+		}else{
+			// redirect to login page
+			window.location.replace("../../logged-out/login/index.shtml");
 		}
-		
-	} else {
-		
-		// redirect to logged out main page
-		window.location.replace("../../logged-out/login/index.shtml");
-		
 	}
-	
-}
-
-
-// update login UUID
-function update(email, id, dbid) {
-	
-	var index = dbid.indexOf(id);
-	
-	if ( index != -1 ) {
-		
-		// update cookie and userdb
-		remember = cookieRead("login_uremember"); // retain remember-me status
-		id = cookieCreate(email, remember);
-		
-		userdbUpdate(email, "loginIDs", id, dbid[index], function callback() {});
-		
-	} else {
-		
-		// delete invalid cookie
-		cookieDelete();
-		
-	}
-}
+});
 

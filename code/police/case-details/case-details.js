@@ -54,34 +54,27 @@ function initializeMap(){
 
 // load bikes from database
 function loadCase() {
-	
-	// check if email cookie exists and is non zero (not being deleted)
-	email = cookieRead("login_uname");
-	
-	// if cookie exists
-	if (email !== "" && email != "0") {
 		
-		// if URL caseID parameter exists
-		params = new URLSearchParams( document.location.search.substring(1) );
-		caseID = params.get("caseID");
-		
-		if (caseID !== "") {
-			// read case from database
-			casedbRead(caseID, "", function (a, b, investigation) {
-				//console.log(investigation);
-				// read bike from database
-				bikedbRead(investigation.bikeID, "", function (a, b, bike) {
-					//console.log(bike);
-					// read user from database
-					userdbReadFull(investigation.userID, "", function (a, b, user) {
-						//console.log(user);
-						// Display case, bike and user details on page
-						displayCase(investigation, bike, user);
-						
-					});
+	// if URL caseID parameter exists
+	params = new URLSearchParams( document.location.search.substring(1) );
+	caseID = params.get("caseID");
+	
+	if (caseID !== "") {
+		// read case from database
+		casedbRead(caseID, "", function (a, b, investigation) {
+			//console.log(investigation);
+			// read bike from database
+			bikedbRead(investigation.bikeID, "", function (a, b, bike) {
+				//console.log(bike);
+				// read user from database
+				userdbReadFull(investigation.userID, "", function (a, b, user) {
+					//console.log(user);
+					// Display case, bike and user details on page
+					displayCase(investigation, bike, user);
+					
 				});
 			});
-		}
+		});
 	}
 	
 }
@@ -353,8 +346,8 @@ function createMarker(colour, latlng) {
 	}
 	
 	var iconObj = {
-	    url: iconImage, // url
-	    scaledSize: new google.maps.Size(30, 50) // scaled size
+		url: iconImage, // url
+		scaledSize: new google.maps.Size(30, 50) // scaled size
 	};
 	
 	// create map marker       

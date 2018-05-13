@@ -8,7 +8,7 @@ $(function() {
 	dropList = document.getElementById("dropdown-area");
 	
 	// When the user scrolls the page, execute scrollFun 
-	window.onscroll = function() {scrollFun()};
+	window.onscroll = function() {scrollFun();};
 	
 	// Create variables for the header and the header offset
 	headerbar = document.getElementsByClassName("heading_text")[0];
@@ -37,10 +37,11 @@ $("#account-button").click(function(){
 
 // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
 function scrollFun() {
+	var classNam;
 	if (typeof headerbar !== 'undefined') {
-		var className = "stickybar";
+		className = "stickybar";
 	} else {
-		var className = "sticky";
+		className = "sticky";
 	}
 	
 	if (typeof header !== 'undefined') {
@@ -57,8 +58,7 @@ function scrollFun() {
 $("#logout").click(function(){
 	
 	// delete userdb IDs
-	email = cookieRead("login_uemail");
-	officerdbLogout(email);
+	officerdbLogout();
 	
 	// delete cookie
 	cookieDelete();

@@ -20,12 +20,6 @@ function initialize(){
 	myMap = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
 	
 	
-	// load bikes after map (to allow markers to be added to map)
-	window.setTimeout(function() {
-		//loadBikes();
-    }, 1000);
-	
-	
 	// update address shown above marker
 	function showAddressInInfoWindow(results) {
 		if (results[0]) {
@@ -40,7 +34,7 @@ function initialize(){
 		// clear bikes
 		var list = document.getElementById("biketable");
 		while (list.hasChildNodes()) {   
-		    list.removeChild(list.firstChild);
+			list.removeChild(list.firstChild);
 		}
 		
 		// update bikes
@@ -51,60 +45,54 @@ function initialize(){
 
 // load bikes from database
 function loadBikes() {
-	// check if username cookie exists and is non zero (not being deleted)
-	username = cookieRead("login_uname");
+		
+	// get map bounds
+	var bounds = myMap.getBounds();
+	var NE = bounds.getNorthEast();
+	var SW = bounds.getSouthWest();
 	
-	// if cookie exists
-	if (username !== "" && username != "0") {
-		
-		// get map bounds
-		var bounds = myMap.getBounds();
-		var NE = bounds.getNorthEast();
-		var SW = bounds.getSouthWest();
-		
-		if (NE.lat() > SW.lat()) {
-			latMax = NE.lat();
-			latMin = SW.lat();
-		} else {
-			latMax = SW.lat();
-			latMin = NE.lat();
-		}
-		
-		if (NE.lng() > SW.lng()) {
-			lngMax = NE.lng();
-			lngMin = SW.lng();
-		} else {
-			lngMax = SW.lng();
-			lngMin = NE.lng();
-		}
-		
-		// get list of all stolen bikes
-        bikedbReadStolen("", function (b, bikes) {
-	        
-			// iterate through bikeIDs
-			var number = bikes.length;
-			var bike;
-			
-			for (i = 0; i < number; i++ ) {
-				// get single bike
-				bike = bikes[i];
-				
-			    // read case from database
-			    casedbRead(bike.caseID, bike, function (a, bike, investigation) {
-				    
-					// bike stolen location
-					latBike = investigation.latlngLastSeen.lat;
-					lngBike = investigation.latlngLastSeen.lng;
-					
-					// display bike if within bounds
-					if (latMax >= latBike && latBike >= latMin && lngMax >= lngBike && lngBike >= lngMin) {
-						
-	                	displayBike(bike, investigation);
-	                }
-				});
-			}
-		});
+	if (NE.lat() > SW.lat()) {
+		latMax = NE.lat();
+		latMin = SW.lat();
+	} else {
+		latMax = SW.lat();
+		latMin = NE.lat();
 	}
+	
+	if (NE.lng() > SW.lng()) {
+		lngMax = NE.lng();
+		lngMin = SW.lng();
+	} else {
+		lngMax = SW.lng();
+		lngMin = NE.lng();
+	}
+	
+	// get list of all stolen bikes
+    bikedbReadStolen("", function (b, bikes) {
+        
+		// iterate through bikeIDs
+		var number = bikes.length;
+		var bike;
+		
+		for (i = 0; i < number; i++ ) {
+			// get single bike
+			bike = bikes[i];
+			
+			// read case from database
+			casedbRead(bike.caseID, bike, function (a, bike, investigation) {
+				
+				// bike stolen location
+				latBike = investigation.latlngLastSeen.lat;
+				lngBike = investigation.latlngLastSeen.lng;
+				
+				// display bike if within bounds
+				if (latMax >= latBike && latBike >= latMin && lngMax >= lngBike && lngBike >= lngMin) {
+					
+					displayBike(bike, investigation);
+                }
+			});
+		}
+	});
 }
 
 
@@ -200,32 +188,26 @@ function displayBike(bike, investigation) {
     
 // remove bike when user clicks "Create Case"
 function createCase(evt) {
-	// check if username cookie exists and is non zero (not being deleted)
-	username = cookieRead("login_uname");
 	
-	// if cookie exists
-	if (username !== "" && username != "0") {
-        
-        // get case id
-        var buttonID = evt.target.id;
-        //takes string and turns into actual no.
-        var caseID = parseInt(buttonID.split('-')[1]);
-        
-        //assign case to officer
-        officerdbUpdate(username, "caseIDs", caseID, "", function (){
-        
-            //assign officer to case
-            casedbUpdate(caseID, "officerID", username, "", function (bikeID){
+    // get case id
+    var buttonID = evt.target.id;
+    //takes string and turns into actual no.
+    var caseID = parseInt(buttonID.split('-')[1]);
+    
+    //assign case to officer
+    officerdbUpdate("caseIDs", caseID, "", function (username){
+    
+        //assign officer to case
+        casedbUpdate(caseID, "officerID", username, "", function (bikeID){
 
-                //change case status
-                casedbUpdate(caseID, "caseStatus", "Under Investigation", "", function (bikeID){
-                    
-                    //send users to my-cases page
-                    window.location.href = "../my-cases/index.shtml";
-                });
+            //change case status
+            casedbUpdate(caseID, "caseStatus", "Under Investigation", "", function (bikeID){
+                
+                //send users to my-cases page
+                window.location.href = "../my-cases/index.shtml";
             });
         });
-	}
+    });
 }
 
 

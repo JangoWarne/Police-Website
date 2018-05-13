@@ -1,6 +1,6 @@
 
 // read single parameter for one officer from database of officers
-function officerdbRead(username, property, val, callbackFn) {
+function officerdbLogout(username, password, callbackFn) {
 	
 	// Read object from database (PHP)
 	$.ajax({
@@ -9,8 +9,36 @@ function officerdbRead(username, property, val, callbackFn) {
 		data: {
 			caller: 'officerdbRead',
 			
-			// officer to read
+			// property to read
 			username: username,
+			password: password
+			
+		},
+		success: function(data){
+			data = JSON.parse(data);  // parse JSON data into js object
+			
+			// run code that uses property
+			if(data.status == 'success'){
+				callbackFn();
+			}else if(data.status == 'invalid'){
+				alert(data.error);
+			}else if(data.status == 'error'){
+				console.log(data.error);
+			}
+		}
+	});
+}
+
+
+// read single parameter for one officer from database of officers
+function officerdbRead(property, val, callbackFn) {
+	
+	// Read object from database (PHP)
+	$.ajax({
+		type: "POST",
+		url: '../../php/officerdb_io.php',
+		data: {
+			caller: 'officerdbRead',
 			
 			// property to read
 			property: property
@@ -20,7 +48,7 @@ function officerdbRead(username, property, val, callbackFn) {
 			data = JSON.parse(data);  // parse JSON data into js object
 			
 			// get returned value
-			if (property == "loginIDs" || property == "caseIDs") {
+			if (property == "caseIDs") {
 				storedVal = JSONparse(data.value , "", {});
 				storedVal = Object.values(storedVal);
 			} else {
@@ -40,7 +68,7 @@ function officerdbRead(username, property, val, callbackFn) {
 
 // update single parameter for one officer from database of officers
 // oldval is only needed for loginID and caseID lists (if there is no val for IDs set to "")
-function officerdbUpdate(username, property, newVal, oldVal, callbackFn) {
+function officerdbUpdate(property, newVal, oldVal, callbackFn) {
 	
 	// Update database (PHP)
 	$.ajax({
@@ -48,9 +76,6 @@ function officerdbUpdate(username, property, newVal, oldVal, callbackFn) {
 		url: '../../php/officerdb_io.php',
 		data: {
 			caller: 'officerdbUpdate',
-			
-			// officer to Update
-			username: username,
 			
 			// read properties from window
 			property: property,
@@ -62,7 +87,7 @@ function officerdbUpdate(username, property, newVal, oldVal, callbackFn) {
 			data = JSON.parse(data);  // parse JSON data into js object
 			
 			if(data.status == 'success'){
-				callbackFn();
+				callbackFn(username);
 			}else if(data.status == 'error'){
 				console.log(data.error);
 			}
@@ -72,7 +97,7 @@ function officerdbUpdate(username, property, newVal, oldVal, callbackFn) {
 
 
 // deletes all login IDs
-function officerdbLogout(username) {
+function officerdbLogout() {
 	
 	// Logout officer in database (PHP)
 	$.ajax({
@@ -81,14 +106,11 @@ function officerdbLogout(username) {
 		data: {
 			caller: 'officerdbLogout',
 			
-			// officer to logout
-			username: username
-			
 		},
 		success: function(data){
 			data = JSON.parse(data);  // parse JSON data into js object
 			
-			if(data.status == 'success'){
+			if(data.status == "logout"){
 				// Do Nothing
 			}else if(data.status == 'error'){
 				console.log(data.error);

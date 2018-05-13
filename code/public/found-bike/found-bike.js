@@ -58,29 +58,27 @@ function clickFileSelect(evt) {
 $('#form-found').on('submit', function(e) {
 	e.preventDefault();  //prevent form from submitting
 	
-	// if cookie exists
-	email = cookieRead("login_uemail");
-	if (email !== "" && email != "0") {
-		// if URL bikeID parameter exists
-		params = new URLSearchParams( document.location.search.substring(1) );
-		caseID = params.get("caseID");
+	// if URL bikeID parameter exists
+	params = new URLSearchParams( document.location.search.substring(1) );
+	caseID = params.get("caseID");
+	
+	if (caseID !== "") {
 		
-		if (caseID !== "") {
+		// if marker has been moved on map (value has been recorded)
+		if ( !jQuery.isEmptyObject(selectedPos) ) {
 			
-			// if marker has been moved on map (value has been recorded)
-			if ( !jQuery.isEmptyObject(selectedPos) ) {
+			// add content to database
+			casedbFound(parseInt(caseID), selectedPos.latLng, function callback(bikeID) {
 				
-				// add content to database
-				casedbFound(parseInt(caseID), selectedPos.latLng, function callback(bikeID) {
+				// remove case id from bike
+				bikedbUpdate(parseInt(bikeID), "caseID", 0, "", function callback() {
 					
-					// remove case id from bike
-					bikedbUpdate(parseInt(bikeID), "caseID", 0, "", function callback() {
-						
-						// send user to bikes page
-						window.location.href = "../my-bikes/index.shtml";
-					});
+					// send user to bikes page
+					window.location.href = "../my-bikes/index.shtml";
 				});
-			}
+			});
+		} else {
+			alert("Select location on map");
 		}
 	}
 });
@@ -92,30 +90,26 @@ $('#form-found').on('submit', function(e) {
 $('#form-not-stolen').on('submit', function(e) {
 	e.preventDefault();  //prevent form from submitting
 	
-	// if cookie exists
-	email = cookieRead("login_uemail");
-	if (email !== "" && email != "0") {
-		// if URL bikeID parameter exists
-		params = new URLSearchParams( document.location.search.substring(1) );
-		caseID = params.get("caseID");
+	// if URL bikeID parameter exists
+	params = new URLSearchParams( document.location.search.substring(1) );
+	caseID = params.get("caseID");
+	
+	if (caseID !== "") {
 		
-		if (caseID !== "") {
+		// set case bike-found status to true
+		casedbUpdate(parseInt(caseID), "found", true, "", function callback() {
 			
-			// set case bike-found status to true
-			casedbUpdate(parseInt(caseID), "found", true, "", function callback() {
+			// set case status to closed
+			casedbUpdate(parseInt(caseID), "caseStatus", "Closed", "", function callback(bikeID) {
 				
-				// set case status to closed
-				casedbUpdate(parseInt(caseID), "caseStatus", "Closed", "", function callback(bikeID) {
+				// remove case id from bike
+				bikedbUpdate(parseInt(bikeID), "caseID", 0, "", function callback() {
 					
-					// remove case id from bike
-					bikedbUpdate(parseInt(bikeID), "caseID", 0, "", function callback() {
-						
-						// send user to bikes page
-						window.location.href = "../my-bikes/index.shtml";
-					});
+					// send user to bikes page
+					window.location.href = "../my-bikes/index.shtml";
 				});
 			});
-		}
+		});
 	}
 });
 

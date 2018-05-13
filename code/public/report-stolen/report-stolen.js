@@ -48,29 +48,27 @@ function initialize(){
 $('#form-report').on('submit', function(e) {
 	e.preventDefault();  //prevent form from submitting
 	
-	// if cookie exists
-	email = cookieRead("login_uemail");
-	if (email !== "" && email != "0") {
-		// if URL bikeID parameter exists
-		params = new URLSearchParams( document.location.search.substring(1) );
-		bikeID = params.get("bikeID");
+	// if URL bikeID parameter exists
+	params = new URLSearchParams( document.location.search.substring(1) );
+	bikeID = params.get("bikeID");
+	
+	if (bikeID !== "") {
 		
-		if (bikeID !== "") {
+		// if marker has been moved on map (value has been recorded)
+		if ( !jQuery.isEmptyObject(selectedPos) ) {
 			
-			// if marker has been moved on map (value has been recorded)
-			if ( !jQuery.isEmptyObject(selectedPos) ) {
+			// add content to database
+			casedbAdd(bikeID, selectedPos.latLng, function callback(result) {
 				
-				// add content to database
-				casedbAdd(bikeID, selectedPos.latLng, function callback(result) {
+				// add case id to bike
+				bikedbUpdate(parseInt(bikeID), "caseID", result, "", function callback() {
 					
-					// add case id to bike
-					bikedbUpdate(parseInt(bikeID), "caseID", result, "", function callback() {
-						
-						// send user to bikes page
-						window.location.href = "../my-bikes/index.shtml";
-					});
+					// send user to bikes page
+					window.location.href = "../my-bikes/index.shtml";
 				});
-			}
+			});
+		} else {
+			alert("Select location on map");
 		}
 	}
 });

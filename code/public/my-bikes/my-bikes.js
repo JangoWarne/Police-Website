@@ -2,37 +2,25 @@
 var geocoder = new google.maps.Geocoder();
 var place;
 
+
 // Shorthand for $( document ).ready() run on page load
 $(function() {
-	loadBikes();
-});
-
-
-// load bikes from database
-function loadBikes() {
-	// check if email cookie exists and is non zero (not being deleted)
-	email = cookieRead("login_uemail");
 	
-	// if cookie exists
-	if (email !== "" && email != "0") {
+	// get bike IDs for account
+	userdbRead("", "bikeIDs", "", function (a, b, bikeIDs) {
 		
-		// get bike ID for account
-		userdbRead(email, "bikeIDs", "", function (a, b, bikeIDs) {
+		// iterate through bikeIDs
+		var number = bikeIDs.length;
+		var bikeID;
+		
+		for (i = 0; i < number; i++ ) {
+			// get bike ID
+			bikeID = parseInt(bikeIDs[i]);
 			
-			// iterate through bikeIDs
-			var number = bikeIDs.length;
-			var bikeID;
-			
-			for (i = 0; i < number; i++ ) {
-				// get bike ID
-				bikeID = parseInt(bikeIDs[i]);
-				
-				displayBike(bikeID, i);
-			}
-		});
-	}
-	
-}
+			displayBike(bikeID, i);
+		}
+	});
+});
 
 
 //show bike from database
@@ -189,22 +177,16 @@ function displayBike(bikeID, i) {
 // remove bike when user clicks "Remove Bike -"
 function removeBike(evt) {
 	
-	// get user email
-	email = cookieRead("login_uemail");
+	// get id for bike row
+	var parentID = evt.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.id;
+	var bikeID = parseInt(parentID.split('-')[2]);
 	
-	// if cookie exists
-	if (email !== "" && email != "0") {
-		// get id for bike row
-		var parentID = evt.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.id;
-		var bikeID = parseInt(parentID.split('-')[2]);
-		
-		// remove bike row
-		var bikeRow = document.getElementById(parentID);
-		bikeRow.parentNode.removeChild(bikeRow);
-		
-		// remove bike from user
-		userdbUpdate(email, "bikeIDs", "", bikeID, function callback() {});
-	}
+	// remove bike row
+	var bikeRow = document.getElementById(parentID);
+	bikeRow.parentNode.removeChild(bikeRow);
+	
+	// remove bike from user
+	userdbUpdate("", "bikeIDs", "", bikeID, function callback() {});
 }
 
 

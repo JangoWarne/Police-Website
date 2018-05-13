@@ -116,8 +116,6 @@ function casedbFound(caseID, latlng, callbackFn) {
 		// add url to list
 		urlList.push(url);
 	}
-			console.log(urlList);
-	
 	
 	// Add object to database (PHP)
 	$.ajax({

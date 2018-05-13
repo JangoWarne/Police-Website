@@ -1,6 +1,6 @@
 
 // add user to database of users
-function userdbAdd() {
+function userdbAdd(callbackFn) {
 	
 	// Add object to database (PHP)
 	$.ajax({
@@ -28,8 +28,42 @@ function userdbAdd() {
 		success: function(data){
 			data = JSON.parse(data);  // parse JSON data into js object
 			
+			// run code that uses property
 			if(data.status == 'success'){
-				// Do Nothing
+				callbackFn();
+			}else if(data.status == 'invalid'){
+				alert(data.error);
+			}else if(data.status == 'error'){
+				console.log(data.error);
+			}
+		}
+	});
+}
+
+
+// Login user
+function userdbLogin(email, password, callbackFn) {
+	
+	// Read object from database (PHP)
+	$.ajax({
+		type: "POST",
+		url: '../../php/userdb_io.php',
+		data: {
+			caller: 'userdbLogin',
+			
+			// login info
+			email: email,
+			password: password
+			
+		},
+		success: function(data){
+			data = JSON.parse(data);  // parse JSON data into js object
+			
+			// run code that uses property
+			if(data.status == 'success'){
+				callbackFn();
+			}else if(data.status == 'invalid'){
+				alert(data.error);
 			}else if(data.status == 'error'){
 				console.log(data.error);
 			}
@@ -39,6 +73,36 @@ function userdbAdd() {
 
 
 // read single parameter for one user from database of users
+// email value is not used if logged in as public
+function userdbExists(email, callbackFn) {
+	
+	// Read object from database (PHP)
+	$.ajax({
+		type: "POST",
+		url: '../../php/userdb_io.php',
+		data: {
+			caller: 'userdbExists',
+			
+			// user to read
+			email: email,
+			
+		},
+		success: function(data){
+			data = JSON.parse(data);  // parse JSON data into js object
+			
+			// run code that uses property
+			if(data.status == 'success'){
+				callbackFn(data.exists);
+			}else if(data.status == 'error'){
+				console.log(data.error);
+			}
+		}
+	});
+}
+
+
+// read single parameter for one user from database of users
+// email value is not used if logged in as public
 function userdbRead(email, property, val, callbackFn) {
 	
 	// Read object from database (PHP)
@@ -59,7 +123,7 @@ function userdbRead(email, property, val, callbackFn) {
 			data = JSON.parse(data);  // parse JSON data into js object
 			
 			// get returned value
-			if (property == "loginIDs" || property == "bikeIDs") {
+			if (property == "bikeIDs") {
 				storedVal = JSONparse(data.value , "", {});
 				storedVal = Object.values(storedVal);
 			} else {
@@ -78,6 +142,7 @@ function userdbRead(email, property, val, callbackFn) {
 
 
 // read all parameters for one user from database of users
+// email value is not used if logged in as public
 function userdbReadFull(email, val, callbackFn) {
 	
 	// Read object from database (PHP)
@@ -159,7 +224,7 @@ function userdbUpdate(email, property, newVal, oldVal, callbackFn) {
 
 
 // deletes all login IDs
-function userdbLogout(email) {
+function userdbLogout() {
 	
 	// Logout user in database (PHP)
 	$.ajax({
@@ -168,14 +233,11 @@ function userdbLogout(email) {
 		data: {
 			caller: 'userdbLogout',
 			
-			// user to logout
-			email: email
-			
 		},
 		success: function(data){
 			data = JSON.parse(data);  // parse JSON data into js object
 			
-			if(data.status == 'success'){
+			if(data.status == "logout"){
 				// Do Nothing
 			}else if(data.status == 'error'){
 				console.log(data.error);

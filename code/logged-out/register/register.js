@@ -14,16 +14,16 @@ $('#form-details').on('submit', function(e) {
 		var email = document.formDetails.txtEmail.value;
 		
 		// compare values to database
-		dbid = userdbRead(email, "email", password, function update(email, password, dbEmail){
+		userdbExists(email, function update(exists){
 			
 			// if user does not exist
-			if (email != dbEmail) {
+			if (!exists) {
 				
 				// add content to database
-				userdbAdd();
-				
-				// send user to login page
-				window.location.href = "../login/index.shtml";
+				userdbAdd( function() {
+					// send user to login page
+					window.location.href = "../login/index.shtml";
+				});
 				
 			} else {
 				// else alert user that user exists

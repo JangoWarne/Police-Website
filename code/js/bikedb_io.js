@@ -46,12 +46,10 @@ function bikedbAdd( callbackFn ) {
 			otherItems: document.formDetails.txtFeatures.value,
 			distinctiveMarks: document.formDetails.txtDescription.value,
 			imageList: JSON.stringify(urlList),
-			caseID: 0,
-			ownerID: cookieRead("login_uemail")
+			caseID: 0
 			
 		},
 		success: function(data){
-			console.log(data);
 			data = JSON.parse(data);  // parse JSON data into js object
 			
 			if(data.status == 'success'){
@@ -137,14 +135,14 @@ function bikedbReadStolen(val, callbackFn) {
 			
 			// create bike array variable
 			var bikeArray = [];
-			var i = 0
+			var i = 0;
 			
 			// create each bike object
 			bikes.forEach(function(entry) {
 				
 				entry.imageList = JSON.parse(entry.imageList);
 				
-			    // Build investigation object from database
+				// Build investigation object from database
 				var bike = {
 					brand: entry.brand,
 					model: entry.model,

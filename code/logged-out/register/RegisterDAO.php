@@ -9,7 +9,7 @@
 	function verifyUser() {
 		$email = $_GET['email'];
 		$verificationcode = $_GET['verificationcode'];
-		echo $Protocol.$_SERVER['HTTP_HOST'].str_replace($_SERVER['DOCUMENT_ROOT'], '', realpath('./RegisterDAO.php'));
+		//echo $Protocol.$_SERVER['HTTP_HOST'].str_replace($_SERVER['DOCUMENT_ROOT'], '', realpath('./RegisterDAO.php'));
 		include_once "../../php/config.php"; //PROBLEM HERE 
 		//Updating user table, column isVerfied if email and verfication match
 		$sql = "UPDATE `user` ".
@@ -33,7 +33,7 @@
             
             
             if($value == 1){
-			     echo 'Your account from '.$email. ' has been successfully verified.';
+			     echo 'Your account: '.$email. ' has been successfully verified.';
             
             } else {
                 echo ' There was an error, you are not verified';

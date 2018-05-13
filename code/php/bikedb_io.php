@@ -1,31 +1,36 @@
 <?php
+	// include files
+	require_once 'session_io.php';
 	
 	// Run different code based on caller
 	// If caller value exists
 	if(isset($_POST['caller']))
 	{
-		// switch function based on caller
-	    switch ($_POST['caller']) {
-		    
-		    case 'bikedbAdd':
-		        bikedbAdd();
-		        break;
-		        
-		    case 'bikedbRead':
-		        bikedbRead();
-		        break;
-		        
-		    case 'bikedbReadStolen':
-		        bikedbReadStolen();
-		        break;
-		        
-		    case 'bikedbUpdate':
-		        bikedbUpdate();
-		        break;
-		        
-		    default:
-		        // unknown caller - do nothing
-		}
+		// if logged in
+		if (checkSession()) {
+			// switch function based on caller
+		    switch ($_POST['caller']) {
+			    
+			    case 'bikedbAdd':
+			        bikedbAdd();
+			        break;
+			        
+			    case 'bikedbRead':
+			        bikedbRead();
+			        break;
+			        
+			    case 'bikedbReadStolen':
+			        bikedbReadStolen();
+			        break;
+			        
+			    case 'bikedbUpdate':
+			        bikedbUpdate();
+			        break;
+			        
+			    default:
+			        // unknown caller - do nothing
+			}
+		};
 	}
 	
 	
@@ -55,7 +60,7 @@
 		$distinctiveMarks = $_POST['distinctiveMarks'];
 		$imageList		  = $_POST['imageList'];
 		$caseID			  = $_POST['caseID'];
-		$ownerID		  = $_POST['ownerID'];
+		$ownerID		  = $_SESSION['user'];
 		
 		// save images to files and replace array
 		$imgArray = json_decode($imageList);

@@ -50,8 +50,13 @@
 						<input type="text" id = "txtLastName" name="txtLastName" placeholder="LAST NAME*" required="required"> <br> <br>
 						<input type="email" id = "txtEmail" name="txtEmail" placeholder="EMAIL*" required="required"> <br> <br> <br>
 						
-						Passwords must be atleast 12 characters long and contain 2 numbers or special characters <br>
-						(% * # / etc.) <br> <br>
+						Passwords must be at-least 12 characters long <br>
+						Contain 2 numbers <br>
+						Contain 2 letters <br>
+						And one special character <br> <br>
+						
+						£ % & @ ~ +, ! = _ - <br> <br>
+						
 						<input type="password" id = "txtPassword" name="txtPassword" placeholder="PASSWORD*" required="required"> <br> <br>
 						<input type="password" id = "txtConfirm" name="txtConfirm" placeholder="CONFIRM PASSWORD*" required="required"> <br> <br>
 					</div>
