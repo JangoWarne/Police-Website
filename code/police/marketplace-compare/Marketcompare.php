@@ -9,26 +9,7 @@
     $globalid = 'EBAY-GB'; // Global ID of the eBay site you want to search (e.g., EBAY-DE)
     $query = $_POST['query'];//'bicycles'; // You may want to supply your own query 
     $safequery = urlencode($query); // Make the query URL-friendly
-// Create a PHP array of the item filters you want to use in your request
-/*$filterarray =
-  array(
-    array(
-    'name' => 'model',
-    'value' => 'bmx',
-    'paramName' => 'Currency',
-    'paramValue' => 'USD'),
-     array(
-    'name' => 'FreeShippingOnly',
-    'value' => 'true',
-    'paramName' => '',
-    'paramValue' => ''),
-    array(
-    'name' => 'ListingType',
-    'value' => array('AuctionWithBIN','FixedPrice'),
-    'paramName' => '',
-    'paramValue' => ''),*/
-  //);
-    $i = '0'; // Initialize the item filter index to 0
+    $category = 7294;
 
 
     // Construct the findItemsByKeywords HTTP GET call
@@ -38,7 +19,9 @@
     $apicall .= "&SECURITY-APPNAME=$appid";
     $apicall .= "&GLOBAL-ID=$globalid";
     $apicall .= "&keywords=$safequery";
-    $apicall .= "&paginationInput.entriesPerPage=10";
+    $apicall .= "&categoryId=$category";
+    $apicall .= "&paginationInput.entriesPerPage=50";
+    //$apicall .= "&IncludeSelector=ItemSpecifics";
 
 
     // Load the call and capture the document returned by eBay API
@@ -48,17 +31,98 @@
     // Check to see if the request was successful, else print an error
     if ($resp->ack == "Success") {
         $results = '';
+        $num = 0;
         
         // If the response was loaded, parse it and build links
         foreach($resp->searchResult->item as $item) {
             
+            //print_r($item);
             $pic = $item->galleryURL;
-            $link = $item->viewItemURL;
+            $ebayUrl = $item->viewItemURL;
             $title = $item->title;
             //$model = $item->bikeModel;
-
+            //print_r($ebayUrl);
+            // get ebay item id from url
+            $pos     = strrpos($ebayUrl, '/') + 1;
+            $id      = substr($ebayUrl, $pos);
+            $id      = str_replace("?", "", $id);
+            /*
+            $pos2     = strrpos($idStr, 'var=') + 4;
+            $id      = substr($idStr, $pos2);
+            $id      = str_replace("?", "", $id);
+            
+            print_r($id);
+            $apicall = "http://open.api.sandbox.ebay.com/shopping?";
+            $apicall .= "callname=GetSingleItem&";
+            $apicall .= "responseencoding=XML&";
+            $apicall .= "appid=AaranCoa-PoliceWe-PRD-5fb0c962d-d2c3c91c&";
+            $apicall .= "siteid=0&";
+            $apicall .= "version=1033&";
+            $apicall .= "ItemID=311956080304";
+            $apicall .= "IncludeSelector=Description,ItemSpecifics,Details&";
+            
+            // Load the call and capture the document returned by eBay API
+            $resp = simplexml_load_file($apicall);
+            print_r($resp);
+            // Check to see if the request was successful, else print an error
+            if ($resp->ack == "Success") {
+                print_r($resp->searchResult->item);
+            }
+            */
+            // get number of string matches
+            $matches = 15;
+            $brand = 'BrandName';
+            $colour = 'orange';
+            $fSize = 3;
+            $fMaterial = 4;
+            
             // For each SearchResultItem node, build a link and append it to $results
-            $results .= "<tr><td><img src=\"$pic\"></td><td><a href=\"$link\">$title</a></td></tr>";
+            $results .=
+                '<tr class="item" id="ebay-row-$id">'.
+                    '<td>'.
+                        '<a href="'.$ebayUrl.'">'.
+                            '<table class="ebay">'.
+                                '<tr class="ebay_bike_img">'.
+                                    '<td rowspan="6">'.
+                                        '<div class="bike_Image">'.
+                                            '<div class="outer_constraint">'.
+                                                '<div class="inner_constraint">'.
+                                                    '<img src="'.$pic.'" alt="ebay_'.$id.'">'.
+                                                '</div>'.
+                                            '</div>'.
+                                        '</div>'.
+                                    '</td>'.
+                                    '<td rowspan="6">'.
+                                        '<div class="ebay_padding">'.
+                                        '</div>'.
+                                    '</td>'.
+                                    '<td class="ebay_heading">Brand:</td>'.
+                                    '<td class="ebay_values">'.$brand.'</td>'.
+                                '</tr>'.
+                                '<tr class="ebay_row">'.
+                                    '<td class="ebay_heading">Colour:</td>'.
+                                    '<td>'.$colour.'</td>'.
+                                '</tr>'.
+                                '<tr class="ebay_row">'.
+                                    '<td class="ebay_heading">Frame Size:</td>'.
+                                    '<td>'.$fSize.'</td>'.
+                                '</tr>'.
+                                '<tr class="ebay_row">'.
+                                    '<td class="ebay_heading">Frame Material:</td>'.
+                                    '<td>'.$fMaterial.'</td>'.
+                                '</tr>'.
+                                '<tr class="case_row">'.
+                                    '<td class="ebay_heading"></td>'.
+                                    '<td></td>'.
+                                '</tr>'.
+                                '<tr class="ebay_row">'.
+                                    '<td class="ebay_heading"><b>Matching Words:</td>'.
+                                    '<td>'.$matches.'</b></td>'.
+                                '</tr>'.
+                            '</table>'.
+                        '</a>'.
+                    '</td>'.
+                '</tr>';
         }
         
         // turn list of values into a list then in a standerdised way (JSON) turn into a string

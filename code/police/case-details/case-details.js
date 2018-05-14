@@ -162,7 +162,7 @@ function displayCase(investigation, bike, user) {
 			
 			'<!-- Compare button -->' +
 			'<div class="align_center">' +
-				'<button id="marketplace-button"> <a href="../marketplace-compare/index.shtml?bikeID=' + investigation.bikeID + '">Compare to Marketplace</a> </button> <br>' +
+				'<button id="marketplace-button"> <a href="../marketplace-compare/index.shtml?caseID=' + investigation.caseID + '">Compare to Marketplace</a> </button> <br>' +
 				'<br>' +
 			'</div>' +
 			

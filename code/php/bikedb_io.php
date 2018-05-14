@@ -166,10 +166,9 @@
 				"FROM `bike` ".
 				"WHERE bikeID = '$bikeID'";
 		
-		
 		// read from database
 		if ($result = mysqli_query($connection, $sql)) {
-			
+            
 			// split out values
 			foreach ($result as $params => $vals) {
 				$arr = $vals;
@@ -177,7 +176,7 @@
 			}
 			
 			//if ($arr['imageList'] !== NULL) {$arr['imageList'] = json_decode($arr['imageList']);}
-			
+            
 			// convert NULL values
 			foreach ($arr as &$value) {
 			    if ($value == NULL) {
@@ -196,7 +195,7 @@
 	}
 	
 	
-	// add found information to bike
+	// read all stolen bikes
 	function bikedbReadStolen()
 	{
 		// database settings

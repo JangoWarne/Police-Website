@@ -13,6 +13,9 @@ function loadcase() {
     params = new URLSearchParams(document.location.search.substring(1));
     caseID = params.get("caseID");
 	if (caseID != "") {
+        
+        // update case-details link
+        document.getElementById("link").href = "../case-details/index.shtml?caseID=" + caseID;
 		
 		// get bike ID for case
 		casedbRead(caseID, "", function (a, b, investigation) {
@@ -42,6 +45,7 @@ function bikeSearch() {
             query: "(bicycle, bike) " + document.ebaysearch.query.value
         },
         success: function(data) {
+            //console.log(data);
             // add html to page
             $( "#results" ).html( $( data ) );
         }
@@ -54,57 +58,58 @@ function displayBike(bikeID) {
 	
 	// read bike from database
 	bikedbRead(bikeID, "", function (a, b, bike) {
-		
+        
 		// add new bike html
 		var bikedetails = document.createElement('div');
 		bikedetails.className = "align_center";
 		bikedetails.innerHTML =
 					
-                        'Brand: ' + bike.brand + ' <br><br>'+
+                        '<span class="column">Brand:</span> <span class="column">-  ' + bike.brand + '</span> <hr><br>'+
             
-                        'Model: '+ bike.model + ' <br> <br>'+
+                        '<span class="column">Model:</span> <span class="column">-  '+ bike.model + '</span> <hr><br>'+
                         
-                        'Type: '+ bike.bikeType + ' <br> <br>'+
+                        '<span class="column">Type:</span> <span class="column">-  '+ bike.bikeType + '</span> <hr><br>'+
                         
-                        'Gender: '+ bike.gender + '<br> <br>'+
+                        '<span class="column">Gender:</span> <span class="column">-  '+ bike.gender + '</span> <hr><br>'+
                        
-                        'Colour: '+ bike.colour + ' <br> <br>'+
+                        '<span class="column">Colour:</span> <span class="column">-  '+ bike.colour + '</span> <hr><br>'+
                         
-                        'Frame Material: '+ bike.frameMaterial + ' <br> <br>'+
+                        '<span class="column">Frame Material:</span> <span class="column">-  '+ bike.frameMaterial + '</span> <hr><br>'+
                        
-                        'Frame Size: '+ bike.frameSize + ' <br> <br>'+
+                        '<span class="column">Frame Size:</span> <span class="column">-  '+ bike.frameSize + '</span> <hr><br>'+
                         
-                        'Number of Gears: '+ bike.numberGears + ' <br> <br>'+
+                        '<span class="column">Number of Gears:</span> <span class="column">-  '+ bike.numberGears + '</span> <hr><br>'+
                         
-                        'Suspension: '+ bike.suspension + '<br> <br>'+
+                        '<span class="column">Suspension:</span> <span class="column">-  '+ bike.suspension + '</span> <hr><br>'+
                        
-                        'Brake Type: '+ bike.brakeType + '<br> <br>'+
+                        '<span class="column">Brake Type:</span> <span class="column">-  '+ bike.brakeType + '</span> <hr><br>'+
                        
-                        'Handle Type: '+ bike.handlebarType + ' <br> <br>'+
+                        '<span class="column">Handle Type:</span> <span class="column">-  '+ bike.handlebarType + '</span> <hr><br>'+
                         
-                        'Frame Number: '+ bike.frameNumber + ' <br> <br>'+
+                        '<span class="column">Frame Number:</span> <span class="column">-  '+ bike.frameNumber + '</span> <hr><br>'+
                         
-                        'Tag Brand: '+ bike.tagBrand + '<br> <br>'+
+                        '<span class="column">Tag Brand:</span> <span class="column">-  '+ bike.tagBrand + '</span> <hr><br>'+
                        
-                        'Tag Id/Number: '+ bike.tagID + '<br> <br>'+
+                        '<span class="column">Tag Id/Number:</span> <span class="column">-  '+ bike.tagID + '</span> <hr><br>'+
 
-                        'Features: '+ bike.features+ ' <br> <br>'+
+                        '<span class="column">Features:</span> <span class="column">-  '+ bike.features+ '</span> <hr><br>'+
                         
-                        'Distinctive Marks: '+ bike.description+ '<br> <br>'+
+                        '<span class="column">Distinctive Marks:</span> <span class="column">-  '+ bike.description+ '</span> <hr><br>';
 		
 		// add html to page
 		$( "#bike-details" ).after( $( bikedetails ) );
-		
-		// add listeners for new buttons
-		document.getElementById("remove-" + i).addEventListener('click', removeBike, false);
+        
+        insertImage(bike.imageList);
 	});
 }
 
+
+
 function insertImage(imageList) {
-	
-	
+    console.log(imageList);
+    
 	//Loop through the imageList and render image files as thumbnails.
-	for (var i = 0; i==imageList.length; i++) {
+	for (var i = 0; i<imageList.length; i++) {
 	            
         // Add image to page
         // number of existing images
@@ -113,7 +118,7 @@ function insertImage(imageList) {
         // ID for image on page
         var imageID = "image-" + number + "-box";
 
-        // change column if even or odd will seperate photsos to l/r 1user/1ebay
+        // change column if even or odd will seperate photos to l/r 1user/1ebay
         if (isEven(number)) {
             var imageColID = 'col1';
         } else {
@@ -127,7 +132,14 @@ function insertImage(imageList) {
         document.getElementById(imageColID).appendChild(imageArticle);
 
         // add new image as background
-        document.getElementById(imageID).style.backgroundImage = "url(" + imageList[i] + ")";
+        document.getElementById(imageID).style.backgroundImage = "url(../" + imageList[i] + ")";
 	
 	}
 }
+
+
+// check if a number is even (non numbers return undefined))
+function isEven(n) {
+  return n == parseFloat(n)? !(n%2) : void 0;
+}
+
