@@ -40,10 +40,10 @@
 					<h2> Login </h2> <br> <br>
 					<input type="text" name="txtEmail" placeholder="EMAIL / USERNAME" required="required"> <br> <br>
 					<input type="password" name="txtPassword" placeholder="PASSWORD" required="required"> <br> <br>
-					<label class="container">Remember me
+					<!--<label class="container">Remember me
 					  <input type="checkbox" name="boolRememberMe" value="rememberme">
 					  <span class="checkmark"></span>
-					</label>
+					</label>-->
 					
 					<input class="submit_button" type="submit" value="Login"> <br>
 					<a href="../forgotten-password/index.html">
