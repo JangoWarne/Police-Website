@@ -66,15 +66,38 @@
                 <div class="box" >
                     <div class="spacing">
                         <center> <h1> EBAY </h1> </center>
-                        <form id="ebaysearch" name="ebaysearch" class="search" action="Marketcompare.php">
-                            <input id="search-text" type="text" name="query" placeholder="Search..">
-                            <input id="search-button" class="submit_button" type="submit" value="Search"> <br>
-                        </form>
+                        <div class="all-bikes">
+	                        <form id="ebaysearch" name="ebaysearch" class="search" action="Marketcompare.php">
+	                            <input id="search-text" type="text" name="query" placeholder="Search..">
+	                            <input id="search-button" class="submit_button" type="submit" value="Search"> <br>
+	                        </form>
+                        </div>
+                        <div class="one-bike">
+	                        <input id="back-button" type="button" value="Back">
+	                        <br>
+                        </div>
 
                         <hr />  <br>
                         
-                        <div class="scroll">
-                            <table id="results"></table>
+                        <div class="scroll" id="scroll">
+	                        <div class="all-bikes">
+	                            <table>
+	                                <tr class="ebay_row">
+	                                    <td class="ebay_text"><b>Click on a bike to see more information</td>
+	                                    <td></b></td>
+	                                </tr>
+	                            </table>
+	                            <table id="results"></table>
+	                            <table id="loading">
+	                                <tr class="ebay_row">
+	                                    <td class="ebay_text"><b>Loading</td>
+	                                    <td></b></td>
+	                                </tr>
+	                            </table>
+                            </div>
+	                        <div class="one-bike">
+		                        <div id= "eBay-details"></div>
+                            </div>
                         </div>
                     </div>
                 </div>

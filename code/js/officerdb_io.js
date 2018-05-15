@@ -87,7 +87,7 @@ function officerdbUpdate(property, newVal, oldVal, callbackFn) {
 			data = JSON.parse(data);  // parse JSON data into js object
 			
 			if(data.status == 'success'){
-				callbackFn(username);
+				callbackFn(data.officer);
 			}else if(data.status == 'error'){
 				console.log(data.error);
 			}

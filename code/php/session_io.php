@@ -21,6 +21,7 @@
 		$_SESSION['loggedIn'] = true;
 		$_SESSION['user'] = $user;  // Initializing Session with value of PHP Variable
 		$_SESSION['officer'] = false;  // is user allowed to read other public user info
+		$_SESSION['tStamp'] = time();
 	}
 	
 	// Create session
@@ -43,6 +44,7 @@
 		$_SESSION['loggedIn'] = true;
 		$_SESSION['user'] = $user;  // Initializing Session with value of PHP Variable
 		$_SESSION['officer'] = true;  // is user allowed to read other public user info
+		$_SESSION['tStamp'] = time();
 	}
 	
 	
@@ -51,8 +53,14 @@
 		
 		// check if user is logged in
 		if ($_SESSION['loggedIn']) {
-			// user is logged in
-			session_regenerate_id(true); // change session ID
+			// refresh every 30 seconds of inactivity
+			if (($_SESSION['tStamp'] - time()) > 30) {
+				// user is logged in
+				session_regenerate_id(true); // change session ID
+				$_SESSION['count'] = 0;
+			}
+			$_SESSION['tStamp'] = time();
+			
 			
 			return true;
 		} else {

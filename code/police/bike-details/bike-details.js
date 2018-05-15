@@ -1,14 +1,7 @@
-var page = 0;
-var bikesInfo = [];
-
 // runs at page load
 $(function(){
-    bikeSearch();
     
 	loadcase();
-	
-	
-    $('#scroll').bind('scroll', chk_scroll);
 });
 
 
@@ -26,82 +19,15 @@ function loadcase() {
 		// get bike ID for case
 		casedbRead(caseID, "", function (a, b, investigation) {
 			
-			displaydbBike(investigation.bikeID);
+			displayBike(investigation.bikeID);
 			
 		});
 	}
 }
 
 
-//on search submit
-$('#ebaysearch').on('submit', function(e){
-    e.preventDefault();
-    
-    // load new search results
-    bikeSearch(true);
-});
-
-
-// when user scrolles to end of results
-function chk_scroll(e) {
-    var elem = $(e.currentTarget);
-    if (elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight()) {
-		
-        // add to existing search results
-		bikeSearch(false);
-    }
-}
-
-
-// return bike search results
-function bikeSearch(reset) {
-	
-	// load next page of results or load from scratch
-	if (reset) {
-		page = 1;
-	} else {
-		// load next page
-		page = page + 1;
-	}
-	
-    // load ebay results
-    $.ajax({
-        url: "Marketcompare.php",
-        method: "POST",
-        data: {
-			page: page,
-			query: "(bicycle, bike) " + document.ebaysearch.query.value
-        },
-        success: function(data) {
-			//console.log(data);
-			data = JSON.parse(data);  // parse JSON data into js object
-			
-            // If successful
-            if(data.status == 'success') {
-				
-				// load next page of results or load from scratch
-				// Update array for single bike view -> bikesInfo
-				if (reset) {
-					// replace html on page
-					$( "#results" ).html( $( data.list ) );
-					bikesInfo = bikeDecode(data.bikes);
-				} else {
-					// append html to page
-					$( "#results" ).append( $( data.list ) );
-					bikesInfo.push.apply(bikesInfo, bikeDecode(data.bikes) );
-					displayeBayBike(bikesInfo[0]);
-				}
-				
-            } else if(data.status == 'success') {
-				console.log(data.error);
-            }
-        }
-    });
-}
-
-
 //show bike from database
-function displaydbBike(bikeID) {
+function displayBike(bikeID) {
 	
 	// read bike from database
 	bikedbRead(bikeID, "", function (a, b, bike) {
@@ -151,62 +77,7 @@ function displaydbBike(bikeID) {
 }
 
 
-//show bike from database
-function displayeBayBike(bike) {
-    console.log(bike);
-	// add new bike html
-	var bikedetails = document.createElement('div');
-	bikedetails.className = "align_center";
-	bikedetails.innerHTML =
-				
-                    '<span class="column">Brand:</span> <span class="column">-  ' + bike.brand[0] + '</span> <hr><br>'+
-        
-                    '<span class="column">Model:</span> <span class="column">-  '+ bike.model[0] + '</span> <hr><br>'+
-                    
-                    '<span class="column">Type:</span> <span class="column">-  '+ bike.type[0] + '</span> <hr><br>'+
-                    
-                    '<span class="column">Gender:</span> <span class="column">-  '+ bike.gender[0] + '</span> <hr><br>'+
-                   
-                    '<span class="column">Colour:</span> <span class="column">-  '+ bike.colour[0] + '</span> <hr><br>'+
-                    
-                    '<span class="column">Frame Material:</span> <span class="column">-  '+ bike.material[0] + '</span> <hr><br>'+
-                    
-                    '<span class="column">Number of Gears:</span> <span class="column">-  '+ bike.gearNum[0] + '</span> <hr><br>'+
-                    
-                    '<span class="column">Suspension:</span> <span class="column">-  '+ bike.suspension[0] + '</span> <hr><br>'+
-                   
-                    '<span class="column">Brake Type:</span> <span class="column">-  '+ bike.brake[0] + '</span> <hr><br>'+
-                   
-                    '<span class="column">Handle Type:</span> <span class="column">-  '+ bike.handlebar[0] + '</span> <hr><br>'+
-                    
-                    '<span class="column">Frame Number:</span> <span class="column">-  '+ bike.mpn[0] + '</span> <hr><br>'+
 
-                    '<span class="column">Features:</span> <span class="column">-  '+ JSON.stringify(bike.features) + '</span> <hr><br>';
-	console.log(bikedetails);
-	// add html to page
-	$( "#eBay-details" ).after( $( bikedetails ) );
-    
-}
-
-
-// decode json array
-function bikeDecode(jsonArray) {
-	
-	// variable to return
-	var objArray = [];
-	
-	// decode element by element
-	for(var i = 0; i < jsonArray.length; i++) {
-		
-		//decode string
-		objArray[i] = JSON.parse(jsonArray[i]);
-	}
-	
-	return objArray;
-}
-
-
-// add images to page
 function insertImage(imageList) {
     
 	//Loop through the imageList and render image files as thumbnails.

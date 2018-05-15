@@ -259,7 +259,7 @@
 		
 		// return success status
 		if( $success ) {
-			echo json_encode(array("status" => "success"));
+			echo json_encode(array("status" => "success", "officer" => $username));
 		} else {
 			echo json_encode(array("status" => "error", "error" => $error));
 		}

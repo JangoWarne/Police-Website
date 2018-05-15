@@ -16,7 +16,7 @@ $(function() {
 		for (i = 0; i < number; i++ ) {
 			// get bike ID
 			bikeID = parseInt(bikeIDs[i]);
-			
+			console.log(bikeID);
 			displayBike(bikeID, i);
 		}
 	});

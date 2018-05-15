@@ -67,7 +67,7 @@ function loadCase() {
 			bikedbRead(investigation.bikeID, "", function (a, b, bike) {
 				//console.log(bike);
 				// read user from database
-				userdbReadFull(investigation.userID, "", function (a, b, user) {
+				userdbReadFull(bike.ownerID, "", function (a, b, user) {
 					//console.log(user);
 					// Display case, bike and user details on page
 					displayCase(investigation, bike, user);
@@ -206,7 +206,7 @@ function displayCase(investigation, bike, user) {
 			'<!-- Bike Details -->' +
 			'<div class="box">' +
 				'<div class="align_center">' +
-					'<h1> Bike Details </h1> <button class="details_button" id="bike-button"> <a href="../bike-details/index.shtml?bikeID=' + investigation.bikeID + '">Details</a> </button>' +
+					'<h1> Bike Details </h1> <button class="details_button" id="bike-button"> <a href="../bike-details/index.shtml?caseID=' + investigation.caseID + '">Details</a> </button>' +
 				'</div>' +
 				'<hr />  <br>' +
 				
@@ -303,22 +303,23 @@ function displayCase(investigation, bike, user) {
         // check if email cookie exists and is non zero (not being deleted)
         username = cookieRead("login_uname");
         
-        officerdbRead(username, "firstName", "", function(username, a, firstName) {
+        officerdbRead("firstName", "", function(username, a, firstName) {
             
-            officerdbRead(username, "lastName", "", function(username, a, lastName) {
-                
+            officerdbRead("lastName", "", function(username, a, lastName) {
+	            
                 // Submit the form using AJAX.
                 $.ajax({
                     type: 'POST',
                     url: $('#contact-form').attr('action'),
                     data: {
                         name: firstName + " " + lastName,
-                        email: investigation.userID,
+                        email: user.email,
                         message: document.contactForm.message.value
                     },
                     success: function(response) {
                         // Clear the form.
                         $('#message').val('');
+                        casedbUpdate(bike.caseID, "caseStatus", "Under Investigation: Contacting User", "", function(a){});
                     }
                 });
             });

@@ -47,7 +47,6 @@ function loadBikes() {
 		
 	// get case IDs for account
 	officerdbRead("caseIDs", "", function (a, b, caseIDs) {
-		
 		// iterate through caseIDs
 		for (i = 0; i < caseIDs.length; i++ ) {
 			
@@ -167,18 +166,16 @@ function displayBike(investigation, bike) {
 	
 	
 	// update dropdown style
-	cusDD("#select-" + bikeID);
+	cusDD("#select-" + bikeID, bikeID);
 	
 	
     // add listener for dropdown
-    //
-    /*
-		$(".cusDD_opt").on('click', function() {
-			alert($(this).parent().find("[selected='selected']").text());
-		});
-	*/
-    //
-    //
+	$("#cusDD_options" + bikeID).on('click', function() {
+		newString = $(this).parent().find("[selected='selected']")[0].getAttribute('value');
+		
+		casedbUpdate(bike.caseID, "caseStatus", newString, "", function(a){});
+	});
+
 }
 
 
@@ -207,7 +204,7 @@ function geocodeLocation(locationTag, latlng) {
 
 
 
-function cusDD(select, style) {
+function cusDD(select, bikeID, style) {
   /*Style Switcher*/
   var ddstyle = "";
   
@@ -222,7 +219,7 @@ function cusDD(select, style) {
     //put drop downs in a container
     //Replace options with divs
     curr = $($(select)[i]);
-    curr.find("option").wrapAll("<div class='cusDD_options' />");
+    curr.find("option").wrapAll("<div class='cusDD_options' id='cusDD_options" + bikeID + "' />");
     curr.find("option").addClass("cusDD_opt").each(function() {
       $(this).changeElementType("div");
     });
