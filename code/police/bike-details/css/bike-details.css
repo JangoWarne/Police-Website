@@ -1,0 +1,177 @@
+
+/*center content on screen*/
+center{
+   padding-top: 20px;
+}
+.centered {
+    /*background-color: #F3F3F3;*/
+	margin: 0 auto 20px auto;
+	width: 1400px;
+    padding-bottom: 40px;
+    overflow:auto;
+}
+.box {
+	padding-top: 60px;
+	width: 50%;
+	margin: 0% auto 0% auto;
+}
+
+
+/*Format search box and button*/
+#search-text {
+	width: 76%;
+    display: inline-block;
+}
+#search-button {
+	width: 20%;
+    display: inline-block;
+}
+
+
+/*create box around each form*/
+.spacing {
+	background-color: #F3F3F3;
+	margin: 0% auto 0% auto;
+	width: 80%;
+	height: 100%;
+	padding: 30px;
+    padding-top: 0;
+    padding-bottom: 0;
+	border-color: #BDBDBD;
+	border-width: 1px;
+	border-style: solid;
+	font-size: 18px;
+}
+.scroll {
+    height: 85%;
+    overflow:auto;
+}
+#padding {
+    height: 36px;
+}
+
+
+/*style width for table children of centered */
+.scroll > table{
+	margin: 0 auto 0 auto;
+	width: 90%;
+}
+
+/*set size of table cells*/
+.cell{
+	height: 95px;
+}
+.item{
+	height: 200px;
+}
+
+/*remove border gap between cells*/
+table, td {
+	border-collapse: collapse;
+}
+
+
+/*rezise and zoom images of bikes*/
+.bike_Image {
+	width: 220px;
+	overflow: hidden;
+	height: 150px;
+}
+.outer_constraint {
+	width: 100%;
+	margin: 0 auto; 
+	overflow: visible;
+}
+.inner_constraint {
+	position: relative;
+	float: right;
+	right: 50%;
+}
+.inner_constraint > img {
+	height: 180px;
+	display: inline;
+	position: relative;
+	right:-50%;
+}
+
+
+/*style ebay bikes*/
+.ebay {
+	height: 150px;
+    width: 100%;
+	background-color: #E6E6E3;
+}
+.ebay_row {
+	font-size: 16px;
+	height: 25px;
+	background-color: #E6E6E3;
+}
+.ebay_bike_img {
+	font-size: 16px;
+	height: 25px;
+}
+.ebay_heading {
+	width: 30%;
+	text-align: right;
+	padding-right: 10px;
+	background-color: #E6E6E3;
+}
+.ebay_values {
+	width: 20%;
+	background-color: #E6E6E3;
+}
+.ebay_padding {
+	width: 5%;
+	background-color: #E6E6E3;
+}
+
+
+/*style text about bike info*/
+h2 {
+	margin: 0;
+	margin-bottom: -15px;
+	font-size: 40px;
+}
+.align_center {
+	margin: 0 auto 0 auto;
+	width: 60%;
+}
+
+/*set size and style of inputs*/
+input {
+	height: 30px;
+	font-size: 16px;
+	padding-left: 10px;
+}
+.multiline {
+	width: 95%;
+	font-size: 16px;
+	padding-left: 10px;
+}
+
+/*style heading text*/
+h2 {
+	margin: 0;
+	margin-bottom: -15px;
+	font-size: 40px;
+}
+
+/*style added images with remove 'button'*/
+.image_bounds{
+	margin: 0 auto 0 auto;
+   width: 95%;
+}
+.column{
+    float: left;
+    width: 50%;
+}
+article {
+	position: relative;
+	margin: 6% auto 6% auto;
+	margin-top: 3%;
+	width: 90%;
+	height: 200px;
+	background-repeat: no-repeat;
+	background-color: #EEE;
+	background-size: cover;
+}
