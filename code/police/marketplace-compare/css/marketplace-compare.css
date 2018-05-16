@@ -18,17 +18,28 @@ center{
 }
 
 /* all bikes vs one bike visible */
-.all-bikes{
+#bikes-results{
+	display: block;
+}
+#bikes-search{
+	display: block;
+}
+#bike-info{
 	display: none;
 }
-.one-bike{
-	display: block;
+#bike-back{
+	display: none;
 }
 #back-button {
-	display: block;
+	display: inline-block;
 	width: 20%;
-	margin: 0 auto% 10px auto;
-	padding: 20%;
+	margin-bottom: 10px;
+}
+#back-button {
+	margin: 0 auto 20px auto;
+	display: inline-block;
+	width: 30%;
+	margin-bottom: 10px;
 }
 
 
@@ -36,10 +47,45 @@ center{
 #search-text {
 	width: 75%;
     display: inline-block;
+	height: 30px;
+	font-size: 16px;
+	padding-left: 10px;
 }
 #search-button {
 	width: 20%;
     display: inline-block;
+}
+
+
+/*style buttons*/
+.ebay_button {
+	height: 35px;
+	border-radius: 0px;
+	color: #F3F3F3;
+	font-weight: 600;
+	font-size: 18px;
+	text-align: center;
+	text-decoration: none;
+	transition-duration: 0.3s;
+	cursor: pointer;
+	background-color: #616161;
+	border: 2px solid #616161;
+}
+.ebay_button:hover {
+	background-color: #4C4C4C;
+	border: 2px solid #4C4C4C;
+	color: #F3F3F3;
+}
+.ebay_button:active {
+	transition-duration: 0s;
+}
+.ebay_button > a {
+	color: #F3F3F3;
+	font-weight: 600;
+	font-size: 18px;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
 }
 
 
@@ -67,7 +113,7 @@ center{
 
 
 /*style width for table children of centered */
-#all-bikes > table{
+#bikes-results > table{
 	margin: 0 auto 0 auto;
 	width: 90%;
 }
@@ -83,6 +129,21 @@ center{
 /*remove border gap between cells*/
 table, td {
 	border-collapse: collapse;
+}
+
+
+/* ebay single item layout */
+.ebay_center {
+	margin: 0 auto 0 auto;
+	width: 90%;
+}
+.line > img {
+	width: 100%;
+}
+#item-button {
+	display: block;
+	margin: 0 auto 0 auto;
+	width 40%;
 }
 
 
@@ -115,6 +176,7 @@ table, td {
 	height: 150px;
     width: 100%;
 	background-color: #E6E6E3;
+	cursor: pointer;
 }
 .ebay_row {
 	font-size: 16px;
@@ -158,18 +220,6 @@ h2 {
 .align_center {
 	margin: 0 auto 0 auto;
 	width: 60%;
-}
-
-/*set size and style of inputs*/
-input {
-	height: 30px;
-	font-size: 16px;
-	padding-left: 10px;
-}
-.multiline {
-	width: 95%;
-	font-size: 16px;
-	padding-left: 10px;
 }
 
 /*style heading text*/

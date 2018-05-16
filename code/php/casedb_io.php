@@ -52,13 +52,6 @@
 		$bikeID			 = $_POST['bikeID'];
 		$caseStatus		 = $_POST['caseStatus'];
 		$userID			 = $_POST['userID'];
-		/*$officerID		 = json_decode( $_POST['officerID'] );
-		$found			 = json_decode( $_POST['found'] );
-		$foundStolen	 = json_decode( $_POST['foundStolen'] );
-		$timeFound		 = json_decode( $_POST['timeFound'] );
-		$dateFound		 = json_decode( $_POST['dateFound'] );
-		$latlngFound	 = json_decode( $_POST['latlngFound'] );
-		$imagesFound	 = json_decode( $_POST['imagesFound'] );*/
 		
 		
 		// insert case into database

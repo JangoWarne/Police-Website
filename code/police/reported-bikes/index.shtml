@@ -13,7 +13,9 @@
 	<script src="../../js/casedb_io.js"></script>
 	<script src="../../js/cookie_io.js"></script>
 	<script src="../../js/officerdb_io.js"></script>
+	<script src="../../js/search.js"></script>
 	<link href="../../css/styles.css" type="text/css" rel="stylesheet">
+	<link href="../../css/checkbox.css" type="text/css" rel="stylesheet">
 	<link href="css/reported-bikes.css" type="text/css" rel="stylesheet">
     </head>
 
@@ -45,30 +47,32 @@
         
         <div class="search">
        
-            <h2>Complete as many search attributes as possible</h2>  
-       
-            <input type="text" placeholder="Enter frame number..">
-            <br>
-            <input type="text" placeholder="Enter make..">
-            <br>
-            <input type="text" placeholder="Enter model..">
-            <br> 
-             <input type="text" placeholder="Enter colour..">
-            <br> <br>
-        
-            <label class="container">Bike assigned to Officer
-                <input type="checkbox" name="boolAssignedToOfficer" value="assigned">
-                <span class="checkmark"></span>
-            </label>
-            <label class="container">Bike NOT assigned to Officer
-                <input type="checkbox" name="boolNotAssignedToOfficer" value="notAssigned">
-                <span class="checkmark"></span>
-            </label>
-            <br> 
-            <input class="search_button" type="submit" value="Search">
-        
+            <h2>Complete as many search attributes as possible</h2>
+			
+			<form name="formSearch">
+				<input type="text" name="frameNumberStr" placeholder="Enter frame number..">
+				<br>
+				<input type="text" name="brandStr" placeholder="Enter brand..">
+				<br>
+				<input type="text" name="modelStr" placeholder="Enter model..">
+				<br>
+				<input type="text" name="colourStr" placeholder="Enter colour..">
+				<br><br>
+				
+				<label class="container">Show bikes assigned to an Officer
+	                <input type="checkbox" id="assigned-Bool" name="boolAssignedToOfficer" value="assigned">
+	                <span class="checkmark"></span>
+	            </label> 
+	            <label class="container">Show bikes NOT assigned to an Officer
+	                <input type="checkbox" id="unassigned-Bool" name="boolNotAssignedToOfficer" value="notAssigned">
+	                <span class="checkmark"></span>
+	            </label>
+            
+				<input id="search_button" type="submit" value="Search">
+			</form>
         </div> 
         
+            
 		<section class="centered">
 			Bikes reported stolen <hr>
     

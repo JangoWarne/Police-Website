@@ -1,6 +1,4 @@
 
-
-
 google.maps.event.addDomListener(window, 'load', initialize);
 document.getElementById("googleMap").addEventListener('click', mapRedirect, false);
 document.getElementById("googleMapTitle").addEventListener('click', mapRedirect, false);
@@ -42,6 +40,19 @@ $(function() {
 	loadBikes();
 });
 
+
+// When user click search button
+$('#search_button').on('click', function(e){
+    e.preventDefault();
+    
+    //clear list of bikes
+    document.getElementById("biketable").innerHTML = "";
+    
+    // load new search results
+    loadBikes();
+});
+
+
 // load bikes from database
 function loadBikes() {
 		
@@ -58,9 +69,18 @@ function loadBikes() {
 				
 				// read bike from database
 				bikedbRead(investigation.bikeID, "", function (a, b, bike) {
-				
-					displayBike(investigation, bike);
-				
+					
+					// show bike if it matches search
+					frameNumStr = document.formSearch.frameNumberStr.value;
+					modelStr = document.formSearch.modelStr.value;
+					brandStr = document.formSearch.brandStr.value;
+					colourStr = document.formSearch.colourStr.value;
+					
+					bikeSearch(bike, investigation, frameNumStr, modelStr, brandStr, colourStr, true, true, function(bike, investigation) {
+						
+						displayBike(investigation, bike);
+						
+					});
 				});
 			});
 		}
@@ -174,6 +194,20 @@ function displayBike(investigation, bike) {
 		newString = $(this).parent().find("[selected='selected']")[0].getAttribute('value');
 		
 		casedbUpdate(bike.caseID, "caseStatus", newString, "", function(a){});
+		
+		// run PHP function to contact user
+        // Submit the form using AJAX.
+        $.ajax({
+            type: 'POST',
+            url: 'mailer.php',
+            data: {
+	            newStatus: newString,
+                email: bike.ownerID
+            },
+            success: function(response) {
+                // Do Nothing
+            }
+        });
 	});
 
 }

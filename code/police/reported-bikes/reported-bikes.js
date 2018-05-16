@@ -5,10 +5,14 @@ var mapCenter = new google.maps.LatLng(51.884310, -2.164599);
 var geocoder = new google.maps.Geocoder();
 var infowindow = new google.maps.InfoWindow();
 var myMap;
+var markers = [];
 
 
 // create google map after DOM loads
 function initialize(){
+	
+	document.formSearch.boolAssignedToOfficer.checked = true;
+	document.formSearch.boolNotAssignedToOfficer.checked = true;
 	
 	// configure map content
 	var mapOptions = {
@@ -31,6 +35,13 @@ function initialize(){
 	
 	// when the bounds of the map have changed
 	myMap.addListener('idle', function() {
+		
+		// delete markers
+		for (var i = 0; i < markers.length; i++ ) {
+			markers[i].setMap(null);
+		}
+		markers.length = 0;
+
 		// clear bikes
 		var list = document.getElementById("biketable");
 		while (list.hasChildNodes()) {   
@@ -41,6 +52,18 @@ function initialize(){
 		loadBikes();
 	});
 }
+
+
+// When user click search button
+$('#search_button').on('click', function(e){
+    e.preventDefault();
+    
+    //clear list of bikes
+    document.getElementById("biketable").innerHTML = "";
+    
+    // load new search results
+    loadBikes();
+});
 
 
 // load bikes from database
@@ -88,7 +111,19 @@ function loadBikes() {
 				// display bike if within bounds
 				if (latMax >= latBike && latBike >= latMin && lngMax >= lngBike && lngBike >= lngMin) {
 					
-					displayBike(bike, investigation);
+					// show bike if it matches search
+					frameNumStr = document.formSearch.frameNumberStr.value;
+					modelStr = document.formSearch.modelStr.value;
+					brandStr = document.formSearch.brandStr.value;
+					colourStr = document.formSearch.colourStr.value;
+					showAssigned = document.formSearch.boolAssignedToOfficer.checked;
+					showUnassigned = document.formSearch.boolNotAssignedToOfficer.checked;
+					
+					bikeSearch(bike, investigation, frameNumStr, modelStr, brandStr, colourStr, showAssigned, showUnassigned, function(bike, investigation) {
+						
+						displayBike(bike, investigation);
+						
+					});
                 }
 			});
 		}
@@ -183,6 +218,7 @@ function displayBike(bike, investigation) {
 		position: investigation.latlngLastSeen,
 		draggable: false 
 	});
+	markers.push(marker);
 }
     
     

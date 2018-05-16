@@ -23,7 +23,7 @@
     $apicall .= "&GLOBAL-ID=$globalid";
     $apicall .= "&keywords=$safequery";
     $apicall .= "&categoryId=$category";
-    $apicall .= "&paginationInput.entriesPerPage=10"; //50
+    $apicall .= "&paginationInput.entriesPerPage=12"; //50
     $apicall .= "&paginationInput.pageNumber=$page";
     $apicall .= "&IncludeSelector=Description,ItemSpecifics";
 
@@ -85,10 +85,11 @@
 		        
 		        // bike information array for single bike view
 		        $bikes[$i] = returnBikeData($item);
+	            $matches = findMatches($bikes[$i]);
 				$i = $i + 1;
 	            
 	            // list to display on page
-				$results .= bikeList($item);
+				$results .= bikeList($matches, $item);
             }
             
             // encode values as json string
@@ -107,12 +108,47 @@
     }
     
     
-    
-    
+    // find all string matches
+    function findMatches($bike) {
+	    
+	    $bike = json_decode($bike);
+	    
+	    // get db strings
+	    $dbArray = $_POST['dbArray'];
+	    
+	    // find number of matches for each element in array
+	    $matches = 0;
+	    foreach($bike as $key => $value) {
+		    
+		    // if value is not a string (and therefore an object)
+		    if( !is_string($value)) {
+			    $value = get_object_vars ($value);
+		    }
+		    
+		    // if value exists find matches
+		    if (isset($value[0])) {
+			     $value = $value[0];
+			    
+			    if ($key == 'sellerAddress' || $key == 'ebayURL' || $key == 'pic') {
+				    // do nothing
+			    } else {
+				    // find matches
+				    $ebayString = $value;
+				    foreach($dbArray as &$dbString) {
+					    if ($dbString !== '') {
+						    // count matches of dbString in ebayString
+						    $matches = $matches + substr_count( strtolower((string)$ebayString), strtolower($dbString) );
+						}
+					}
+			    }
+		    }
+	    }
+	    return $matches;
+    }
     
     
     // list to display on page
-    function bikeList($item) {
+    function bikeList($matches, $item) {
 	    
 	    // Values to display in list
         $pic = $item->PictureURL;
@@ -146,55 +182,50 @@
 	            	
             }
         }
-
-        // get number of string matches
-        $matches = 15;
         
         // For each SearchResultItem node, build a link and append it to $results
         $result =
-            '<tr class="item" id="ebay-row-$id">'.
+            '<tr class="item" id="ebay-row-'.$id.'">'.
                 '<td>'.
-                    '<a href="'.$ebayUrl.'">'.
-                        '<table class="ebay">'.
-                            '<tr class="ebay_bike_img">'.
-                                '<td rowspan="6">'.
-                                    '<div class="bike_Image">'.
-                                        '<div class="outer_constraint">'.
-                                            '<div class="inner_constraint">'.
-                                                '<img src="'.$pic.'" alt="ebay_'.$id.'">'.
-                                            '</div>'.
+                    '<table class="ebay">'.
+                        '<tr class="ebay_bike_img">'.
+                            '<td rowspan="6">'.
+                                '<div class="bike_Image">'.
+                                    '<div class="outer_constraint">'.
+                                        '<div class="inner_constraint">'.
+                                            '<img src="'.$pic.'" alt="ebay_'.$id.'">'.
                                         '</div>'.
                                     '</div>'.
-                                '</td>'.
-                                '<td rowspan="6">'.
-                                    '<div class="ebay_padding">'.
-                                    '</div>'.
-                                '</td>'.
-                                '<td class="ebay_heading">Brand:</td>'.
-                                '<td class="ebay_values">'.$brand.'</td>'.
-                            '</tr>'.
-                            '<tr class="ebay_row">'.
-                                '<td class="ebay_heading">Model:</td>'.
-                                '<td>'.$model.'</td>'.
-                            '</tr>'.
-                            '<tr class="ebay_row">'.
-                                '<td class="ebay_heading">Colour:</td>'.
-                                '<td>'.$colour.'</td>'.
-                            '</tr>'.
-                            '<tr class="ebay_row">'.
-                                '<td class="ebay_heading">Frame Material:</td>'.
-                                '<td>'.$material.'</td>'.
-                            '</tr>'.
-                            '<tr class="case_row">'.
-                                '<td class="ebay_heading"></td>'.
-                                '<td></td>'.
-                            '</tr>'.
-                            '<tr class="ebay_row">'.
-                                '<td class="ebay_heading"><b>Matching Words:</td>'.
-                                '<td>'.$matches.'</b></td>'.
-                            '</tr>'.
-                        '</table>'.
-                    '</a>'.
+                                '</div>'.
+                            '</td>'.
+                            '<td rowspan="6">'.
+                                '<div class="ebay_padding">'.
+                                '</div>'.
+                            '</td>'.
+                            '<td class="ebay_heading">Brand:</td>'.
+                            '<td class="ebay_values">'.$brand.'</td>'.
+                        '</tr>'.
+                        '<tr class="ebay_row">'.
+                            '<td class="ebay_heading">Model:</td>'.
+                            '<td>'.$model.'</td>'.
+                        '</tr>'.
+                        '<tr class="ebay_row">'.
+                            '<td class="ebay_heading">Colour:</td>'.
+                            '<td>'.$colour.'</td>'.
+                        '</tr>'.
+                        '<tr class="ebay_row">'.
+                            '<td class="ebay_heading">Frame Material:</td>'.
+                            '<td>'.$material.'</td>'.
+                        '</tr>'.
+                        '<tr class="case_row">'.
+                            '<td class="ebay_heading"></td>'.
+                            '<td></td>'.
+                        '</tr>'.
+                        '<tr class="ebay_row">'.
+                            '<td class="ebay_heading"><b>Matching Words:</td>'.
+                            '<td>'.$matches.'</b></td>'.
+                        '</tr>'.
+                    '</table>'.
                 '</td>'.
             '</tr>';
         
@@ -212,19 +243,21 @@
         $ebayUrl = $item->ViewItemURLForNaturalSearch;
         $id = $item->ItemID;
         $title = $item->Title;
-        $desc = $item->Description;
         $itemLocation = $item->Location;
         $itemPost = $item->PostalCode;
-        $sellerFirstN = $item->BusinessSellerDetails->Address;
-/*
-        $sellerFirstN = $item->BusinessSellerDetails->Address->FirstName;
-        $sellerLastN = $item->BusinessSellerDetails->Address->LastName;
-        $sellerCompanyN = $item->BusinessSellerDetails->Address->CompanyName;
-        $sellerStreet = $item->BusinessSellerDetails->Address->Street1;
-        $sellerPost = $item->BusinessSellerDetails->Address->PostalCode;
-        $sellerPhone = $item->BusinessSellerDetails->Address->Phone;
-*/
+        $sellerAddress = $item->BusinessSellerDetails->Address;
         
+        // create emplty seller information if null
+        if ($sellerAddress == null) {
+	        $sellerAddress = new stdClass();
+	        $sellerAddress->FirstName = "";
+	        $sellerAddress->LastName = "";
+	        $sellerAddress->CompanyName = "";
+	        $sellerAddress->Street1 = "";
+	        $sellerAddress->PostalCode = "";
+	        $sellerAddress->Phone = "";
+        }
+	
         
         // Bike information in NameValueList (default to empty string)
         $brand = "";
@@ -289,19 +322,11 @@
         $bike = json_encode(array(
         	"pic" => $pic,
         	"ebayURL" => $ebayUrl,
-        	"id" => $id,
+        	"bikeid" => $id,
         	"title" => $title,
-        	"list" => $desc,
-        	"desc" => $itemLocation,
+        	"itemLocation" => $itemLocation,
         	"itemPost" => $itemPost,
-        	"sellerFirstN" => $sellerFirstN,
-/*
-        	"sellerLastN" => $sellerLastN,
-        	"sellerCompanyN" => $sellerCompanyN,
-        	"sellerStreet" => $sellerStreet,
-        	"sellerPost" => $sellerPost,
-        	"sellerPhone" => $sellerPhone,
-*/
+        	"sellerAddress" => $sellerAddress,
         	"brand" => $brand,
         	"model" => $model,
         	"colour" => $colour,

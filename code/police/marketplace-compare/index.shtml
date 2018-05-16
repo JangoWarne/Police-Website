@@ -19,7 +19,7 @@
         <!-- Headers -->
         <header id="logged-out-header">
 
-            <!--#include virtual="/CT4009%202017-18%20001%201609415%2014%20Jan%202018/police/header.html" -->
+            <!--#include virtual="../header.html" -->
             
             <div class="heading_text">
                 <h1>
@@ -66,21 +66,21 @@
                 <div class="box" >
                     <div class="spacing">
                         <center> <h1> EBAY </h1> </center>
-                        <div class="all-bikes">
+                        <div id="bikes-search">
 	                        <form id="ebaysearch" name="ebaysearch" class="search" action="Marketcompare.php">
 	                            <input id="search-text" type="text" name="query" placeholder="Search..">
-	                            <input id="search-button" class="submit_button" type="submit" value="Search"> <br>
+	                            <input id="search-button" class="ebay_button" type="submit" value="Search"> <br>
 	                        </form>
                         </div>
-                        <div class="one-bike">
-	                        <input id="back-button" type="button" value="Back">
+                        <div id="bike-back">
+	                        <input id="back-button" class="ebay_button" type="button" value="Back">
 	                        <br>
                         </div>
 
                         <hr />  <br>
                         
                         <div class="scroll" id="scroll">
-	                        <div class="all-bikes">
+	                        <div id="bikes-results">
 	                            <table>
 	                                <tr class="ebay_row">
 	                                    <td class="ebay_text"><b>Click on a bike to see more information</td>
@@ -95,7 +95,7 @@
 	                                </tr>
 	                            </table>
                             </div>
-	                        <div class="one-bike">
+	                        <div id="bike-info">
 		                        <div id= "eBay-details"></div>
                             </div>
                         </div>

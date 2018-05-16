@@ -1,14 +1,22 @@
 var page = 0;
-var bikesInfo = [];
+var bikeStrings = [];
 
 // runs at page load
 $(function(){
-    bikeSearch();
-    
+	
 	loadcase();
 	
-	
-    $('#scroll').bind('scroll', chk_scroll);
+	// when croll bar hits bottom of list
+    $('#scroll').scroll(chk_scroll);
+    
+	// on back button click
+	$('#back-button').on('click', function(e) {
+		
+		document.getElementById('bikes-results').style.display = "block";
+		document.getElementById('bikes-search').style.display = "block";
+		document.getElementById('bike-info').style.display = "none";
+		document.getElementById('bike-back').style.display = "none";
+	});
 });
 
 
@@ -45,7 +53,10 @@ $('#ebaysearch').on('submit', function(e){
 // when user scrolles to end of results
 function chk_scroll(e) {
     var elem = $(e.currentTarget);
-    if (elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight()) {
+    var scrollPosition = elem[0].scrollHeight - elem.scrollTop();
+    
+    // when user reaches bottom of scroll bar (+/- 1 px for float vs int comparison)
+    if ( (scrollPosition <= elem.outerHeight() + 1) && (scrollPosition >= elem.outerHeight() - 1) ) {
 		
         // add to existing search results
 		bikeSearch(false);
@@ -70,26 +81,42 @@ function bikeSearch(reset) {
         method: "POST",
         data: {
 			page: page,
+			dbArray: bikeStrings,
 			query: "(bicycle, bike) " + document.ebaysearch.query.value
         },
         success: function(data) {
-			//console.log(data);
 			data = JSON.parse(data);  // parse JSON data into js object
 			
             // If successful
             if(data.status == 'success') {
 				
 				// load next page of results or load from scratch
-				// Update array for single bike view -> bikesInfo
 				if (reset) {
 					// replace html on page
 					$( "#results" ).html( $( data.list ) );
-					bikesInfo = bikeDecode(data.bikes);
 				} else {
 					// append html to page
 					$( "#results" ).append( $( data.list ) );
-					bikesInfo.push.apply(bikesInfo, bikeDecode(data.bikes) );
-					displayeBayBike(bikesInfo[0]);
+				}
+				
+				// Switch to single bike view if user clicks on bike
+				var bikeid = 0;
+				bikesData = bikeDecode(data.bikes);
+				for (var i = 0; i < data.bikes.length; i++) {
+					
+					bikeInfo = bikesData[i];
+					bikeid = bikeInfo.bikeid[0];
+					row = '#ebay-row-' + bikeid;
+					
+					// bike row click
+					$(row).click({bikeInfo: bikeInfo}, function(event) {
+						
+						displayeBayBike(event.data.bikeInfo);
+						document.getElementById('bikes-results').style.display = "none";
+						document.getElementById('bikes-search').style.display = "none";
+						document.getElementById('bike-info').style.display = "block";
+						document.getElementById('bike-back').style.display = "block";
+					});
 				}
 				
             } else if(data.status == 'success') {
@@ -100,11 +127,31 @@ function bikeSearch(reset) {
 }
 
 
+
 //show bike from database
 function displaydbBike(bikeID) {
 	
 	// read bike from database
 	bikedbRead(bikeID, "", function (a, b, bike) {
+		
+		// build bikeStrings array of values for matches comparison
+		bikeStrings = [
+			bike.brand,
+			bike.model,
+			bike.bikeType,
+			bike.gender,
+			bike.colour,
+			bike.frameMaterial,
+			bike.frameSize,
+			bike.numberGears,
+			bike.suspension,
+			bike.brakeType,
+			bike.handlebarType,
+			bike.frameNumber,
+			bike.tagBrand,
+			bike.tagID
+		];
+		bikeStrings = bikeStrings.concat( bike.otherItems.split(" ") );
         
 		// add new bike html
 		var bikedetails = document.createElement('div');
@@ -139,26 +186,49 @@ function displaydbBike(bikeID) {
                        
                         '<span class="column">Tag Id/Number:</span> <span class="column">-  '+ bike.tagID + '</span> <hr><br>'+
 
-                        '<span class="column">Features:</span> <span class="column">-  '+ bike.features+ '</span> <hr><br>'+
+                        '<span class="column">Features:</span> <span class="column">-  '+ bike.otherItems+ '</span> <hr><br>'+
                         
-                        '<span class="column">Distinctive Marks:</span> <span class="column">-  '+ bike.description+ '</span> <hr><br>';
+                        '<span class="column">Distinctive Marks:</span> <span class="column">-  '+ bike.distinctiveMarks+ '</span> <hr><br>';
 		
 		// add html to page
 		$( "#bike-details" ).after( $( bikedetails ) );
         
         insertImage(bike.imageList);
+        
+        bikeSearch(true);
 	});
 }
 
 
-//show bike from database
+//show bike from eBay
 function displayeBayBike(bike) {
-    console.log(bike);
+	
+	// turn features into a list
+	// map features object to array
+	var array = $.map(bike.features, function(value, index) {
+		return [value];
+	});
+	// append strings
+	features = '';
+	for (var i = 0; i < array.length; i++) {
+		features = features + array[i] + ",<br>";
+	}
+	
 	// add new bike html
 	var bikedetails = document.createElement('div');
-	bikedetails.className = "align_center";
+	bikedetails.className = "ebay_center";
 	bikedetails.innerHTML =
-				
+					
+                    '<div class="line"><b>' + bike.title[0] + '</b></div> <br>'+
+	
+					'<a href="'+ bike.ebayURL[0] +'"><input id="item-button" class="ebay_button" type="button" value="View eBay listing"></a> <br> <br>' +
+        
+                    '<div class="line"><img src="' + bike.pic[0] + '"></div> <br> <br>' +
+                    
+                    '<hr><center>Bike Information</center><hr><br>'+
+                   
+                    '<span class="column">Location:</span> <span class="column">-  '+ bike.itemLocation[0] + ", " + bike.itemPost[0] + '</span> <hr><br>'+
+					
                     '<span class="column">Brand:</span> <span class="column">-  ' + bike.brand[0] + '</span> <hr><br>'+
         
                     '<span class="column">Model:</span> <span class="column">-  '+ bike.model[0] + '</span> <hr><br>'+
@@ -181,10 +251,23 @@ function displayeBayBike(bike) {
                     
                     '<span class="column">Frame Number:</span> <span class="column">-  '+ bike.mpn[0] + '</span> <hr><br>'+
 
-                    '<span class="column">Features:</span> <span class="column">-  '+ JSON.stringify(bike.features) + '</span> <hr><br>';
-	console.log(bikedetails);
+                    '<span class="column">Features:</span> <span class="column">-  '+ features + '</span><br><br><br><br><br><br><br>' +
+                    
+                    
+                    
+                    
+                    '<hr><center>Seller Information</center><hr><br>'+
+                   
+                    '<span class="column">Seller Name:</span> <span class="column">-  '+ bike.sellerAddress.FirstName + " " + bike.sellerAddress.LastName + '</span> <hr><br>'+
+                    
+                    '<span class="column">Seller Company:</span> <span class="column">-  '+ bike.sellerAddress.CompanyName + '</span> <hr><br>'+
+                   
+                    '<span class="column">Seller Address:</span> <span class="column">-  '+ bike.sellerAddress.Street1 + ",<br>" + bike.sellerAddress.PostalCode + '</span> <hr><br>'+
+                    
+                    '<span class="column">Seller Number:</span> <span class="column">-  '+ bike.sellerAddress.Phone + '</span> <br> <br> <br>';
+	
 	// add html to page
-	$( "#eBay-details" ).after( $( bikedetails ) );
+	$( "#eBay-details" ).html( $( bikedetails ) );
     
 }
 

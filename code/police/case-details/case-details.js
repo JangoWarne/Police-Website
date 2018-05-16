@@ -300,9 +300,6 @@ function displayCase(investigation, bike, user) {
         
         
         // run PHP function to contact user
-        // check if email cookie exists and is non zero (not being deleted)
-        username = cookieRead("login_uname");
-        
         officerdbRead("firstName", "", function(username, a, firstName) {
             
             officerdbRead("lastName", "", function(username, a, lastName) {

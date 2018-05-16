@@ -94,7 +94,7 @@ h2 {
 
 
 /*style search button*/
-.search_button {
+#search_button {
 	margin-top: 20px;
 	margin-bottom: 10px;
 	height: 40px;
@@ -112,12 +112,12 @@ h2 {
 	background-color: #2f24b1;
    border: 2px solid #2f24b1;
 }
-.search_button:hover {
+#search_button:hover {
 	background-color: #D7D7D4;
 	border: 2px solid #D7D7D4;
 	color: #373737;
 }
-.search_button:active {
+#search_button:active {
 	transition-duration: 0s;
 }
 

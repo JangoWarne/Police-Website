@@ -216,27 +216,19 @@
 			$bikes = array();
 			foreach ($result as $name => $bike) {
 				$i = $i + 1;
-// 				print_r($bike);
+				
 				// convert NULL values
 				foreach ($bike as $params => $vals) {
 				    if ($value == NULL) {
 				    	$value = "";
 				    }
 				}
-// 				print_r($bike);
+				
 				array_push($bikes, $bike);
-// 				print_r($bikes);
 			}
 			
-/*
-			print_r(count( $result ));
-			print_r($result);
-			
-			print_r(count( $bikes ));
-			print_r($bikes);
-*/
 			// return JSON array of values
-			echo json_encode(array("status" => "success", "bikes" => json_encode($bikes))); // + $arr
+			echo json_encode(array("status" => "success", "bikes" => json_encode($bikes)));
 		} else {
 			echo json_encode(array("status" => "error", "error" => mysqli_error($connection)));
 		}
